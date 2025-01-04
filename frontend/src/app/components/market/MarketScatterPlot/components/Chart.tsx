@@ -78,9 +78,9 @@ export const Chart = ({
       !activeFilter || filterStocksFn(stock, activeFilter)
     );
 
-    const voronoiLayout = voronoi({
-      x: d => xScale(d.priceChange),
-      y: d => yScale(d.volumeMetrics?.volumeVsAvg ?? 0),
+    const voronoiLayout = voronoi<Stock>({
+      x: (d: Stock) => xScale(d.priceChange),
+      y: (d: Stock) => yScale(d.volumeMetrics?.volumeVsAvg ?? 0),
       width: innerWidth,
       height: innerHeight,
     })(visibleData);
