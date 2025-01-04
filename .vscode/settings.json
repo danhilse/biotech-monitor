@@ -1,0 +1,12 @@
+{
+    "favorites.resources": [
+        {
+            "filePath": "backend/scripts/polygon_fetch.py",
+            "group": "Default"
+        },
+        {
+            "filePath": "frontend/public/data/market_data.json",
+            "group": "Default"
+        }
+    ]
+}

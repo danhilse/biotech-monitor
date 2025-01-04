@@ -5,6 +5,9 @@ export interface News {
   timestamp: string;
   type: string;
   url: string;
+  description?: string;  // New optional field
+  sentiment?: string;    // New optional field
+  sentiment_reasoning?: string;  // New optional field
 }
 
 export interface InsiderTrade {
@@ -48,7 +51,72 @@ export interface VolumeMetrics {
 
 export interface Technicals {
   rsi: number | null;
+  rsi_signal: number | null;  // New field
   volumeSMA: number | null;
+}
+
+export interface ValuationMetrics {  // New interface
+  trailing_pe: number | null;
+  forward_pe: number | null;
+  trailing_eps: number | null;
+  price: number;
+}
+
+export interface FinancialMetrics {  // New interface
+  quarterly: {
+    revenue: number;
+    gross_profit: number;
+    operating_income: number;
+    net_income: number;
+    eps: {
+      basic: number;
+      diluted: number;
+    };
+  };
+  balance_sheet: {
+    total_assets: number;
+    total_liabilities: number;
+    total_equity: number;
+    current_assets: number;
+    current_liabilities: number;
+  };
+  growth_metrics: {
+    revenue_growth: number | null;
+    income_growth: number;
+    eps_growth: number;
+  };
+  key_ratios: {
+    current_ratio: number;
+    debt_to_equity: number;
+    asset_turnover: number;
+    equity_ratio: number;
+  };
+  period_info: {
+    fiscal_year: string;
+    fiscal_period: string;
+    start_date: string;
+    end_date: string;
+  };
+  ttm: {
+    revenue: number;
+    net_income: number;
+    operating_income: number;
+  };
+  annual: {
+    revenue: number;
+    net_income: number;
+    operating_income: number;
+    eps: {
+      basic: number;
+      diluted: number;
+    };
+  };
+}
+
+export interface TechnicalAlert {  // New interface
+  active: boolean;
+  type: string | null;
+  value: number | null;
 }
 
 export interface AlertDetails {
@@ -58,7 +126,7 @@ export interface AlertDetails {
   highVolume: boolean;
   insiderAlert: boolean;
   newsAlert: boolean;
-  technicalAlert: boolean | null;
+  technicalAlert: TechnicalAlert;  // Updated to new structure
   nearHighAlert: boolean;
 }
 
@@ -83,6 +151,8 @@ export interface Stock {
   prevVolume: number;
   volumeMetrics: VolumeMetrics;
   technicals: Technicals;
+  valuation_metrics: ValuationMetrics;  // New field
+  financials: FinancialMetrics;         // New field
   fiftyTwoWeekHigh: number;
   fiftyTwoWeekLow: number;
   highProximityPct: number;
@@ -105,6 +175,10 @@ export interface ScatterNode {
   marketCap: number;
   alerts: number;
   alertDetails: AlertDetails;
+  // New optional fields for enhanced visualization
+  pe_ratio?: number | null;
+  eps?: number | null;
+  current_ratio?: number | null;
 }
 
 export interface ScatterSeries {
@@ -113,7 +187,8 @@ export interface ScatterSeries {
 }
 
 // Filter types for data filtering
-export type FilterType = 'smallCap' | 'midCap' | 'largeCap' | 'gainers' | 'decliners' | 'highVolume' | null;
+export type FilterType = 'smallCap' | 'midCap' | 'largeCap' | 'gainers' | 'decliners' | 
+  'highVolume' | 'highPE' | 'lowPE' | 'profitable' | null;  // Added new filter types
 
 // Helper function to convert Stock to ScatterNode
 export const stockToScatterNode = (stock: Stock): ScatterNode => ({
@@ -126,7 +201,10 @@ export const stockToScatterNode = (stock: Stock): ScatterNode => ({
   volumeVsAvg: stock.volumeMetrics.volumeVsAvg,
   marketCap: stock.marketCap,
   alerts: stock.alerts,
-  alertDetails: stock.alertDetails
+  alertDetails: stock.alertDetails,
+  pe_ratio: stock.valuation_metrics.trailing_pe,
+  eps: stock.valuation_metrics.trailing_eps,
+  current_ratio: stock.financials.key_ratios.current_ratio
 });
 
 // Helper type for scatter plot data points
@@ -138,4 +216,7 @@ export interface ScatterDataPoint {
   volume: number;
   marketCap: number;
   alerts: number;
+  pe_ratio?: number | null;
+  eps?: number | null;
+  current_ratio?: number | null;
 }

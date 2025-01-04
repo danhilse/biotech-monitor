@@ -9,6 +9,7 @@ import logging
 from typing import Dict, List, Any
 from ratelimit import limits, sleep_and_retry
 import pandas as pd
+import math
 
 from dotenv import load_dotenv
 import os
@@ -715,12 +716,59 @@ class HybridDataFetcher:
             'order': 'desc'
         }
         return self._make_request(endpoint, params)
+    def remove_nan_values(data):
+        """
+        Recursively walk the data structure and replace NaN/Infinity with None.
+        Also handles NaN strings and empty strings.
+        """
+        if isinstance(data, float):
+            if math.isnan(data) or math.isinf(data):
+                return None
+            return data
+        elif isinstance(data, str):
+            # Handle string "NaN" values
+            if data.lower() == "nan" or data.strip() == "":
+                return None
+            return data
+        elif isinstance(data, list):
+            return [remove_nan_values(x) for x in data]
+        elif isinstance(data, dict):
+            return {k: remove_nan_values(v) for k, v in data.items()}
+        return data
+    
+    def validate_numeric_fields(self, data):
+        """
+        Validate and clean numeric fields in market data.
+        Returns list of any fields that had NaN values for logging.
+        """
+        nan_fields = []
+        
+        def validate_value(value, path):
+            if isinstance(value, float):
+                if math.isnan(value) or math.isinf(value):
+                    nan_fields.append(path)
+                    return None
+            return value
+                    
+        def recursive_validate(obj, current_path=""):
+            if isinstance(obj, dict):
+                return {k: recursive_validate(v, f"{current_path}.{k}" if current_path else k) 
+                    for k, v in obj.items()}
+            elif isinstance(obj, list):
+                return [recursive_validate(item, f"{current_path}[{i}]") 
+                    for i, item in enumerate(obj)]
+            else:
+                return validate_value(obj, current_path)
+                
+        cleaned_data = recursive_validate(data)
+        return cleaned_data, nan_fields
 
     def fetch_market_data(self, symbols: List[str]) -> List[Dict]:
         """
         Fetch comprehensive market data using both Polygon.io and yfinance
         """
         market_data = []
+
         
         for symbol in symbols:
             try:
@@ -946,10 +994,14 @@ class HybridDataFetcher:
                 logger.error(f"Unexpected error processing {symbol}: {str(e)}")
                 continue
         
+        
         # Save to JSON file
         try:
-            with open('market_data.json', 'w') as f:
-                json.dump(market_data, f, indent=2)
+            # with open('../../../frontend/market_data.json', 'w') as f:
+            cleaned_data, nan_fields = self.validate_numeric_fields(market_data)
+
+            with open('../../frontend/public/data/market_data.json', 'w') as f:
+                json.dump(cleaned_data, f, indent=2)
             logger.info(f"Saved data for {len(market_data)} stocks")
         except Exception as e:
             logger.error(f"Error saving to JSON: {str(e)}")
@@ -962,19 +1014,19 @@ def main():
     # Test with a smaller list first
     # tickers = ["VERA", "ANIX", "INMB", "GUTS"]  # Add your full list here    
     
-    tickers = ["VERA"]  # Add your full list here    
-    # tickers = ["VERA", "ANIX", "INMB", "GUTS", "MIRA", "EYPT", "GNPX", "GLUE", "TGTX", "AUPH", 
-    #            "ITCI", "CLOV", "CERE", "IPHA", "MDWD", "ZYME", "ASMB", "JAZZ", "PRTA", "TMDX",
-    #            "GILD", "NTNX", "INAB", "MNPR", "APVO", "HRMY", "BHC", "BCRX", "GRTX", "AXSM",
-    #            "SMMT", "SAGE", "MYNZ", "GMAB", "LUMO", "NEO", "ARCT", "TEVA", "VMD", "VERU",
-    #            "VRCA", "SIGA", "INMD", "EXEL", "CPRX", "HALO", "NVOS", "ATAI", "BNGO", "ENOV",
-    #            "BIIB", "MIST", "ARDX", "CVM", "ACLS", "IDYA", "RYTM", "TWST", "STEM", "GERN",
-    #            "VIR", "ALKS", "AMPH", "SVRA", "EVLO", "GH", "NTLA", "MRTX", "SRPT", "RARE",
-    #            "TRVI", "PGEN", "EVH", "ARQT", "QNRX", "SYRS", "GTHX", "MNKD", "XERS", "SNDX",
-    #            "PRTK", "PLRX", "MREO", "MDGL", "KZR", "GALT", "ETNB", "EPZM", "CMRX", "CDTX",
+    # tickers = ["VERA", "MIRA"]  # Add your full list here    
+    tickers = ["VERA", "ANIX", "INMB", "GUTS", "MIRA", "EYPT", "GNPX", "GLUE", "TGTX", "AUPH", 
+               "ITCI", "CLOV", "CERE", "IPHA", "MDWD", "ZYME", "ASMB", "JAZZ", "PRTA", "TMDX",
+               "GILD", "NTNX", "INAB", "MNPR", "APVO", "HRMY", "BHC", "BCRX", "GRTX", "AXSM",
+               "SMMT", "SAGE", "MYNZ", "GMAB", "LUMO", "NEO", "ARCT", "TEVA", "VMD", "VERU",
+               "VRCA", "SIGA", "INMD", "EXEL", "CPRX", "HALO", "NVOS", "ATAI", "BNGO", "ENOV",
+               "BIIB", "MIST", "ARDX", "CVM", "ACLS", "IDYA", "RYTM", "TWST", "STEM", "GERN",
+               "VIR", "ALKS", "AMPH", "SVRA", "EVLO", "GH", "NTLA", "MRTX", "SRPT", "RARE",
+               "TRVI", "PGEN", "EVH", "ARQT", "QNRX", "SYRS", "GTHX", "MNKD", "XERS", "SNDX",
+               "PRTK", "PLRX", "MREO", "MDGL", "KZR", "GALT", "ETNB", "EPZM", "CMRX", "CDTX",
     
-    #            "GYRE", "CBAY", "AGEN", "ABUS", "ABCL", "LOGC", "BLCM", "ADVM", "SNY", "MRSN",
-    #            "TCRT", "ASRT", "ABBV", "ADMA", "RKLB"]  # Add your full list here
+               "GYRE", "CBAY", "AGEN", "ABUS", "ABCL", "LOGC", "BLCM", "ADVM", "SNY", "MRSN",
+               "TCRT", "ASRT", "ABBV", "ADMA", "RKLB"]  # Add your full list here
     
     fetcher = HybridDataFetcher(POLYGON_KEY)
     market_data = fetcher.fetch_market_data(tickers)
