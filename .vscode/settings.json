@@ -7,6 +7,10 @@
         {
             "filePath": "frontend/public/data/market_data.json",
             "group": "Default"
+        },
+        {
+            "filePath": "frontend/src/app/components/market/MarketDetailView.tsx",
+            "group": "Default"
         }
     ]
 }

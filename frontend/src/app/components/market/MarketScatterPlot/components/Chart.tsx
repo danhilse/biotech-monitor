@@ -3,7 +3,6 @@ import { scaleLinear } from '@visx/scale';
 import { Group } from '@visx/group';
 import { AxisLeft, AxisBottom } from '@visx/axis';
 import { Grid } from '@visx/grid';
-import { Circle } from '@visx/shape';
 import { localPoint } from '@visx/event';
 import { useTooltip } from '@visx/tooltip';
 import { voronoi, VoronoiPolygon } from '@visx/voronoi';
@@ -19,6 +18,7 @@ interface ChartProps {
   onStockSelect: (stock: Stock | null) => void;
   width: number;
   height: number;
+  removeOutliersEnabled: boolean;
 }
 
 export const Chart = ({ 
@@ -28,7 +28,8 @@ export const Chart = ({
   filterStocksFn,
   onStockSelect,
   width,
-  height
+  height,
+  removeOutliersEnabled
 }: ChartProps) => {
   const [selectedSymbol, setSelectedSymbol] = useState<string | null>(null);
   const [hoveredSymbol, setHoveredSymbol] = useState<string | null>(null);
@@ -48,7 +49,9 @@ export const Chart = ({
   const { xScale, yScale, voronoiLayout, filteredData, neighborMap } = useMemo(() => {
     const processedData = data.map(stock => ({
       ...stock,
-      volumeVsAvg: stock.volumeMetrics?.volumeVsAvg ?? 0
+      volumeVsAvg: stock.volumeMetrics?.volumeVsAvg ?? 0,
+      // Add a stable key for React component identity
+      stableKey: `${stock.symbol}-${stock.priceChange}-${stock.volumeMetrics?.volumeVsAvg ?? 0}`
     }));
 
     const xValues = processedData.map(d => d.priceChange);
@@ -156,11 +159,11 @@ export const Chart = ({
     <div className="relative">
       <svg ref={svgRef} width={width} height={height}>
         <defs>
-          {filteredData.map((stock, i) => {
+          {filteredData.map((stock) => {
             const nodeColor = getNodeColor(stock.price, stock.fiftyTwoWeekLow, stock.fiftyTwoWeekHigh);
             return (
               <linearGradient
-                key={`gradient-${stock.symbol}`}
+                key={`gradient-${stock.stableKey}`}
                 id={`voronoi-gradient-${stock.symbol}`}
                 gradientUnits="userSpaceOnUse"
                 x1="0"
@@ -168,21 +171,9 @@ export const Chart = ({
                 x2={innerWidth}
                 y2={innerHeight}
               >
-                <stop
-                  offset="0%"
-                  stopColor={nodeColor}
-                  stopOpacity={0.20}
-                />
-                <stop
-                  offset="50%"
-                  stopColor={nodeColor}
-                  stopOpacity={0.16}
-                />
-                <stop
-                  offset="100%"
-                  stopColor={nodeColor}
-                  stopOpacity={0.12}
-                />
+                <stop offset="0%" stopColor={nodeColor} stopOpacity={0.20} />
+                <stop offset="50%" stopColor={nodeColor} stopOpacity={0.16} />
+                <stop offset="100%" stopColor={nodeColor} stopOpacity={0.12} />
               </linearGradient>
             );
           })}
@@ -215,17 +206,17 @@ export const Chart = ({
             numTicks={width > 600 ? 10 : 5}
           />
 
-          {/* Stock circles - now rendered FIRST */}
-          {filteredData.map((stock, i) => {
+          {/* Stock circles */}
+          {filteredData.map((stock) => {
             const nodeColor = getNodeColor(stock.price, stock.fiftyTwoWeekLow, stock.fiftyTwoWeekHigh);
             const isSelected = selectedSymbol === stock.symbol;
             const isHovered = hoveredSymbol === stock.symbol;
             const opacity = getNodeOpacity(stock);
 
             return (
-              <g key={`${stock.symbol}-${i}`}>
+              <g key={stock.stableKey}>
                 {isSelected && (
-                  <Circle
+                  <circle
                     cx={xScale(stock.priceChange)}
                     cy={yScale(stock.volumeMetrics?.volumeVsAvg ?? 0)}
                     r={(getNodeSize(stock.marketCap, width) / 2) + 4}
@@ -233,18 +224,22 @@ export const Chart = ({
                     stroke={nodeColor}
                     strokeWidth={4}
                     opacity={opacity ? 0.7 : 0}
-                    style={{ transition: 'all 300ms ease-in-out' }}
+                    style={{
+                      transition: 'cx 500ms cubic-bezier(0.4, 0, 0.2, 1), cy 500ms cubic-bezier(0.4, 0, 0.2, 1), r 300ms ease-out, opacity 300ms ease-out'
+                    }}
                   />
                 )}
-                <Circle
+                <circle
                   cx={xScale(stock.priceChange)}
                   cy={yScale(stock.volumeMetrics?.volumeVsAvg ?? 0)}
                   r={getNodeSize(stock.marketCap, width) / 2}
                   fill={nodeColor}
                   opacity={opacity}
-                  style={{ transition: 'all 300ms ease-in-out' }}
+                  style={{
+                    transition: 'cx 500ms cubic-bezier(0.4, 0, 0.2, 1), cy 500ms cubic-bezier(0.4, 0, 0.2, 1), r 300ms ease-out, opacity 300ms ease-out'
+                  }}
                 />
-                <Circle
+                <circle
                   className="hover-ring"
                   cx={xScale(stock.priceChange)}
                   cy={yScale(stock.volumeMetrics?.volumeVsAvg ?? 0)}
@@ -253,13 +248,15 @@ export const Chart = ({
                   stroke={nodeColor}
                   strokeWidth={isSelected ? 4 : 2}
                   opacity={isHovered ? 0.4 : 0}
-                  style={{ transition: 'all 300ms ease-in-out' }}
+                  style={{
+                    transition: 'cx 500ms cubic-bezier(0.4, 0, 0.2, 1), cy 500ms cubic-bezier(0.4, 0, 0.2, 1), r 300ms ease-out, opacity 300ms ease-out'
+                  }}
                 />
               </g>
             );
           })}
 
-          {/* Voronoi cells with gradients - now rendered LAST */}
+          {/* Voronoi overlay */}
           {voronoiLayout && filteredData.map((stock, i) => {
             const polygon = voronoiLayout.polygons()[i];
             if (!polygon) return null;
@@ -271,7 +268,7 @@ export const Chart = ({
             
             return (
               <VoronoiPolygon
-                key={`voronoi-${i}`}
+                key={`voronoi-${stock.stableKey}`}
                 polygon={polygon}
                 fill={`url(#voronoi-gradient-${stock.symbol})`}
                 fillOpacity={isSelected ? .75 : isHovered ? 0.44 : 0.0}
@@ -283,7 +280,7 @@ export const Chart = ({
                 onClick={() => handleClick(stock)}
                 style={{ 
                   cursor: 'pointer',
-                  transition: 'all 500ms ease-in-out'
+                  transition: 'all 500ms cubic-bezier(0.4, 0, 0.2, 1)'
                 }}
               />
             );

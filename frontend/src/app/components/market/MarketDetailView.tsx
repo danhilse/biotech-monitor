@@ -3,9 +3,10 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Separator } from '@/components/ui/separator';
-import { TrendingUp, TrendingDown, AlertTriangle, Building2, Newspaper, ExternalLink } from 'lucide-react';
+import { TrendingUp, TrendingDown, AlertTriangle, Building2, Newspaper, ExternalLink, BadgeDollarSign } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import { Stock } from './types';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { formatNumber, formatDate } from './utils';
 import { VolumeChart } from './VolumeChart';
 
@@ -96,7 +97,10 @@ export const MarketDetailView = ({ stock }: Props) => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <NewsSection news={stock.recentNews ?? []} />
+        <NewsSection 
+          news={stock.recentNews ?? []} 
+          insiderActivity={stock.insiderActivity}
+        />
         <CompanyInsights stock={stock} />
       </div>
     </div>
@@ -138,33 +142,72 @@ const MarketMetric = ({
   </Card>
 );
 
-const NewsSection = ({ news }: { news: Stock['recentNews'] }) => (
+const NewsSection = ({ news, insiderActivity }: { news: Stock['recentNews'], insiderActivity: Stock['insiderActivity'] }) => (
   <Card>
     <CardHeader>
       <CardTitle className="flex items-center gap-2">
         <Newspaper className="w-5 h-5" />
-        Recent News
+        News & Trading Activity
       </CardTitle>
     </CardHeader>
     <CardContent>
-      <div className="space-y-4">
-        {news.map((item, index) => (
-          <a
-            key={index}
-            href={item.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block p-3 rounded-lg hover:bg-accent transition-colors"
-          >
-            <p className="font-medium line-clamp-2">{item.title}</p>
-            <div className="flex items-center gap-2 mt-2 text-sm text-muted-foreground">
-              <span>{item.publisher}</span>
-              <span>•</span>
-              <span>{formatDate(item.timestamp)}</span>
+      <Tabs defaultValue="news" className="space-y-4">
+        <TabsList className="grid w-full grid-cols-2">
+          <TabsTrigger value="news">Recent News</TabsTrigger>
+          <TabsTrigger value="insider">Insider Trading</TabsTrigger>
+        </TabsList>
+        
+        <TabsContent value="news" className="space-y-4">
+          {news?.map((item, index) => (
+            <a
+              key={index}
+              href={item.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block p-3 rounded-lg hover:bg-accent transition-colors"
+            >
+              <p className="font-medium line-clamp-2">{item.title}</p>
+              <div className="flex items-center gap-2 mt-2 text-sm text-muted-foreground">
+                <span>{item.publisher}</span>
+                <span>•</span>
+                <span>{formatDate(item.timestamp)}</span>
+              </div>
+            </a>
+          ))}
+        </TabsContent>
+
+        <TabsContent value="insider" className="space-y-4">
+          {insiderActivity?.notable_trades?.map((trade, index) => (
+            <div
+              key={index}
+              className="block p-3 rounded-lg hover:bg-accent transition-colors"
+            >
+              <div className="flex items-center justify-between">
+                <p className="font-medium flex items-center gap-2">
+                  {trade.type === 'Sale' ? (
+                    <TrendingDown className="w-4 h-4 text-red-500" />
+                  ) : trade.type === 'Purchase' ? (
+                    <TrendingUp className="w-4 h-4 text-green-500" />
+                  ) : (
+                    <BadgeDollarSign className="w-4 h-4 text-blue-500" />
+                  )}
+                  {trade.insider} • {formatNumber(trade.shares)} shares
+                </p>
+                <Badge variant={trade.type === 'Sale' ? 'destructive' : trade.type === 'Purchase' ? 'success' : 'secondary'}>
+                  ${(trade.price_per_share || (trade.value / trade.shares)).toFixed(2)}
+                </Badge>
+              </div>
+              <div className="flex items-center gap-2 mt-2 text-sm text-muted-foreground">
+                <span>{trade.position}</span>
+                <span>•</span>
+                <span>${formatNumber(trade.value)}</span>
+                <span>•</span>
+                <span>{formatDate(trade.date)}</span>
+              </div>
             </div>
-          </a>
-        ))}
-      </div>
+          ))}
+        </TabsContent>
+      </Tabs>
     </CardContent>
   </Card>
 );
@@ -203,64 +246,147 @@ const VolumeAnalysis = ({ stock }: { stock: Stock }) => {
   );
 };
 
-const CompanyInsights = ({ stock }: { stock: Stock }) => (
-  <Card>
-    <CardHeader>
-      <CardTitle className="flex items-center gap-2">
-        <Building2 className="w-5 h-5" />
-        Company Insights
-      </CardTitle>
-    </CardHeader>
-    <CardContent>
-      <div className="space-y-4">
-        <Card>
-          <CardContent className="pt-6">
-            <h4 className="font-medium mb-4">52-Week Range</h4>
-            <div className="space-y-4">
-              <div className="flex justify-between text-sm">
-                <span className="text-muted-foreground">
-                  ${(stock.fiftyTwoWeekLow ?? 0).toFixed(2)}
-                </span>
-                <span className="text-muted-foreground">
-                  ${(stock.fiftyTwoWeekHigh ?? 0).toFixed(2)}
-                </span>
-              </div>
-              <Progress 
-                value={(((stock.price ?? 0) - (stock.fiftyTwoWeekLow ?? 0)) / 
-                ((stock.fiftyTwoWeekHigh ?? 0) - (stock.fiftyTwoWeekLow ?? 0))) * 100} 
-              />
-              <div className="text-center">
-                <span className="text-sm font-medium">
-                  Current: ${(stock.price ?? 0).toFixed(2)}
-                </span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+const CompanyInsights = ({ stock }: { stock: Stock }) => {
+  const insiderActivity = stock.insiderActivity;
+  const hasInsiderActivity = insiderActivity && 
+    (insiderActivity.recent_trades > 0 || insiderActivity.net_shares !== 0);
 
-        <Card>
-          <CardContent className="pt-6">
-            <h4 className="font-medium mb-4">Volume Trends</h4>
-            <div className="space-y-2">
-              <div className="flex justify-between">
-                <span className="text-sm text-muted-foreground">Current Volume</span>
-                <span className="text-sm font-medium">{formatNumber(stock.volume ?? 0)}</span>
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <Building2 className="w-5 h-5" />
+          Company Insights
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-4">
+          <Card>
+            <CardContent className="pt-6">
+              <h4 className="font-medium mb-4">52-Week Range</h4>
+              <div className="space-y-4">
+                <div className="flex justify-between text-sm">
+                  <span className="text-muted-foreground">
+                    ${(stock.fiftyTwoWeekLow ?? 0).toFixed(2)}
+                  </span>
+                  <span className="text-muted-foreground">
+                    ${(stock.fiftyTwoWeekHigh ?? 0).toFixed(2)}
+                  </span>
+                </div>
+                <Progress 
+                  value={(((stock.price ?? 0) - (stock.fiftyTwoWeekLow ?? 0)) / 
+                  ((stock.fiftyTwoWeekHigh ?? 0) - (stock.fiftyTwoWeekLow ?? 0))) * 100} 
+                />
+                <div className="text-center space-y-2">
+                  <span className="text-sm font-medium">
+                    Current: ${(stock.price ?? 0).toFixed(2)}
+                  </span>
+                  {stock.highProximityPct !== undefined && (
+                    <div className="text-sm text-muted-foreground">
+                      {stock.highProximityPct.toFixed(1)}% below 52-week high
+                    </div>
+                  )}
+                </div>
               </div>
-              <div className="flex justify-between">
-                <span className="text-sm text-muted-foreground">Previous Volume</span>
-                <span className="text-sm font-medium">{formatNumber(stock.prevVolume ?? 0)}</span>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="pt-6">
+              <h4 className="font-medium mb-4">Volume Trends</h4>
+              <div className="space-y-2">
+                <div className="flex justify-between">
+                  <span className="text-sm text-muted-foreground">Current Volume</span>
+                  <span className="text-sm font-medium">{formatNumber(stock.volume ?? 0)}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-sm text-muted-foreground">Previous Volume</span>
+                  <span className="text-sm font-medium">{formatNumber(stock.prevVolume ?? 0)}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-sm text-muted-foreground">Average Volume</span>
+                  <span className="text-sm font-medium">{formatNumber(stock.volumeMetrics?.averageVolume ?? 0)}</span>
+                </div>
               </div>
-              <div className="flex justify-between">
-                <span className="text-sm text-muted-foreground">Average Volume</span>
-                <span className="text-sm font-medium">{formatNumber(stock.volumeMetrics?.averageVolume ?? 0)}</span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    </CardContent>
-  </Card>
-);
+            </CardContent>
+          </Card>
+
+          {stock.fundamentals?.peRatios?.forwardPE && (
+            <Card>
+              <CardContent className="pt-6">
+                <h4 className="font-medium mb-4">Valuation Metrics</h4>
+                <div className="space-y-2">
+                  <div className="flex justify-between">
+                    <span className="text-sm text-muted-foreground">Forward P/E</span>
+                    <span className="text-sm font-medium">
+                      {Math.abs(stock.fundamentals.peRatios.forwardPE).toFixed(2)}
+                      {stock.fundamentals.peRatios.forwardPE < 0 ? ' (negative earnings)' : ''}
+                    </span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {hasInsiderActivity && (
+            <Card>
+              <CardContent className="pt-6">
+                <h4 className="font-medium mb-4">Insider Activity</h4>
+                <div className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <div className="text-sm text-muted-foreground">Recent Trades</div>
+                      <div className="font-medium">{insiderActivity.recent_trades}</div>
+                    </div>
+                    <div>
+                      <div className="text-sm text-muted-foreground">Net Shares</div>
+                      <div className="font-medium">
+                        {insiderActivity.net_shares > 0 ? '+' : ''}
+                        {formatNumber(insiderActivity.net_shares)}
+                      </div>
+                    </div>
+                  </div>
+
+                  {insiderActivity.summary && (
+                    <>
+                      <Separator />
+                      <div className="space-y-2">
+                        <div className="flex justify-between">
+                          <span className="text-sm text-muted-foreground">Sales</span>
+                          <span className="text-sm font-medium">
+                            {formatNumber(insiderActivity.summary.total_sales)} shares
+                            {insiderActivity.summary.total_value?.sales > 0 && 
+                              ` ($${formatNumber(insiderActivity.summary.total_value.sales)})`}
+                          </span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-sm text-muted-foreground">Purchases</span>
+                          <span className="text-sm font-medium">
+                            {formatNumber(insiderActivity.summary.total_purchases)} shares
+                            {insiderActivity.summary.total_value?.purchases > 0 && 
+                              ` ($${formatNumber(insiderActivity.summary.total_value.purchases)})`}
+                          </span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-sm text-muted-foreground">Awards</span>
+                          <span className="text-sm font-medium">
+                            {formatNumber(insiderActivity.summary.total_awards)} shares
+                            {insiderActivity.summary.total_value?.awards > 0 && 
+                              ` ($${formatNumber(insiderActivity.summary.total_value.awards)})`}
+                          </span>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          )}
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
 
 const AlertsAndLevels = ({ stock }: { stock: Stock }) => {
   const volumeVsAvg = stock.volumeMetrics?.volumeVsAvg ?? 0;
