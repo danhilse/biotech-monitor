@@ -1,6 +1,4 @@
 import { TooltipWithBounds, defaultStyles } from '@visx/tooltip';
-import { Pattern } from '@visx/pattern';
-import { Circle, Line } from '@visx/shape';
 import { AlertTriangle } from 'lucide-react';
 import Image from 'next/image';
 import { Stock } from '../../types';
@@ -28,23 +26,22 @@ interface StockTooltipProps {
   left?: number;
 }
 
-// Derive consistent colors from company symbol
-const getPatternColors = (symbol: string) => {
-  const hash = symbol.split('').reduce((acc, char) => {
-    return char.charCodeAt(0) + ((acc << 5) - acc);
-  }, 0);
+// // Derive consistent colors from company symbol
+// const getPatternColors = (symbol: string) => {
+//   const hash = symbol.split('').reduce((acc, char) => {
+//     return char.charCodeAt(0) + ((acc << 5) - acc);
+//   }, 0);
   
-  const hue1 = Math.abs(hash % 360);
-  const hue2 = (hue1 + 40) % 360;
+//   const hue1 = Math.abs(hash % 360);
+//   const hue2 = (hue1 + 40) % 360;
   
-  return {
-    primary: `hsl(${hue1}, 70%, 85%)`,
-    secondary: `hsl(${hue2}, 60%, 80%)`
-  };
-};
+//   return {
+//     primary: `hsl(${hue1}, 70%, 85%)`,
+//     secondary: `hsl(${hue2}, 60%, 80%)`
+//   };
+// };
 
 const PatternPlaceholder = ({ symbol, id }: { symbol: string, id: string }) => {
-  const colors = getPatternColors(symbol);
   const patternId = `company-pattern-${id}`;
   
   return (

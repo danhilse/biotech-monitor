@@ -34,7 +34,7 @@ const MarketDashboard = () => {
       const data = await marketDataService.fetchMarketData();
       setMarketData(data);
     } catch (err) {
-      setError('Failed to load market data');
+      setError('Failed to load market data' + err);
     } finally {
       setLoading(false);
     }

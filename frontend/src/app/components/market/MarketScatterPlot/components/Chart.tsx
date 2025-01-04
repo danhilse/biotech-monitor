@@ -28,8 +28,7 @@ export const Chart = ({
   filterStocksFn,
   onStockSelect,
   width,
-  height,
-  outlierMode
+  height
 }: ChartProps) => {
   const [selectedSymbol, setSelectedSymbol] = useState<string | null>(null);
   const [hoveredSymbol, setHoveredSymbol] = useState<string | null>(null);

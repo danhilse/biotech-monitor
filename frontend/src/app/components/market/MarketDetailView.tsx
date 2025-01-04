@@ -250,9 +250,6 @@ const VolumeAnalysis = ({ stock }: { stock: Stock }) => {
 };
 
 const CompanyInsights = ({ stock }: { stock: Stock }) => {
-  const insiderActivity = stock.insiderActivity;
-  const hasInsiderActivity = insiderActivity && 
-    (insiderActivity.recent_trades > 0 || insiderActivity.net_shares !== 0);
 
   return (
     <Card>
