@@ -7,3 +7,4 @@ env_name/
 venv/
 .DS_Store
 *.db
+.vscode
