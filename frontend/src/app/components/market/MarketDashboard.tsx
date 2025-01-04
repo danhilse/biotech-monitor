@@ -8,7 +8,7 @@ import { Tabs, TabsContent } from '@/components/ui/tabs';
 import { MarketScatterPlot } from './MarketScatterPlot/MarketScatterPlot';
 import { Stock, FilterType } from './types';
 import { MarketDetailView } from './MarketDetailView';
-import { useHistoricalData } from '@/lib/hooks/useHistoricalData';
+// import { useHistoricalData } from '@/lib/hooks/useHistoricalData';
 import { marketDataService } from '@/lib/services/marketDataService';
 
 const MarketDashboard = () => {
@@ -19,10 +19,10 @@ const MarketDashboard = () => {
   const [activeFilter] = useState<FilterType>(null);
   const [activeView, setActiveView] = useState('scatter');
   
-  const { 
-    loading: historicalLoading, 
-    error: historicalError 
-  } = useHistoricalData();
+  // const { 
+  //   loading: historicalLoading, 
+  //   error: historicalError 
+  // } = useHistoricalData();
 
   const fetchData = async () => {
     setLoading(true);
@@ -45,7 +45,7 @@ const MarketDashboard = () => {
 
   const lastUpdated = marketDataService.getLastUpdated();
 
-  if ((loading && marketData.length === 0) || historicalLoading) {
+  if ((loading && marketData.length === 0)) {
     return (
       <div className="w-full h-96 flex items-center justify-center bg-gray-50 rounded-lg">
         <div className="text-center">
@@ -56,7 +56,7 @@ const MarketDashboard = () => {
     );
   }
 
-  const showError = error || historicalError;
+  const showError = error;
 
   return (
     <div className="w-full space-y-6 p-6 bg-gray-50 min-h-screen">
