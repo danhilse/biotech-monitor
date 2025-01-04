@@ -6,7 +6,6 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { AlertCircle, RefreshCw, Circle } from 'lucide-react';
 import { Tabs, TabsContent } from '@/components/ui/tabs';
 import { MarketScatterPlot } from './MarketScatterPlot/MarketScatterPlot';
-import TimeSeriesStreamgraph from './addl_vis/time_series';
 import { Stock, FilterType } from './types';
 import { MarketDetailView } from './MarketDetailView';
 import { useHistoricalData } from '@/lib/hooks/useHistoricalData';
@@ -21,8 +20,6 @@ const MarketDashboard = () => {
   const [activeView, setActiveView] = useState('scatter');
   
   const { 
-    symbols, 
-    historicalData, 
     loading: historicalLoading, 
     error: historicalError 
   } = useHistoricalData();
@@ -130,11 +127,7 @@ const MarketDashboard = () => {
         <TabsContent value="timeseries">
           <Card className="w-full bg-white shadow-sm">
             <CardContent className="pt-6">
-              <TimeSeriesStreamgraph
-                symbols={symbols}
-                historicalData={historicalData}
-                loading={loading}
-              />
+
             </CardContent>
           </Card>
         </TabsContent>
