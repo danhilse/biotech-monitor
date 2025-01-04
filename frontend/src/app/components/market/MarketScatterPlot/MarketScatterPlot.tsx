@@ -51,6 +51,7 @@ const filterOutliers = (data: Stock[], mode: OutlierMode, stdDevMultiplier = 2):
 
 interface Props {
   data: Stock[];
+  activeFilter: FilterType;  
   onStockSelect: (stock: Stock | null) => void;
 }
 

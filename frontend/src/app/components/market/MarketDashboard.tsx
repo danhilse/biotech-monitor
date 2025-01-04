@@ -105,8 +105,13 @@ const MarketDashboard = () => {
                   data={marketData}
                   activeFilter={activeFilter}
                   onStockSelect={(stockData) => {
+                    if (!stockData) {
+                      setSelectedStock(null);
+                      return;
+                    }
                     const stock: Stock = {
                       ...stockData,
+                      symbol: stockData.symbol || '',
                       sector: '',
                       industry: '',
                       openPrice: 0,

@@ -12,6 +12,7 @@ import { VolumeChart } from './VolumeChart';
 
 interface Props {
   stock: Stock | null;
+  
 }
 
 export const MarketDetailView = ({ stock }: Props) => {
