@@ -129,13 +129,13 @@ const MarketDashboard = () => {
           </div>
         </TabsContent>
         
-        <TabsContent value="timeseries">
+        {/* <TabsContent value="timeseries">
           <Card className="w-full bg-white shadow-sm">
             <CardContent className="pt-6">
 
             </CardContent>
           </Card>
-        </TabsContent>
+        </TabsContent> */}
       </Tabs>
 
       {selectedStock && activeView === 'scatter' && <MarketDetailView stock={selectedStock} />}
