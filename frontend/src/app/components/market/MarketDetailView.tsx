@@ -40,14 +40,14 @@ export const MarketDetailView = ({ stock }: Props) => {
                   <Badge variant={(stock.priceChange ?? 0) > 0 ? "default" : "destructive"}>
                   {(stock.priceChange ?? 0) > 0 ? '+' : ''}{(stock.priceChange ?? 0).toFixed(2)}%
                   </Badge>
-                  <Separator orientation="vertical" className="h-4" />
-                  <a 
-                  href={`https://www.investing.com/search/?q=${stock.symbol}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 hover:text-blue-800 flex items-center gap-1"
-                  >
-                  <ExternalLink className="w-4 h-4" />
+                    <Separator orientation="vertical" className="h-4" />
+                    <a 
+                    href={`https://www.investing.com/search/?q=${stock.symbol}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 flex items-center gap-1"
+                    >
+                    <ExternalLink className="w-4 h-4" />
                   <span className="text-sm">View on Investing.com</span>
                   </a>
                 </div>

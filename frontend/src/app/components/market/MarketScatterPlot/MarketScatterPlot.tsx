@@ -83,11 +83,30 @@ export const MarketScatterPlot = ({ data, onStockSelect }: Props) => {
   const [activeFilter, setActiveFilter] = useState<FilterType | null>(null);
   const [hoveredFilter, setHoveredFilter] = useState<FilterType | null>(null);
   const [outlierMode, setOutlierMode] = useState<OutlierMode>('all');
-  const [thresholds, setThresholds] = useState<FilterThresholds>({
-    gainers: 5,
-    decliners: 5,
-    highVolume: 200
-  });
+  
+  // Calculate ranges from data
+  const dataRanges = useMemo(() => {
+    const priceChanges = data.map(d => d.priceChange);
+    const volumes = data.map(d => d.volumeMetrics?.volumeVsAvg ?? 0);
+
+    return {
+      priceChange: {
+        min: Math.floor(Math.min(...priceChanges)),
+        max: Math.ceil(Math.max(...priceChanges))
+      },
+      volume: {
+        min: Math.floor(Math.min(...volumes)),
+        max: Math.ceil(Math.max(...volumes))
+      }
+    };
+  }, [data]);
+
+  // Initialize thresholds with sensible defaults based on data ranges
+  const [thresholds, setThresholds] = useState<FilterThresholds>(() => ({
+    gainers: Math.min(5, Math.max(1, Math.floor(dataRanges.priceChange.max / 4))),
+    decliners: Math.min(5, Math.max(1, Math.floor(Math.abs(dataRanges.priceChange.min) / 4))),
+    highVolume: Math.min(200, Math.max(1, Math.floor(dataRanges.volume.max / 4)))
+  }));
 
   const displayData = useMemo(() => {
     return filterOutliers(data, outlierMode).map(stock => ({
@@ -101,14 +120,12 @@ export const MarketScatterPlot = ({ data, onStockSelect }: Props) => {
   };
 
   const handleThresholdChange = (filter: 'gainers' | 'decliners' | 'highVolume', value: number) => {
-    // Update threshold immediately on slider change
     setThresholds(prev => ({
       ...prev,
       [filter]: value
     }));
   };
-  
-  
+
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-center mb-6">
@@ -142,6 +159,11 @@ export const MarketScatterPlot = ({ data, onStockSelect }: Props) => {
             onSelect={handleFilterSelect}
             threshold={thresholds.gainers}
             onThresholdChange={(value) => handleThresholdChange('gainers', value)}
+            sliderConfig={{
+              min: 0,
+              max: dataRanges.priceChange.max,
+              step: 0.1
+            }}
           >
             Gainers
           </FilterGroup>
@@ -153,6 +175,11 @@ export const MarketScatterPlot = ({ data, onStockSelect }: Props) => {
             onSelect={handleFilterSelect}
             threshold={thresholds.decliners}
             onThresholdChange={(value) => handleThresholdChange('decliners', value)}
+            sliderConfig={{
+              min: 0,
+              max: Math.abs(dataRanges.priceChange.min),
+              step: 0.1
+            }}
           >
             Decliners
           </FilterGroup>
@@ -164,7 +191,11 @@ export const MarketScatterPlot = ({ data, onStockSelect }: Props) => {
             onSelect={handleFilterSelect}
             threshold={thresholds.highVolume}
             onThresholdChange={(value) => handleThresholdChange('highVolume', value)}
-            sliderConfig={{ min: 1, max: 1000, step: 1 }}
+            sliderConfig={{
+              min: 0,
+              max: dataRanges.volume.max,
+              step: 1
+            }}
           >
             High Volume
           </FilterGroup>

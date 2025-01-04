@@ -4,9 +4,8 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { AlertCircle, RefreshCw, Circle } from 'lucide-react';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import { Tabs, TabsContent } from '@/components/ui/tabs';
 import { MarketScatterPlot } from './MarketScatterPlot/MarketScatterPlot';
-import { MarketFilters } from './MarketFilters';
 import TimeSeriesStreamgraph from './addl_vis/time_series';
 import { Stock, FilterType } from './types';
 import { MarketDetailView } from './MarketDetailView';
@@ -18,7 +17,7 @@ const MarketDashboard = () => {
   const [selectedStock, setSelectedStock] = useState<Stock | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeFilter, setActiveFilter] = useState<FilterType>(null);
+  const [activeFilter] = useState<FilterType>(null);
   const [activeView, setActiveView] = useState('scatter');
   
   const { 
@@ -75,10 +74,10 @@ const MarketDashboard = () => {
                 Tracking {marketData.length} stocks in real-time
               </p>
             </div>
-            <TabsList>
+            {/* <TabsList>
               <TabsTrigger value="scatter">Scatter Plot</TabsTrigger>
               <TabsTrigger value="timeseries">Time Series</TabsTrigger>
-            </TabsList>
+            </TabsList> */}
           </div>
           <div className="flex items-center gap-4">
             <div className="text-sm text-gray-500 flex items-center">

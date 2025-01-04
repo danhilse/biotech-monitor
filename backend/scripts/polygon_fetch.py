@@ -364,6 +364,34 @@ class HybridDataFetcher:
                 "latest_date": None
             }
             
+    def get_company_name(ticker):
+        base_url = "https://api.polygon.io/v3/reference/tickers/"
+        api_key = self.polygon_key
+        
+        url = f"{base_url}{ticker}?apiKey={api_key}"
+        response = requests.get(url)
+        
+        if response.status_code == 200:
+            data = response.json()
+            name = data['results']['name']
+            formatted_name = format_company_name(name)
+            return formatted_name
+        return None
+
+    def format_company_name(name):
+        """
+        Convert company name to lowercase, dash-separated format.
+        Example: 'ADMA Biologics, Inc.' -> 'adma-biologics-inc'
+        """
+        # Remove periods and commas
+        name = name.replace('.', '').replace(',', '')
+        
+        # Convert to lowercase and replace spaces with dashes
+        name = name.lower().replace(' ', '-')
+        
+        return name
+
+            
     def get_investing_url(self, symbol: str, polygon_name: str = None, yf_name: str = None) -> str:
         """
         Generate Investing.com URL using Polygon.io name as primary source
@@ -381,29 +409,14 @@ class HybridDataFetcher:
             if symbol in common_mappings:
                 base_name = common_mappings[symbol]
             else:
-                # Try to create URL-friendly name from Polygon.io name first
-                if polygon_name:
-                    base_name = polygon_name.lower()
-                    suffixes = [" inc", " inc.", " corporation", " corp", " corp.", 
-                            " ltd", " ltd.", " limited", " llc", " llc.", 
-                            " plc", " plc.", ", inc", ", inc."]
-                    for suffix in suffixes:
-                        base_name = base_name.replace(suffix, "")
-                    
-                    # Clean up special characters
-                    base_name = base_name.replace("&", "and")
-                    base_name = base_name.replace(".", "")
-                    base_name = base_name.replace(",", "")
-                    base_name = base_name.replace("'", "")
-                    base_name = base_name.replace('"', "")
-                    base_name = base_name.replace('/', "-")
-                    base_name = base_name.replace(" & ", "-")
-                    base_name = base_name.replace(" ", "-")
-                    base_name = base_name.strip("-")
+                # Use Polygon.io to get the formatted company name 
+                polygon_formatted_name = self.get_company_name(symbol)
+                
+                if polygon_formatted_name:
+                    base_name = polygon_formatted_name
                 elif yf_name:
-                    # Fallback to yfinance name if Polygon name is not available
-                    base_name = yf_name.lower()
-                    # Apply same cleaning rules as above
+                    # Fallback to yfinance name if Polygon name fails
+                    base_name = self.format_company_name(yf_name)
                 else:
                     # Last resort: use symbol
                     base_name = symbol.lower()
