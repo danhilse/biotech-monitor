@@ -1,194 +1,170 @@
 # Biotech Stock Monitoring System
 
-A real-time dashboard application for monitoring and analyzing biotech stocks, providing automated research capabilities with features for tracking market conditions, FDA trials, and company events.
+A real-time interactive dashboard for monitoring biotech stock performance, featuring advanced data visualization and detailed company analysis tools.
 
 ![Demo](assets/demo.gif)
 
 ## Features
 
-- Real-time price and volume tracking (20-minute intervals)
-- Interactive data visualization with scatter plots
-- Automated alert system for market events
-- Detailed company insights and metrics
-- Volume analysis and comparison
-- Insider trading monitoring
-- News aggregation
-- FDA trial status tracking
+- Interactive scatter plot visualization of price changes vs volume metrics
+- Real-time price and volume tracking with 5-minute refresh intervals
+- Detailed company insights with market metrics
+- Volume analysis with historical comparisons
+- Insider trading activity monitoring
+- News aggregation with sentiment analysis
+- Technical alerts and monitoring system
 
 ## Project Structure
 
 ```
-├── backend/
-│   ├── api/               # FastAPI server implementation
-│   ├── data/             # Database and data storage
-│   └── scripts/          # Data fetching and processing scripts
-└── frontend/
-    ├── src/
-    │   ├── app/          # Next.js application components
-    │   ├── components/   # Reusable UI components
-    │   └── lib/         # Core utilities and services
-    └── public/          # Static assets and data files
+├── frontend/
+│   ├── src/
+│   │   ├── app/
+│   │   │   └── components/
+│   │   │       └── market/              # Core market components
+│   │   │           ├── MarketDashboard.tsx
+│   │   │           ├── MarketDetailView.tsx
+│   │   │           ├── MarketScatterPlot/
+│   │   │           └── VolumeChart.tsx
+│   │   ├── components/
+│   │   │   └── ui/                     # Reusable UI components
+│   │   └── lib/
+│   │       ├── services/               # Data services
+│   │       └── hooks/                  # Custom React hooks
+│   └── public/
+│       └── data/                       # Static data files
 ```
 
 ## Technical Stack
 
 ### Frontend
-- React with Next.js framework
+- React 18+ with Next.js framework
 - TypeScript for type safety
-- Tailwind CSS for styling
+- Tailwind CSS with custom configuration
 - Visx for data visualization
 - ShadCN UI Components
+- Lucide React icons
 
-### Backend
-- Python FastAPI server
-- SQLite database
-- Various data provider APIs integration
+### Data Visualization
+- Interactive scatter plot with Voronoi overlay for improved interaction
+- Dynamic color coding based on stock performance
+- Responsive design with automatic scaling
+- Real-time data updates
+- Custom tooltips with detailed metrics
+
+## Core Components
+
+### MarketDashboard
+The main container component that orchestrates the application:
+- Real-time data fetching and updates (5-minute intervals)
+- View management and state handling
+- Error handling and loading states
+- Responsive layout management
+
+### MarketDetailView
+Comprehensive stock details panel featuring:
+- Price and volume metrics
+- Trading range analysis
+- Market cap information
+- News feed with publisher information
+- Insider trading activity
+- Volume analysis with historical comparison
+- Technical alerts and monitoring
+
+### Market Visualization
+Advanced scatter plot visualization with:
+- Interactive data points
+- Voronoi-based interaction
+- Dynamic color coding
+- Custom tooltips
+- Responsive scaling
+- Grid system
+- Axis management
+
+## Data Types
+
+```typescript
+interface Stock {
+  symbol: string
+  price: number
+  priceChange: number
+  volume: number
+  marketCap: number
+  volumeMetrics: {
+    volumeChange: number
+    volumeVsAvg: number
+  }
+  alerts: number
+  // ... additional metrics
+}
+```
+
+## Alert System
+
+The dashboard includes a comprehensive alert system monitoring:
+
+### Price Alerts
+- Significant price movements (>5%)
+- Proximity to 52-week highs/lows
+- Daily trend analysis
+
+### Volume Alerts
+- Volume spikes (>20% increase)
+- Abnormal trading volume
+- Comparison to 90-day average
 
 ## Setup Instructions
 
 ### Prerequisites
 - Node.js 16+
-- Python 3.8+
 - npm or yarn
 - Git
 
-### Frontend Setup
+### Installation
 
-1. Navigate to the frontend directory:
+1. Clone the repository:
 ```bash
-cd frontend
+git clone [repository-url]
 ```
 
 2. Install dependencies:
 ```bash
+cd frontend
 npm install
 ```
 
-3. Set up environment variables:
-```bash
-cp .env.example .env.local
-```
-
-4. Start the development server:
+3. Start the development server:
 ```bash
 npm run dev
 ```
 
-### Backend Setup
-
-1. Navigate to the backend directory:
-```bash
-cd backend
-```
-
-2. Create and activate a virtual environment:
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
-
-3. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-4. Set up the database:
-```bash
-python scripts/setup_db.py
-```
-
-5. Start the API server:
-```bash
-python api/server.py
-```
-
-## Core Components
-
-### Market Dashboard
-- Real-time data fetching and updates
-- Interactive scatter plot visualization
-- Filtering capabilities
-- Stock selection handling
-
-### Detail Views
-- Comprehensive stock information
-- Price metrics
-- Volume analysis
-- Company insights
-- News feed
-- Alert status
-
-### Alert System
-- Price-based alerts (5% movements)
-- Volume alerts (10%/20% spikes)
-- Earnings-related notifications
-- FDA and regulatory updates
-
-## Data Flow
-
-1. Data Collection
-   - Market data monitoring
-   - News & event tracking
-   - FDA trial status checks
-   - Insider transaction monitoring
-
-2. Processing Pipeline
-   - Raw data ingestion
-   - Metric calculation
-   - Alert generation
-   - Visualization processing
-
-3. Storage Requirements
-   - Essential data only
-   - Rolling calculations
-   - Alert state tracking
-   - ~1.5KB daily per 10 stocks
-
 ## Development Guidelines
 
-### Code Style
-- Follow TypeScript best practices
-- Use consistent naming conventions
-- Document complex logic
-- Write unit tests for critical functionality
+### Component Structure
+- Maintain separation of concerns
+- Use TypeScript for type safety
+- Follow the established component hierarchy
+- Implement error boundaries
 
-### Performance Considerations
+### Performance Optimization
+- Use React.memo for expensive renders
 - Implement debouncing for real-time updates
-- Use memoization for expensive calculations
-- Optimize re-renders
-- Consider data volume in visualizations
+- Optimize SVG rendering
+- Use proper memoization techniques
 
-## Monitoring and Alerts
+### Styling
+The project uses a customized Tailwind configuration with:
+- Custom color schemes
+- Responsive design utilities
+- Animation classes
+- Chart-specific styling
 
-### Alert Types
-1. Price-Based Alerts
-   - 5% daily price movements
-   - Approaching all-time highs
-   - Daily trend summaries
+## Contributing
 
-2. Volume Alerts
-   - 10% spike in volume
-   - 20% volume increases
-   - Comparison to rolling averages
-
-3. Technical Alerts
-   - RSI indicators
-   - Moving averages
-   - Support/resistance levels
-
-## Risk Factors
-- API reliability and rate limits
-- Alert delivery reliability
-- System uptime requirements
-- Data accuracy verification
-- Budget constraints
-
-## Success Criteria
-- Reliable alert delivery (< 5 min delay)
-- Accurate market event detection
-- Budget compliance
-- System stability
-
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
 
 ## License
 
