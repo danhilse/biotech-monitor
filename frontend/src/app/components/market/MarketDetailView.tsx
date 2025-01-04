@@ -25,43 +25,46 @@ export const MarketDetailView = ({ stock }: Props) => {
         <CardHeader>
           <div className="flex items-center justify-between">
             <div className="space-y-2">
+              <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 {stock.branding?.icon_url && (
-                  <img 
-                    src={stock.branding.icon_url} 
-                    alt={`${stock.symbol} logo`} 
-                    className="w-10 h-10 rounded"
-                  />
+                <img 
+                  src={stock.branding.icon_url} 
+                  alt={`${stock.symbol} logo`} 
+                  className="w-10 h-10 rounded"
+                />
                 )}
                 <div>
-                  <div className="flex items-center gap-2">
-                    <CardTitle>{stock.symbol}</CardTitle>
-                    <Badge variant={(stock.priceChange ?? 0) > 0 ? "success" : "destructive"}>
-                      {(stock.priceChange ?? 0) > 0 ? '+' : ''}{(stock.priceChange ?? 0).toFixed(2)}%
-                    </Badge>
-                    <Separator orientation="vertical" className="h-4" />
-                    <a 
-                      href={`https://www.investing.com/search/?q=${stock.symbol}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-800 flex items-center gap-1"
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                      <span className="text-sm">View on Investing.com</span>
-                    </a>
-                  </div>
-                  <p className="text-sm text-muted-foreground">{stock.industry}</p>
+                <div className="flex items-center gap-2">
+                  <CardTitle>{stock.symbol}</CardTitle>
+                  <Badge variant={(stock.priceChange ?? 0) > 0 ? "default" : "destructive"}>
+                  {(stock.priceChange ?? 0) > 0 ? '+' : ''}{(stock.priceChange ?? 0).toFixed(2)}%
+                  </Badge>
+                  <Separator orientation="vertical" className="h-4" />
+                  <a 
+                  href={`https://www.investing.com/search/?q=${stock.symbol}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:text-blue-800 flex items-center gap-1"
+                  >
+                  <ExternalLink className="w-4 h-4" />
+                  <span className="text-sm">View on Investing.com</span>
+                  </a>
                 </div>
+                <p className="text-sm text-muted-foreground">{stock.industry}</p>
+                </div>
+              </div>
+              {(stock.alerts ?? 0) > 0 && (
+                <Badge variant="secondary" className="h-6 px-8 whitespace-nowrap">
+                {stock.alerts} Active Alerts
+                </Badge>
+              )}
               </div>
               {stock.description && (
                 <p className="text-sm text-muted-foreground line-clamp-2">{stock.description}</p>
               )}
             </div>
-            {(stock.alerts ?? 0) > 0 && (
-              <Badge variant="secondary" className="h-6">
-                {stock.alerts} Active Alerts
-              </Badge>
-            )}
+
           </div>
         </CardHeader>
         <CardContent>
@@ -193,7 +196,7 @@ const NewsSection = ({ news, insiderActivity }: { news: Stock['recentNews'], ins
                   )}
                   {trade.insider} • {formatNumber(trade.shares)} shares
                 </p>
-                <Badge variant={trade.type === 'Sale' ? 'destructive' : trade.type === 'Purchase' ? 'success' : 'secondary'}>
+                <Badge variant={trade.type === 'Sale' ? 'destructive' : trade.type === 'Purchase' ? 'default' : 'secondary'}>
                   ${(trade.price_per_share || (trade.value / trade.shares)).toFixed(2)}
                 </Badge>
               </div>
@@ -328,60 +331,6 @@ const CompanyInsights = ({ stock }: { stock: Stock }) => {
             </Card>
           )}
 
-          {hasInsiderActivity && (
-            <Card>
-              <CardContent className="pt-6">
-                <h4 className="font-medium mb-4">Insider Activity</h4>
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <div className="text-sm text-muted-foreground">Recent Trades</div>
-                      <div className="font-medium">{insiderActivity.recent_trades}</div>
-                    </div>
-                    <div>
-                      <div className="text-sm text-muted-foreground">Net Shares</div>
-                      <div className="font-medium">
-                        {insiderActivity.net_shares > 0 ? '+' : ''}
-                        {formatNumber(insiderActivity.net_shares)}
-                      </div>
-                    </div>
-                  </div>
-
-                  {insiderActivity.summary && (
-                    <>
-                      <Separator />
-                      <div className="space-y-2">
-                        <div className="flex justify-between">
-                          <span className="text-sm text-muted-foreground">Sales</span>
-                          <span className="text-sm font-medium">
-                            {formatNumber(insiderActivity.summary.total_sales)} shares
-                            {insiderActivity.summary.total_value?.sales > 0 && 
-                              ` ($${formatNumber(insiderActivity.summary.total_value.sales)})`}
-                          </span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-sm text-muted-foreground">Purchases</span>
-                          <span className="text-sm font-medium">
-                            {formatNumber(insiderActivity.summary.total_purchases)} shares
-                            {insiderActivity.summary.total_value?.purchases > 0 && 
-                              ` ($${formatNumber(insiderActivity.summary.total_value.purchases)})`}
-                          </span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-sm text-muted-foreground">Awards</span>
-                          <span className="text-sm font-medium">
-                            {formatNumber(insiderActivity.summary.total_awards)} shares
-                            {insiderActivity.summary.total_value?.awards > 0 && 
-                              ` ($${formatNumber(insiderActivity.summary.total_value.awards)})`}
-                          </span>
-                        </div>
-                      </div>
-                    </>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
-          )}
         </div>
       </CardContent>
     </Card>

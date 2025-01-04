@@ -18,7 +18,7 @@ interface ChartProps {
   onStockSelect: (stock: Stock | null) => void;
   width: number;
   height: number;
-  removeOutliersEnabled: boolean;
+  outlierMode: 'all' | 'remove' | 'only';
 }
 
 export const Chart = ({ 
@@ -29,7 +29,7 @@ export const Chart = ({
   onStockSelect,
   width,
   height,
-  removeOutliersEnabled
+  outlierMode
 }: ChartProps) => {
   const [selectedSymbol, setSelectedSymbol] = useState<string | null>(null);
   const [hoveredSymbol, setHoveredSymbol] = useState<string | null>(null);
