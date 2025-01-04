@@ -314,7 +314,7 @@ const CompanyInsights = ({ stock }: { stock: Stock }) => {
             </CardContent>
           </Card>
 
-          {stock.valuation_metrics?.forward_pe && (
+          {stock.fundamentals?.peRatios?.forwardPE !== null && (
             <Card>
               <CardContent className="pt-6">
                 <h4 className="font-medium mb-4">Valuation Metrics</h4>
@@ -322,15 +322,15 @@ const CompanyInsights = ({ stock }: { stock: Stock }) => {
                   <div className="flex justify-between">
                     <span className="text-sm text-muted-foreground">Forward P/E</span>
                     <span className="text-sm font-medium">
-                      {Math.abs(stock.valuation_metrics.forward_pe).toFixed(2)}
-                      {stock.valuation_metrics.forward_pe < 0 ? ' (negative earnings)' : ''}
+                      {Math.abs(stock.fundamentals.peRatios.forwardPE).toFixed(2)}
+                      {stock.fundamentals.peRatios.forwardPE < 0 ? ' (negative earnings)' : ''}
                     </span>
                   </div>
-                  {stock.valuation_metrics.trailing_pe && (
+                  {stock.fundamentals.peRatios.trailingPE !== null && (
                     <div className="flex justify-between">
                       <span className="text-sm text-muted-foreground">Trailing P/E</span>
                       <span className="text-sm font-medium">
-                        {Math.abs(stock.valuation_metrics.trailing_pe).toFixed(2)}
+                        {Math.abs(stock.fundamentals.peRatios.trailingPE).toFixed(2)}
                       </span>
                     </div>
                   )}

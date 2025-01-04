@@ -11,6 +11,10 @@
         {
             "filePath": "frontend/src/app/components/market/MarketDetailView.tsx",
             "group": "Default"
+        },
+        {
+            "filePath": "frontend/src/app/components/market/types.ts",
+            "group": "Default"
         }
     ]
 }
