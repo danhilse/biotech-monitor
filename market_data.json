@@ -1,0 +1,191 @@
+[
+  {
+    "symbol": "VERA",
+    "timestamp": "2024-12-22 11:31:12",
+    "sector": "Healthcare",
+    "industry": "Biotechnology",
+    "description": "Vera Therapeutics Inc is a clinical stage biotechnology company. It is focused on developing and commercializing transformative treatments for patients with serious immunological diseases. The company's\u00a0product candidate is atacicept, a fusion protein self-administered as a subcutaneous injection once weekly that blocks both B lymphocyte stimulator and a proliferation-inducing ligand, which stimulate B cells and plasma cells to produce autoantibodies contributing to certain autoimmune diseases.",
+    "branding": {
+      "icon_url": "https://api.polygon.io/v1/reference/company-branding/dmVyYXR4LmNvbQ/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
+      "logo_url": "https://api.polygon.io/v1/reference/company-branding/dmVyYXR4LmNvbQ/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
+    },
+    "price": 42.6,
+    "priceChange": 1.3079667063020317,
+    "openPrice": 41.66,
+    "prevClose": 42.05,
+    "dayHigh": 45.06,
+    "dayLow": 40.96,
+    "volume": 2044412.0,
+    "prevVolume": 544642,
+    "volumeMetrics": {
+      "recentVolumes": [
+        354682,
+        536689,
+        560756,
+        544642,
+        2044412.0
+      ],
+      "volumeDates": [
+        "2024-12-15",
+        "2024-12-16",
+        "2024-12-17",
+        "2024-12-18",
+        "2024-12-19"
+      ],
+      "dailyChanges": [
+        51.32,
+        4.48,
+        -2.87,
+        275.37
+      ],
+      "averageVolume": 746586.375,
+      "volumeChange": 275.37,
+      "volumeVsAvg": 173.83
+    },
+    "technicals": {
+      "rsi": null,
+      "volumeSMA": 746586.375
+    },
+    "fiftyTwoWeekHigh": 51.61,
+    "fiftyTwoWeekLow": 14.2,
+    "highProximityPct": 17.457857004456496,
+    "marketCap": 2697562057.8,
+    "insiderActivity": {
+      "recent_trades": 0,
+      "net_shares": 0,
+      "notable_trades": [],
+      "summary": {
+        "total_sales": 0,
+        "total_purchases": 0,
+        "total_awards": 0,
+        "sales_count": 0,
+        "purchases_count": 0,
+        "awards_count": 0
+      }
+    },
+    "recentNews": [
+      {
+        "title": "Vera Therapeutics Reports Inducement Grants Under Nasdaq Listing Rule 5635(c)(4)",
+        "publisher": "GlobeNewswire Inc.",
+        "timestamp": "2024-12-09T23:29:00Z",
+        "url": "https://www.globenewswire.com/news-release/2024/12/09/2994136/0/en/Vera-Therapeutics-Reports-Inducement-Grants-Under-Nasdaq-Listing-Rule-5635-c-4.html",
+        "type": "VERA"
+      },
+      {
+        "title": "Vera Therapeutics Announces Proposed Public Offering of Class A Common Stock",
+        "publisher": "GlobeNewswire Inc.",
+        "timestamp": "2024-10-28T21:37:00Z",
+        "url": "https://www.globenewswire.com/news-release/2024/10/28/2970400/0/en/Vera-Therapeutics-Announces-Proposed-Public-Offering-of-Class-A-Common-Stock.html",
+        "type": "VERA"
+      },
+      {
+        "title": "Vera Therapeutics Announces 96-week eGFR Stabilization in ORIGIN Phase 2b Study of Atacicept in IgAN in a Late-Breaking Oral Presentation at the American Society of Nephrology Kidney Week 2024",
+        "publisher": "GlobeNewswire Inc.",
+        "timestamp": "2024-10-26T23:30:00Z",
+        "url": "https://www.globenewswire.com/news-release/2024/10/26/2969705/0/en/Vera-Therapeutics-Announces-96-week-eGFR-Stabilization-in-ORIGIN-Phase-2b-Study-of-Atacicept-in-IgAN-in-a-Late-Breaking-Oral-Presentation-at-the-American-Society-of-Nephrology-Kidn.html",
+        "type": "VERA"
+      },
+      {
+        "title": "Vera Therapeutics Reports Inducement Grants Under Nasdaq Listing Rule 5635(c)(4) - GlobeNewswire",
+        "publisher": "GlobeNewswire Inc.",
+        "timestamp": "2024-07-05T20:31:33Z",
+        "url": "https://www.globenewswire.com/news-release/2024/07/05/2909190/0/en/Vera-Therapeutics-Reports-Inducement-Grants-Under-Nasdaq-Listing-Rule-5635-c-4.html",
+        "type": "VERA"
+      },
+      {
+        "title": "Vera Therapeutics Appoints Christy J. Oliger to Board of Directors",
+        "publisher": "GlobeNewswire Inc.",
+        "timestamp": "2024-06-11T20:01:00Z",
+        "url": "https://www.globenewswire.com/news-release/2024/06/11/2897152/0/en/Vera-Therapeutics-Appoints-Christy-J-Oliger-to-Board-of-Directors.html",
+        "type": "VERA"
+      }
+    ],
+    "fundamentals": {
+      "peRatios": {
+        "trailingPE": null,
+        "forwardPE": null
+      },
+      "estimates": {
+        "revenue": {
+          "nextQuarter": null,
+          "currentYear": null,
+          "nextYear": null
+        },
+        "earnings": {
+          "nextQuarter": null,
+          "currentYear": null,
+          "nextYear": null
+        }
+      },
+      "quarterlyMetrics": {
+        "revenue": [],
+        "revenueChange": [],
+        "periods": []
+      },
+      "detailedQuarterly": {
+        "revenue": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          NaN
+        ],
+        "revenueChanges": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "netIncome": [
+          -95990000.0,
+          -89056000.0,
+          -32609000.0,
+          -53413000.0,
+          NaN
+        ],
+        "netIncomeChanges": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "operatingMargin": [
+          0,
+          0,
+          0,
+          0,
+          NaN
+        ],
+        "operatingMarginChanges": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "freeCashFlow": [],
+        "freeCashFlowChanges": [],
+        "dates": [
+          "2023-12-31",
+          "2022-12-31",
+          "2021-12-31",
+          "2020-12-31",
+          "2019-12-31"
+        ]
+      }
+    },
+    "alerts": 3,
+    "alertDetails": {
+      "priceAlert": false,
+      "volumeSpike10": true,
+      "volumeSpike20": true,
+      "highVolume": true,
+      "insiderAlert": false,
+      "newsAlert": true,
+      "technicalAlert": null,
+      "nearHighAlert": false
+    }
+  }
+]

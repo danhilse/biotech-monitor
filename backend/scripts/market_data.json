@@ -1,0 +1,365 @@
+[
+  {
+    "symbol": "VERA",
+    "timestamp": "2024-12-22 19:17:59",
+    "sector": "Healthcare",
+    "industry": "Biotechnology",
+    "description": "Vera Therapeutics Inc is a clinical stage biotechnology company. It is focused on developing and commercializing transformative treatments for patients with serious immunological diseases. The company's\u00a0product candidate is atacicept, a fusion protein self-administered as a subcutaneous injection once weekly that blocks both B lymphocyte stimulator and a proliferation-inducing ligand, which stimulate B cells and plasma cells to produce autoantibodies contributing to certain autoimmune diseases.",
+    "branding": {
+      "icon_url": "https://api.polygon.io/v1/reference/company-branding/dmVyYXR4LmNvbQ/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
+      "logo_url": "https://api.polygon.io/v1/reference/company-branding/dmVyYXR4LmNvbQ/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
+    },
+    "price": 42.6,
+    "priceChange": 1.3079667063020317,
+    "openPrice": 41.66,
+    "prevClose": 42.05,
+    "dayHigh": 45.06,
+    "dayLow": 40.96,
+    "volume": 2044412.0,
+    "prevVolume": 544642,
+    "volumeMetrics": {
+      "recentVolumes": [
+        354682,
+        536689,
+        560756,
+        544642,
+        2044412.0
+      ],
+      "volumeDates": [
+        "2024-12-15",
+        "2024-12-16",
+        "2024-12-17",
+        "2024-12-18",
+        "2024-12-19"
+      ],
+      "dailyChanges": [
+        51.32,
+        4.48,
+        -2.87,
+        275.37
+      ],
+      "averageVolume": 746586.375,
+      "volumeChange": 275.37,
+      "volumeVsAvg": 173.83
+    },
+    "technicals": {
+      "rsi": 37.66,
+      "rsi_signal": null,
+      "volumeSMA": 746586.375
+    },
+    "valuation_metrics": {
+      "trailing_pe": -16.32,
+      "forward_pe": null,
+      "trailing_eps": -2.61,
+      "price": 42.6
+    },
+    "financials": {
+      "quarterly": {
+        "revenue": 0,
+        "gross_profit": 0,
+        "operating_income": -49801000.0,
+        "net_income": -46632000.0,
+        "eps": {
+          "basic": -0.85,
+          "diluted": -0.85
+        }
+      },
+      "balance_sheet": {
+        "total_assets": 368560000.0,
+        "total_liabilities": 79502000.0,
+        "total_equity": 289058000.0,
+        "current_assets": 364131000.0,
+        "current_liabilities": 26464000.0
+      },
+      "growth_metrics": {
+        "revenue_growth": null,
+        "income_growth": -131.95384003183446,
+        "eps_growth": -88.88888888888889
+      },
+      "key_ratios": {
+        "current_ratio": 13.759484582829504,
+        "debt_to_equity": 0.27503822762213814,
+        "asset_turnover": 0.0,
+        "equity_ratio": 0.7842902105491644
+      },
+      "period_info": {
+        "fiscal_year": "2024",
+        "fiscal_period": "Q3",
+        "start_date": "2024-07-01",
+        "end_date": "2024-09-30"
+      },
+      "ttm": {
+        "revenue": 0,
+        "net_income": -134378000.0,
+        "operating_income": -145284000.0
+      },
+      "annual": {
+        "revenue": 0,
+        "net_income": -95990000.0,
+        "operating_income": -102012000.0,
+        "eps": {
+          "basic": -2.25,
+          "diluted": -2.25
+        }
+      }
+    },
+    "fiftyTwoWeekHigh": 51.61,
+    "fiftyTwoWeekLow": 14.2,
+    "highProximityPct": 17.457857004456496,
+    "marketCap": 2697562057.8,
+    "insiderActivity": {
+      "recent_trades": 14,
+      "net_shares": 38000,
+      "notable_trades": [
+        {
+          "date": "2024-12-11",
+          "insider": "FORDYCE MARSHALL",
+          "position": "Chief Executive Officer",
+          "type": "Sale",
+          "shares": 17500,
+          "value": 821523.0,
+          "price_per_share": 46.94417142857143
+        },
+        {
+          "date": "2024-11-25",
+          "insider": "FORDYCE MARSHALL",
+          "position": "Chief Executive Officer",
+          "type": "Sale",
+          "shares": 19375,
+          "value": 929560.0,
+          "price_per_share": 47.97729032258064
+        },
+        {
+          "date": "2024-11-13",
+          "insider": "FORDYCE MARSHALL",
+          "position": "Chief Executive Officer",
+          "type": "Sale",
+          "shares": 30625,
+          "value": 1516037.0,
+          "price_per_share": 49.50324897959184
+        },
+        {
+          "date": "2024-10-28",
+          "insider": "SEIDENBERG BETH C",
+          "position": "Director",
+          "type": "Sale",
+          "shares": 15000,
+          "value": 720493.0,
+          "price_per_share": 48.03286666666666
+        },
+        {
+          "date": "2024-10-23",
+          "insider": "FORDYCE MARSHALL",
+          "position": "Chief Executive Officer",
+          "type": "Sale",
+          "shares": 19375,
+          "value": 782610.0,
+          "price_per_share": 40.392774193548384
+        },
+        {
+          "date": "2024-10-09",
+          "insider": "FORDYCE MARSHALL",
+          "position": "Chief Executive Officer",
+          "type": "Sale",
+          "shares": 15625,
+          "value": 597568.0,
+          "price_per_share": 38.244352
+        },
+        {
+          "date": "2024-09-25",
+          "insider": "FORDYCE MARSHALL",
+          "position": "Chief Executive Officer",
+          "type": "Sale",
+          "shares": 23125,
+          "value": 1064809.0,
+          "price_per_share": 46.0457945945946
+        }
+      ],
+      "summary": {
+        "total_sales": 140625,
+        "total_purchases": 53000,
+        "total_awards": 125625,
+        "sales_count": 7,
+        "purchases_count": 1,
+        "awards_count": 6,
+        "total_value": {
+          "sales": 6432600.0,
+          "purchases": 0.0,
+          "awards": 363910.0
+        }
+      },
+      "latest_date": "2024-12-11"
+    },
+    "recentNews": [
+      {
+        "title": "Vera Therapeutics Reports Inducement Grants Under Nasdaq Listing Rule 5635(c)(4)",
+        "publisher": "GlobeNewswire Inc.",
+        "timestamp": "2024-12-09T23:29:00Z",
+        "url": "https://www.globenewswire.com/news-release/2024/12/09/2994136/0/en/Vera-Therapeutics-Reports-Inducement-Grants-Under-Nasdaq-Listing-Rule-5635-c-4.html",
+        "type": "VERA",
+        "description": "Vera Therapeutics, a late-stage biotechnology company, announced the grant of stock options and restricted stock units to 17 new employees as an inducement to their employment. The grants are part of the company's Inducement Plan and are subject to vesting conditions.",
+        "sentiment": "positive",
+        "sentiment_reasoning": "The article announces that Vera Therapeutics is granting inducement awards to new employees, which suggests the company is expanding and investing in its workforce. This is a positive sign for the company's growth and development."
+      }
+    ],
+    "alerts": 4,
+    "alertDetails": {
+      "priceAlert": false,
+      "volumeSpike10": true,
+      "volumeSpike20": true,
+      "highVolume": true,
+      "insiderAlert": true,
+      "newsAlert": true,
+      "technicalAlert": {
+        "active": false,
+        "type": null,
+        "value": 37.66
+      },
+      "nearHighAlert": false
+    }
+  },
+  {
+    "symbol": "ANIX",
+    "timestamp": "2024-12-22 19:18:01",
+    "sector": "Healthcare",
+    "industry": "Biotechnology",
+    "description": "Anixa Biosciences Inc, a cancer-focused biotechnology company, developing vaccines and therapies that are focused on critical unmet needs in oncology. The company is developing both diagnostics and therapeutics to detect cancer early, which is curable, and to treat those afflicted once diagnosed. Its segment includes CAR-T Therapeutics; Cancer Vaccines; Anti-Viral Therapeutics and others.",
+    "branding": {
+      "icon_url": "https://api.polygon.io/v1/reference/company-branding/YW5peGEuY29t/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
+      "logo_url": "https://api.polygon.io/v1/reference/company-branding/YW5peGEuY29t/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
+    },
+    "price": 2.69,
+    "priceChange": 0.0,
+    "openPrice": 2.64,
+    "prevClose": 2.69,
+    "dayHigh": 2.69,
+    "dayLow": 2.5762,
+    "volume": 96128,
+    "prevVolume": 43452,
+    "volumeMetrics": {
+      "recentVolumes": [
+        107609,
+        47273,
+        145380,
+        43452,
+        96128
+      ],
+      "volumeDates": [
+        "2024-12-15",
+        "2024-12-16",
+        "2024-12-17",
+        "2024-12-18",
+        "2024-12-19"
+      ],
+      "dailyChanges": [
+        -56.07,
+        207.53,
+        -70.11,
+        121.23
+      ],
+      "averageVolume": 90641.140625,
+      "volumeChange": 121.23,
+      "volumeVsAvg": 6.05
+    },
+    "technicals": {
+      "rsi": 35.39,
+      "rsi_signal": null,
+      "volumeSMA": 90641.140625
+    },
+    "valuation_metrics": {
+      "trailing_pe": 5.98,
+      "forward_pe": null,
+      "trailing_eps": 0.45,
+      "price": 2.69
+    },
+    "financials": {
+      "quarterly": {
+        "revenue": 0,
+        "gross_profit": 0,
+        "operating_income": -3592000.0,
+        "net_income": -3315000.0,
+        "eps": {
+          "basic": -0.1,
+          "diluted": -0.1
+        }
+      },
+      "balance_sheet": {
+        "total_assets": 22908000.0,
+        "total_liabilities": 2217000.0,
+        "total_equity": 20691000.0,
+        "current_assets": 22670000.0,
+        "current_liabilities": 2004000.0
+      },
+      "growth_metrics": {
+        "revenue_growth": null,
+        "income_growth": -30.102040816326532,
+        "eps_growth": -25.000000000000007
+      },
+      "key_ratios": {
+        "current_ratio": 11.312375249500999,
+        "debt_to_equity": 0.10714803537770044,
+        "asset_turnover": 0.0,
+        "equity_ratio": 0.9032215819800943
+      },
+      "period_info": {
+        "fiscal_year": "2024",
+        "fiscal_period": "Q3",
+        "start_date": "2024-05-01",
+        "end_date": "2024-07-31"
+      },
+      "ttm": {
+        "revenue": 0,
+        "net_income": -12506000.0,
+        "operating_income": -13719000.0
+      },
+      "annual": {
+        "revenue": 210000,
+        "net_income": -9930000.0,
+        "operating_income": -11011000.0,
+        "eps": {
+          "basic": 0.32,
+          "diluted": 0.32
+        }
+      }
+    },
+    "fiftyTwoWeekHigh": 5.13,
+    "fiftyTwoWeekLow": 2.15,
+    "highProximityPct": 47.563352826510716,
+    "marketCap": 86562833.48,
+    "insiderActivity": {
+      "recent_trades": 1,
+      "net_shares": 16000,
+      "notable_trades": [],
+      "summary": {
+        "total_sales": 0,
+        "total_purchases": 0,
+        "total_awards": 16000,
+        "sales_count": 0,
+        "purchases_count": 0,
+        "awards_count": 1,
+        "total_value": {
+          "sales": 0.0,
+          "purchases": 0.0,
+          "awards": 41200.0
+        }
+      },
+      "latest_date": "2024-10-22"
+    },
+    "recentNews": [],
+    "alerts": 2,
+    "alertDetails": {
+      "priceAlert": false,
+      "volumeSpike10": true,
+      "volumeSpike20": true,
+      "highVolume": false,
+      "insiderAlert": false,
+      "newsAlert": false,
+      "technicalAlert": {
+        "active": false,
+        "type": null,
+        "value": 35.39
+      },
+      "nearHighAlert": false
+    }
+  }
+]

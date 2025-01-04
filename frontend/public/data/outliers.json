@@ -1,0 +1,104 @@
+{
+    "symbol": "EVLO",
+    "timestamp": "2024-11-20 10:11:23",
+    "sector": "Healthcare",
+    "industry": "Biotechnology",
+    "description": null,
+    "branding": {
+      "icon_url": null,
+      "logo_url": null
+    },
+    "price": 0.0015,
+    "priceChange": 400.0000000000001,
+    "openPrice": 0.0015,
+    "prevClose": 0.0003,
+    "dayHigh": 0.0015,
+    "dayLow": 0.0015,
+    "volume": 262,
+    "prevVolume": 551,
+    "volumeMetrics": {
+      "recentVolumes": [
+        551,
+        262
+      ],
+      "volumeDates": [
+        "2024-11-17",
+        "2024-11-18"
+      ],
+      "dailyChanges": [
+        -52.45
+      ],
+      "averageVolume": 2806.6666666666665,
+      "volumeChange": -52.45,
+      "volumeVsAvg": -90.67
+    },
+    "technicals": {
+      "rsi": null,
+      "volumeSMA": 2806.6666666666665
+    },
+    "fiftyTwoWeekHigh": 0.6988,
+    "fiftyTwoWeekLow": 0.0001,
+    "highProximityPct": 99.7853463079565,
+    "marketCap": 0,
+    "insiderActivity": {
+      "recent_trades": 0,
+      "net_shares": 0,
+      "notable_trades": [],
+      "summary": {
+        "total_sales": 0,
+        "total_purchases": 0,
+        "total_awards": 0,
+        "sales_count": 0,
+        "purchases_count": 0,
+        "awards_count": 0
+      }
+    },
+    "recentNews": [
+      {
+        "title": "US Stocks Mixed; Dow Gains 50 Points",
+        "publisher": "Benzinga",
+        "timestamp": "2023-11-24T14:42:47Z",
+        "url": "https://www.benzinga.com/news/earnings/23/11/35939992/us-stocks-mixed-dow-gains-50-points",
+        "type": "AMZN"
+      },
+      {
+        "title": "Why Shapeways Holdings Shares Are Trading Lower By Around 20%? Here Are Other Stocks Moving In Wednesday's Mid-Day Session",
+        "publisher": "Benzinga",
+        "timestamp": "2023-11-15T19:04:31Z",
+        "url": "https://www.benzinga.com/news/23/11/35812714/why-shapeways-holdings-shares-are-trading-lower-by-around-20-here-are-other-stocks-moving-in-wednesd",
+        "type": "VWE"
+      },
+      {
+        "title": "Top 5 Health Care Stocks That Are Preparing To Pump In November",
+        "publisher": "Benzinga",
+        "timestamp": "2023-11-03T12:28:00Z",
+        "url": "https://www.benzinga.com/trading-ideas/long-ideas/23/11/35589187/top-5-health-care-stocks-that-are-preparing-to-pump-in-november",
+        "type": "EVLO"
+      },
+      {
+        "title": "Top 4 Health Care Stocks That May Rocket Higher This Month",
+        "publisher": "Benzinga",
+        "timestamp": "2023-10-20T12:15:02Z",
+        "url": "https://www.benzinga.com/trading-ideas/long-ideas/23/10/35348241/top-4-health-care-stocks-that-may-rocket-higher-this-month",
+        "type": "EVLO"
+      },
+      {
+        "title": "Evelo (EVLO) Drops 59% on Flunking Psoriasis Drug Study",
+        "publisher": "Zacks Investment Research",
+        "timestamp": "2023-10-18T15:21:00Z",
+        "url": "https://www.zacks.com/stock/news/2168289/evelo-evlo-drops-59-on-flunking-psoriasis-drug-study",
+        "type": "JAZZ"
+      }
+    ],
+    "alerts": 2,
+    "alertDetails": {
+      "priceAlert": true,
+      "volumeSpike10": false,
+      "volumeSpike20": false,
+      "highVolume": false,
+      "insiderAlert": false,
+      "newsAlert": true,
+      "technicalAlert": null,
+      "nearHighAlert": false
+    }
+  }
