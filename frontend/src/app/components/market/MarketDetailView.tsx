@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Alert, AlertDescription } from '@/components/ui/alert';
@@ -29,10 +30,12 @@ export const MarketDetailView = ({ stock }: Props) => {
               <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 {stock.branding?.icon_url && (
-                <img 
-                  src={stock.branding.icon_url} 
-                  alt={`${stock.symbol} logo`} 
-                  className="w-10 h-10 rounded"
+                  <Image 
+                  src={stock.branding.icon_url}
+                  alt={`${stock.symbol} logo`}
+                  width={40}
+                  height={40}
+                  className="rounded"
                 />
                 )}
                 <div>
@@ -251,7 +254,6 @@ const VolumeAnalysis = ({ stock }: { stock: Stock }) => {
 };
 
 const CompanyInsights = ({ stock }: { stock: Stock }) => {
-
   return (
     <Card>
       <CardHeader>
@@ -312,7 +314,7 @@ const CompanyInsights = ({ stock }: { stock: Stock }) => {
             </CardContent>
           </Card>
 
-          {stock.fundamentals?.peRatios?.forwardPE && (
+          {stock.valuation_metrics?.forward_pe && (
             <Card>
               <CardContent className="pt-6">
                 <h4 className="font-medium mb-4">Valuation Metrics</h4>
@@ -320,15 +322,22 @@ const CompanyInsights = ({ stock }: { stock: Stock }) => {
                   <div className="flex justify-between">
                     <span className="text-sm text-muted-foreground">Forward P/E</span>
                     <span className="text-sm font-medium">
-                      {Math.abs(stock.fundamentals.peRatios.forwardPE).toFixed(2)}
-                      {stock.fundamentals.peRatios.forwardPE < 0 ? ' (negative earnings)' : ''}
+                      {Math.abs(stock.valuation_metrics.forward_pe).toFixed(2)}
+                      {stock.valuation_metrics.forward_pe < 0 ? ' (negative earnings)' : ''}
                     </span>
                   </div>
+                  {stock.valuation_metrics.trailing_pe && (
+                    <div className="flex justify-between">
+                      <span className="text-sm text-muted-foreground">Trailing P/E</span>
+                      <span className="text-sm font-medium">
+                        {Math.abs(stock.valuation_metrics.trailing_pe).toFixed(2)}
+                      </span>
+                    </div>
+                  )}
                 </div>
               </CardContent>
             </Card>
           )}
-
         </div>
       </CardContent>
     </Card>
