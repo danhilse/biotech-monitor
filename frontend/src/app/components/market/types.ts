@@ -178,6 +178,7 @@ export interface Stock {
     icon_url: string;
     logo_url: string;
   };
+  investing_url: string;
   price: number;
   priceChange: number;
   openPrice: number;

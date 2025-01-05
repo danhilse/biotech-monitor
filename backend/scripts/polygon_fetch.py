@@ -364,7 +364,7 @@ class HybridDataFetcher:
                 "latest_date": None
             }
             
-    def get_company_name(ticker):
+    def get_company_name(self, ticker):
         base_url = "https://api.polygon.io/v3/reference/tickers/"
         api_key = self.polygon_key
         
@@ -374,11 +374,11 @@ class HybridDataFetcher:
         if response.status_code == 200:
             data = response.json()
             name = data['results']['name']
-            formatted_name = format_company_name(name)
+            formatted_name = self.format_company_name(name)
             return formatted_name
         return None
 
-    def format_company_name(name):
+    def format_company_name(self, name):
         """
         Convert company name to lowercase, dash-separated format.
         Example: 'ADMA Biologics, Inc.' -> 'adma-biologics-inc'
@@ -386,8 +386,13 @@ class HybridDataFetcher:
         # Remove periods and commas
         name = name.replace('.', '').replace(',', '')
         
+        
+        
         # Convert to lowercase and replace spaces with dashes
         name = name.lower().replace(' ', '-')
+        name = name.replace('-inc', '').replace('-corp', '').replace('-ltd', '')
+        name = name.replace('-common-stock', '').replace('-class-a', '').replace('-class-b', '')
+        print(name)
         
         return name
 
@@ -399,10 +404,7 @@ class HybridDataFetcher:
         try:
             # Common URL pattern transformations
             common_mappings = {
-                "VERA": "vera-therapeutics",
-                "BIIB": "biogen-idec",
-                "GILD": "gilead-sciences",
-                "ABBV": "abbvie"
+
             }
             
             # Check if we have a direct mapping
@@ -853,6 +855,7 @@ class HybridDataFetcher:
                     "highVolume": volume_metrics['volume_vs_avg'] > 50
                 }
                 
+                
                 # Get 52-week high/low and additional data from yfinance
                 try:
                     ticker = yf.Ticker(symbol)
@@ -883,6 +886,8 @@ class HybridDataFetcher:
                 
                 # Get news from Polygon.io
                 news_data = self.get_news(symbol)
+                
+                investing_link = self.get_investing_url(symbol)
                 
                 try:
                     financial_metrics = self.get_financials_metrics(symbol)
@@ -929,6 +934,7 @@ class HybridDataFetcher:
                         "icon_url": company_details['icon_url'],
                         "logo_url": company_details['logo_url']
                     },
+                    "investing_url": investing_link,
                     # Price data
                     "price": latest['c'],
                     "priceChange": price_change_pct,

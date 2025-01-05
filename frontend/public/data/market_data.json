@@ -1,7 +1,7 @@
 [
   {
     "symbol": "VERA",
-    "timestamp": "2025-01-04 13:06:51",
+    "timestamp": "2025-01-04 13:56:19",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Vera Therapeutics Inc is a clinical stage biotechnology company. It is focused on developing and commercializing transformative treatments for patients with serious immunological diseases. The company's\u00a0product candidate is atacicept, a fusion protein self-administered as a subcutaneous injection once weekly that blocks both B lymphocyte stimulator and a proliferation-inducing ligand, which stimulate B cells and plasma cells to produce autoantibodies contributing to certain autoimmune diseases.",
@@ -9,6 +9,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/dmVyYXR4LmNvbQ/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/dmVyYXR4LmNvbQ/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/vera-therapeutics",
     "price": 43.22,
     "priceChange": 2.4170616113743977,
     "openPrice": 42.72,
@@ -259,7 +260,7 @@
   },
   {
     "symbol": "ANIX",
-    "timestamp": "2025-01-04 13:06:54",
+    "timestamp": "2025-01-04 13:56:22",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Anixa Biosciences Inc, a cancer-focused biotechnology company, developing vaccines and therapies that are focused on critical unmet needs in oncology. The company is developing both diagnostics and therapeutics to detect cancer early, which is curable, and to treat those afflicted once diagnosed. Its segment includes CAR-T Therapeutics; Cancer Vaccines; Anti-Viral Therapeutics and others.",
@@ -267,6 +268,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/YW5peGEuY29t/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/YW5peGEuY29t/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/anixa-biosciences",
     "price": 2.38,
     "priceChange": 0.42194092827003316,
     "openPrice": 2.38,
@@ -444,7 +446,7 @@
   },
   {
     "symbol": "INMB",
-    "timestamp": "2025-01-04 13:06:57",
+    "timestamp": "2025-01-04 13:56:25",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "INmune Bio Inc is a clinical-stage biotechnology company. It is engaged in the development of new immunotherapies that reprogram a patient's innate immune system to allow immune system to fight cancer. The company's pipeline products includeINKmune, INBO3, XPro1595, LIVNate, and others.",
@@ -452,6 +454,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/aW5tdW5lYmlvLmNvbQ/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/aW5tdW5lYmlvLmNvbQ/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/inmune-bio",
     "price": 5.295,
     "priceChange": 7.403651115618666,
     "openPrice": 5.01,
@@ -623,7 +626,7 @@
   },
   {
     "symbol": "GUTS",
-    "timestamp": "2025-01-04 13:07:00",
+    "timestamp": "2025-01-04 13:56:29",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Fractyl Health Inc is a metabolic therapeutics company focused on pioneering new approaches to the treatment of metabolic diseases, including type 2 diabetes and obesity. The company focuses on transforming metabolic disease treatment from chronic symptomatic management to durable disease modifying therapies that target the organ level root causes of T2D and obesity.",
@@ -631,6 +634,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/ZnJhY3R5bC5jb20/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/ZnJhY3R5bC5jb20/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/fractyl-health",
     "price": 2.2,
     "priceChange": 3.286384976525835,
     "openPrice": 2.15,
@@ -827,7 +831,7 @@
   },
   {
     "symbol": "MIRA",
-    "timestamp": "2025-01-04 13:07:03",
+    "timestamp": "2025-01-04 13:56:32",
     "sector": "Healthcare",
     "industry": "Drug Manufacturers - General",
     "description": "Mira Pharmaceuticals Inc is a pre-clinical-stage pharmaceutical development company with two neuroscience programs targeting a broad range of neurologic and neuropsychiatric disorders. The company's novel oral pharmaceutical marijuana, MIRA-55, is under investigation for treating adult patients suffering from anxiety and cognitive decline, often associated with early-stage dementia.",
@@ -835,6 +839,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/bWlyYXBoYXJtYWNldXRpY2Fscy5jb20/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/bWlyYXBoYXJtYWNldXRpY2Fscy5jb20/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/mira-pharmaceuticals",
     "price": 1.26,
     "priceChange": 9.565217391304357,
     "openPrice": 1.17,
@@ -1015,7 +1020,7 @@
   },
   {
     "symbol": "EYPT",
-    "timestamp": "2025-01-04 13:07:06",
+    "timestamp": "2025-01-04 13:56:36",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "EyePoint Pharmaceuticals Inc is a pharmaceutical company. It is engaged in developing and commercializing ophthalmic products for the treatment of eye diseases. The company has developed FDA-approved sustained-release treatments in ophthalmology. Its pre-clinical development program is focused on using its core Durasert E and Verisome technology platforms to deliver drugs to treat wet age-related macular degeneration, glaucoma, osteoarthritis, and other diseases. Geographically, the firm has operational footprints in the U.S., China, and the UK. It generates a majority of its revenue from the U.S.",
@@ -1023,6 +1028,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/ZXllcG9pbnRwaGFybWEuY29t/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/ZXllcG9pbnRwaGFybWEuY29t/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/eyepoint-pharmaceuticals",
     "price": 8.26,
     "priceChange": 2.864259028642596,
     "openPrice": 8.05,
@@ -1194,7 +1200,7 @@
   },
   {
     "symbol": "GNPX",
-    "timestamp": "2025-01-04 13:07:09",
+    "timestamp": "2025-01-04 13:56:39",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Genprex Inc is a clinical-stage gene therapy company focused on developing life-changing therapies for patients with cancer and diabetes. Its technologies are designed to administer disease-fighting genes to provide new therapies for large patient populations with cancer and diabetes who currently have limited treatment options. Genprex's oncology program utilizes its systemic, non-viral Oncoprex Delivery System which encapsulates the gene-expressing plasmids using lipid-based nanoparticles in a lipoplex form. The company's lead product candidate, Reqorsa Immunogene Therapy (quaratusugene ozeplasmid), is being evaluated in three clinical trials as a treatment for NSCLC and SCLC.",
@@ -1202,6 +1208,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/Z2VucHJleC5jb20/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/Z2VucHJleC5jb20/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/genprex",
     "price": 0.8376,
     "priceChange": -7.026307026307029,
     "openPrice": 0.8706,
@@ -1379,7 +1386,7 @@
   },
   {
     "symbol": "GLUE",
-    "timestamp": "2025-01-04 13:07:12",
+    "timestamp": "2025-01-04 13:56:42",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Monte Rosa Therapeutics Inc is a biotechnology company that specializes in developing molecular glue degraders (MGDs), a class of small molecule drugs that leverage the body's natural protein destruction mechanisms to selectively degrade therapeutically-relevant proteins. Utilizing the QuEEN platform, the company employ artificial intelligence and proprietary experimental tools to identify target proteins for degradation by MGDs. With a diverse library of over 50,000 MGD molecules, their most advanced product candidate, MRT-2359, targets the translation termination factor protein GSPT1 for potential use in MYC-driven tumors. The company's focus lies in advancing its pipeline of MGDs, aiming to provide novel therapeutic modalities for various diseases.",
@@ -1387,6 +1394,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/bW9udGVyb3NhdHguY29t/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/bW9udGVyb3NhdHguY29t/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/monte-rosa-therapeutics",
     "price": 7.17,
     "priceChange": 0.843881856540079,
     "openPrice": 7.28,
@@ -1574,7 +1582,7 @@
   },
   {
     "symbol": "TGTX",
-    "timestamp": "2025-01-04 13:07:15",
+    "timestamp": "2025-01-04 13:56:46",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "TG Therapeutics Inc is a fully integrated, commercial-stage, biopharmaceutical company focused on the acquisition, development, and commercialization of novel treatments for B-cell diseases. The company has received approval from the U.S. Food and Drug Administration (FDA) for BRIUMVI (ublituximab-xiiy) for the treatment of adult patients with relapsing forms of multiple sclerosis (RMS). and the company is developing TG-1701 (BTK inhibitor) and TG-1801 (anti-CD47/CD19 bispecific mAb) for B-cell disorders which are under Phase 1 trial.",
@@ -1582,6 +1590,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/dGd0aGVyYXBldXRpY3MuY29t/images/2024-09-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/dGd0aGVyYXBldXRpY3MuY29t/images/2024-09-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/tg-therapeutics",
     "price": 30.05,
     "priceChange": -3.2517707662588475,
     "openPrice": 31.28,
@@ -1787,7 +1796,7 @@
   },
   {
     "symbol": "AUPH",
-    "timestamp": "2025-01-04 13:07:18",
+    "timestamp": "2025-01-04 13:56:49",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Aurinia Pharmaceuticals Inc is a biopharmaceutical company. It provides products for patients suffering from serious diseases with a high unmet medical need. The firm is developing LUPKYNIS (voclosporin), an investigational drug, for the treatment of lupus nephritis (LN), and others. Geographically, it derives maximum revenue from the United States.",
@@ -1795,6 +1804,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/YXVyaW5pYXBoYXJtYS5jb20/images/2024-10-01_icon.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/YXVyaW5pYXBoYXJtYS5jb20/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/aurinia-pharmaceuticals",
     "price": 8.54,
     "priceChange": -2.6225769669327303,
     "openPrice": 8.77,
@@ -1982,7 +1992,7 @@
   },
   {
     "symbol": "ITCI",
-    "timestamp": "2025-01-04 13:07:21",
+    "timestamp": "2025-01-04 13:56:53",
     "sector": "Healthcare",
     "industry": "Drug Manufacturers - Specialty & Generic",
     "description": "Intra-Cellular Therapies Inc is a biopharmaceutical company that develops novel drugs for treating diseases of the central nervous system. The company is focused on the delivery and clinical development of small-molecule drugs that address needs in neuropsychiatric and neurological disorders. Intra-Cellular maintains proprietary chemistry platforms to develop drugs for neurodegenerative diseases. The company's business segment is discovering and developing drugs for the treatment of neurological and psychiatric disorders.",
@@ -1990,6 +2000,7 @@
       "icon_url": null,
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/aW50cmFjZWxsdWxhcnRoZXJhcGllcy5jb20/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/intra-cellular-therapies",
     "price": 83.72,
     "priceChange": -0.6172839506172793,
     "openPrice": 84.59,
@@ -2204,7 +2215,7 @@
   },
   {
     "symbol": "CLOV",
-    "timestamp": "2025-01-04 13:07:24",
+    "timestamp": "2025-01-04 13:56:56",
     "sector": "Healthcare",
     "industry": "Healthcare Plans",
     "description": "Clover Health Investments Corp is a healthcare technology company. It focuses on empowering Medicare physicians to proactively manage chronic diseases through its proprietary software platform, Clover Assistant. This cloud-based solution provides personalized insights to physicians, enabling early detection and management of chronic conditions. Operating in two segments, Insurance and Non-Insurance, Clover Health offers PPO and HMO plans to Medicare Advantage members in multiple states through its Insurance segment. In the Non-Insurance segment, the company participates in the ACO REACH Model. The majority of revenue is generated from the insurance segment, reflecting the significance of its healthcare insurance offerings.",
@@ -2212,6 +2223,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/Y2xvdmVyaGVhbHRoLmNvbQ/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/Y2xvdmVyaGVhbHRoLmNvbQ/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/clover-health-investments",
     "price": 3.29,
     "priceChange": 5.111821086261985,
     "openPrice": 3.15,
@@ -2389,7 +2401,7 @@
   },
   {
     "symbol": "IPHA",
-    "timestamp": "2025-01-04 13:07:28",
+    "timestamp": "2025-01-04 13:57:02",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Innate Pharma SA is a clinical-stage biotechnology company. It is engaged in developing immunotherapies for cancer patients. Its approach is to harness the innate immune system through therapeutic antibodies and its ANKET (Antibody-based NK cell Engager Therapeutics) proprietary platform. The company's revenue results from payments received to research, collaboration, and licensing agreements signed with pharmaceutical companies. Its product pipeline includes lacutamab, monalizumab, IPH5201, IPH5301, IPH6101, IPH62, IPH6401 and IPH6501.",
@@ -2397,6 +2409,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/aW5uYXRlLXBoYXJtYS5jb20/images/2024-10-01_icon.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/aW5uYXRlLXBoYXJtYS5jb20/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/innate-pharma-sa-ads",
     "price": 1.87,
     "priceChange": 0.0,
     "openPrice": 1.9,
@@ -2568,7 +2581,7 @@
   },
   {
     "symbol": "MDWD",
-    "timestamp": "2025-01-04 13:07:31",
+    "timestamp": "2025-01-04 13:57:05",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "MediWound Ltd is an integrated biopharmaceutical company focused on developing, manufacturing, and commercializing novel therapeutic products to address unmet medical needs in the fields of severe burns, chronic and other hard-to-heal wounds, connective tissue disorders, and other indications. Its first biopharmaceutical product, NexoBrid is an FDA-approved orphan biologic for eschar removal in severe burns that can replace surgical interventions and minimize associated costs and complications. Its other product candidates in different stages of the pipeline include EscharEx for debridement of chronic wounds, and MW005 for the treatment of non-melanoma skin cancer. The company derives a majority of its revenue from the United States and the rest from the EU and other international markets.",
@@ -2576,6 +2589,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/bWVkaXdvdW5kLmNvbQ/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/bWVkaXdvdW5kLmNvbQ/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/mediwound",
     "price": 17.99,
     "priceChange": -0.05555555555556424,
     "openPrice": 18.1,
@@ -2747,7 +2761,7 @@
   },
   {
     "symbol": "ZYME",
-    "timestamp": "2025-01-04 13:07:34",
+    "timestamp": "2025-01-04 13:57:09",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Zymeworks Inc is a clinical-stage biopharmaceutical company dedicated to the discovery, development and commercialization of next-generation multifunctional biotherapeutics. Its suite of therapeutic platforms and its fully integrated drug development engine enables precise engineering of differentiated product candidates. Its clinical candidate, zanidatamab, is a novel Azymetric HER2-targeted bispecific antibody currently being evaluated in multiple Phase 1, Phase 2, and pivotal clinical trials globally as a targeted treatment option for patients with solid tumors that express HER2. The company is also advancing a deep preclinical pipeline in oncology and other therapeutic areas.",
@@ -2755,6 +2769,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/enltZXdvcmtzLmNvbQ/images/2024-10-01_icon.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/enltZXdvcmtzLmNvbQ/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/zymeworks",
     "price": 15.01,
     "priceChange": 1.5561569688768635,
     "openPrice": 16.46,
@@ -2960,7 +2975,7 @@
   },
   {
     "symbol": "ASMB",
-    "timestamp": "2025-01-04 13:07:37",
+    "timestamp": "2025-01-04 13:57:12",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Assembly Biosciences Inc is a clinical-stage biotechnology company. It is advancing two innovative platform programs, a novel class of oral therapeutics for the treatment of hepatitis B virus (HBV) infection and novel class of oral synthetic live biotherapeutics, which are designed to restore health to a dysbiotic microbiome. The company's HBV-cure program is aimed at increasing the current low cure rate for patients with HBV and is pursuing multiple drug candidates that inhibit multiple steps of the HBV lifecycle. Assembly has discovered several novel core protein Allosteric Modulators, which are small molecules that directly target and allosterically modulate the HBV core protein. The majority of the revenue is generated from the HBV cure program.",
@@ -2968,6 +2983,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/YXNzZW1ibHliaW8uY29t/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/YXNzZW1ibHliaW8uY29t/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/assembly-biosciences",
     "price": 17.49,
     "priceChange": 1.9825072886297368,
     "openPrice": 17.3,
@@ -3173,7 +3189,7 @@
   },
   {
     "symbol": "JAZZ",
-    "timestamp": "2025-01-04 13:07:40",
+    "timestamp": "2025-01-04 13:57:16",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Jazz Pharmaceuticals is an Ireland-domiciled biopharmaceutical firm focused primarily on treatments for sleeping disorders and oncology. Jazz has nine approved drugs across neuroscience and oncology indications; its portfolio includes Xyrem and Xywav for narcolepsy, Zepzelca for the treatment of metastatic small cell lung cancer, Rylaze for acute lymphoblastic leukemia, and Vyxeos for acute myeloid leukemia. In May 2021, Jazz acquired GW Pharmaceuticals and gained its leading product, Epidiolex for the treatment of severe, rare forms of epilepsy.",
@@ -3181,6 +3197,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/amF6enBoYXJtYWNldXRpY2Fscy5jb20/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/amF6enBoYXJtYWNldXRpY2Fscy5jb20/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/jazz-pharmaceuticals",
     "price": 120.56,
     "priceChange": -2.5856496444731762,
     "openPrice": 123.9,
@@ -3386,7 +3403,7 @@
   },
   {
     "symbol": "PRTA",
-    "timestamp": "2025-01-04 13:07:44",
+    "timestamp": "2025-01-04 13:57:19",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Prothena Corp PLC is a biotechnology company that focuses on protein dysregulation and a pipeline of investigational therapeutics with the potential to change the course of devastating rare neurodegenerative and peripheral amyloid diseases. The company's clinical pipeline of antibody-based product candidates targets a range of indications, including Amyloid Light-chain (AL) amyloidosis (NEOD001), Parkinson's disease and other related synucleinopathies (PRX002), and inflammatory diseases, including psoriasis and psoriatic arthritis (PRX003) and ATTR amyloidosis (PRX004).",
@@ -3394,6 +3411,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/cHJvdGhlbmEuY29t/images/2024-10-01_icon.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/cHJvdGhlbmEuY29t/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/prothenaoration-plc-ordinary-shares",
     "price": 13.87,
     "priceChange": 1.4630577907827307,
     "openPrice": 13.71,
@@ -3565,7 +3583,7 @@
   },
   {
     "symbol": "TMDX",
-    "timestamp": "2025-01-04 13:07:46",
+    "timestamp": "2025-01-04 13:57:22",
     "sector": "Healthcare",
     "industry": "Medical Devices",
     "description": "TransMedics Group Inc is a commercial-stage medical technology company transforming organ transplant therapy for end-stage organ failure patients across multiple disease states. It has developed the Organ Care System(OCS) to comprehensively address the limitations of cold storage. The OCS is a portable organ perfusion, optimization and monitoring system that utilizes technology to replicate near-physiologic conditions for donor organs outside of the human body. The Company has developed and is commercializing a proprietary system to preserve and deliver human organs for transplant in a near-physiologic condition to address the limitations of cold storage organ preservation.",
@@ -3573,6 +3591,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/dHJhbnNtZWRpY3MuY29t/images/2024-10-01_icon.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/dHJhbnNtZWRpY3MuY29t/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/transmedics-group",
     "price": 69.09,
     "priceChange": 3.894736842105268,
     "openPrice": 67.18,
@@ -3796,7 +3815,7 @@
   },
   {
     "symbol": "GILD",
-    "timestamp": "2025-01-04 13:07:50",
+    "timestamp": "2025-01-04 13:57:26",
     "sector": "Healthcare",
     "industry": "Drug Manufacturers - General",
     "description": "Gilead Sciences develops and markets therapies to treat life-threatening infectious diseases, with the core of its portfolio focused on HIV and hepatitis B and C. Gilead's acquisition of Pharmasset brought rights to hepatitis C drug Sovaldi, which is also part of newer combination regimens that remain standards of care. Gilead is also growing its presence in the oncology market via acquisitions, led by CAR-T cell therapy Yescarta/Tecartus (from Kite) and breast and bladder cancer therapy Trodelvy (from Immunomedics).",
@@ -3804,6 +3823,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/Z2lsZWFkLmNvbQ/images/2024-10-01_icon.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/Z2lsZWFkLmNvbQ/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/gilead-sciences",
     "price": 91.41,
     "priceChange": -0.5115367871136253,
     "openPrice": 92.19,
@@ -4072,7 +4092,7 @@
   },
   {
     "symbol": "NTNX",
-    "timestamp": "2025-01-04 13:07:52",
+    "timestamp": "2025-01-04 13:57:31",
     "sector": "Technology",
     "industry": "Software - Infrastructure",
     "description": "Nutanix Inc is engaged in cloud software, offering organizations a single platform for running applications and managing data, anywhere. Its Nutanix Cloud Platform is designed to enable organizations to build a hybrid multicloud infrastructure, providing a consistent cloud operating model with a single platform for running applications and managing data in core data centers, at the edge, and in public clouds, all while supporting a variety of hypervisors and container platforms. The company is into a single operating and reportable segment that is subscription-based business model. Key revenue is generated from United States.",
@@ -4080,6 +4100,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/bnV0YW5peC5jb20/images/2024-10-01_icon.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/bnV0YW5peC5jb20/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/nutanix",
     "price": 62.68,
     "priceChange": 2.284595300261094,
     "openPrice": 61.65,
@@ -4285,7 +4306,7 @@
   },
   {
     "symbol": "INAB",
-    "timestamp": "2025-01-04 13:07:55",
+    "timestamp": "2025-01-04 13:57:45",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "IN8bio Inc is a clinical-stage biopharmaceutical company focused on the discovery, development, and commercialization of gamma-delta T cell product candidates for solid and liquid tumors, by employing allogeneic, autologous, and genetically modified gamma-delta T cells. Its product candidates include INB-400, for the treatment of newly diagnosed glioblastoma, or GBM, INB-100 for the treatment of patients with high-risk leukemias undergoing hematopoietic stem cell transplantation, and other product candidates such as INB-200, INB-300, and INB-500.",
@@ -4293,6 +4314,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/aW44YmlvLmNvbQ/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/aW44YmlvLmNvbQ/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/in8bio",
     "price": 0.2914,
     "priceChange": 3.9971448965024936,
     "openPrice": 0.295,
@@ -4464,7 +4486,7 @@
   },
   {
     "symbol": "MNPR",
-    "timestamp": "2025-01-04 13:07:58",
+    "timestamp": "2025-01-04 13:57:49",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Monopar Therapeutics Inc is a clinical-stage biopharmaceutical company focused on developing proprietary therapeutics designed to extend life or improve the quality of life for cancer patients. The company's pipeline consists of\u202fValidive\u202ffor the prevention of chemoradiotherapy-induced severe oral mucositis in oropharyngeal cancer patients, camsirubicin\u202ffor the treatment\u202fof\u00a0soft tissue sarcoma, a late-stage preclinical antibody, MNPR-101, for cancers and severe COVID-19 and an early-stage camsirubicin analog, MNPR-202, for various cancers.",
@@ -4472,6 +4494,7 @@
       "icon_url": null,
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/bW9ub3BhcnR4LmNvbQ/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/monopar-therapeutics",
     "price": 22.98,
     "priceChange": 3.4203420342034274,
     "openPrice": 21.01,
@@ -4643,7 +4666,7 @@
   },
   {
     "symbol": "APVO",
-    "timestamp": "2025-01-04 13:08:01",
+    "timestamp": "2025-01-04 13:57:53",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Aptevo Therapeutics Inc is a clinical-stage, research and development biotechnology company focused on developing novel immunotherapeutic candidates for the treatment of different forms of cancer. Its clinical candidate, APVO436, and preclinical candidates, ALG.APV-527 and APVO603, were developed using ADAPTIR modular protein technology platform. The versatile and robust ADAPTIR and ADAPTIR-FLEX platforms are designed to generate monospecific, bispecific, and multi-specific antibody candidates that are capable of enhancing the human immune system against cancer cells.",
@@ -4651,6 +4674,7 @@
       "icon_url": null,
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/YXB0ZXZvdGhlcmFwZXV0aWNzLmNvbQ/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/aptevo-therapeutics",
     "price": 4.58,
     "priceChange": 0.2188183807439778,
     "openPrice": 4.85,
@@ -4828,7 +4852,7 @@
   },
   {
     "symbol": "HRMY",
-    "timestamp": "2025-01-04 13:08:04",
+    "timestamp": "2025-01-04 13:57:56",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Harmony Biosciences Holdings Inc is a commercial-stage pharmaceutical company focused on developing and commercializing\u00a0therapies for patients living with rare neurological diseases who have unmet medical needs. The company's product WAKIX (pitolisant), is a molecule with a novel mechanism of action specifically designed to increase histamine signaling in the brain by binding to H3 receptors and used for the treatment of cataplexy in adult patients with narcolepsy.",
@@ -4836,6 +4860,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/aGFybW9ueWJpb3NjaWVuY2VzLmNvbQ/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/aGFybW9ueWJpb3NjaWVuY2VzLmNvbQ/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/harmony-biosciences-holdings",
     "price": 34.78,
     "priceChange": -0.14355440712029044,
     "openPrice": 34.91,
@@ -5050,7 +5075,7 @@
   },
   {
     "symbol": "BHC",
-    "timestamp": "2025-01-04 13:08:07",
+    "timestamp": "2025-01-04 13:58:00",
     "sector": "Healthcare",
     "industry": "Drug Manufacturers - Specialty & Generic",
     "description": "Bausch Health Companies Inc is a global specialty pharmaceutical, consumer health, and medical device company with a focus on branded products for the gastroenterology, hepatology, neurology and dermatology markets. The company reports revenue in five segments: Salix; International; Solta Medical; Diversified Products and Bausch + Lomb. It generates maximum revenue from the Bausch + Lomb segment.",
@@ -5058,6 +5083,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/YmF1c2NoaGVhbHRoLmNvbQ/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/YmF1c2NoaGVhbHRoLmNvbQ/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/bausch\u00a0health\u00a0companies\u00a0inc",
     "price": 7.8,
     "priceChange": -1.7632241813602085,
     "openPrice": 8.02,
@@ -5235,7 +5261,7 @@
   },
   {
     "symbol": "BCRX",
-    "timestamp": "2025-01-04 13:08:10",
+    "timestamp": "2025-01-04 13:58:03",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "BioCryst Pharmaceuticals Inc is a biotechnology company involved mainly in the research and development of novel small-molecule drugs, to block\u00a0key enzymes involved in infectious and inflammatory diseases. Biocryst's research is based on multiple scientific disciplines like biology, computer modeling, and medicinal chemistry. Its products and candidates target the following therapeutic areas: acute uncomplicated influenza; uncomplicated seasonal influenza; hereditary angioedema; filoviruses, including the Ebola and Marburg viruses; and oncology.",
@@ -5243,6 +5269,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/YmlvY3J5c3QuY29t/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/YmlvY3J5c3QuY29t/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/biocryst-pharmaceuticals",
     "price": 7.7,
     "priceChange": -1.6602809706257968,
     "openPrice": 7.87,
@@ -5420,7 +5447,7 @@
   },
   {
     "symbol": "GRTX",
-    "timestamp": "2025-01-04 13:08:13",
+    "timestamp": "2025-01-04 13:58:06",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": null,
@@ -5428,6 +5455,7 @@
       "icon_url": null,
       "logo_url": null
     },
+    "investing_url": "https://www.investing.com/equities/galera-therapeutics",
     "price": 0.0505,
     "priceChange": 25.935162094763108,
     "openPrice": 0.0447,
@@ -5615,7 +5643,7 @@
   },
   {
     "symbol": "AXSM",
-    "timestamp": "2025-01-04 13:08:15",
+    "timestamp": "2025-01-04 13:58:10",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Axsome Therapeutics Inc is a clinical-stage biopharmaceutical company. It is engaged in developing novel therapies for the management of the central nervous system, or CNS, disorders for which there are limited treatment options. Its pipeline products include AXS-05, AXS-07, AXS-12, and AXS-14. It manages its business as one operating segment and reporting unit, which is the business of developing and delivering novel therapies for the management of CNS disorders.",
@@ -5623,6 +5651,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/YXhzb21lLmNvbQ/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/YXhzb21lLmNvbQ/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/axsome-therapeutics",
     "price": 86.45,
     "priceChange": -0.9963353183692057,
     "openPrice": 87.74,
@@ -5810,7 +5839,7 @@
   },
   {
     "symbol": "SMMT",
-    "timestamp": "2025-01-04 13:08:19",
+    "timestamp": "2025-01-04 13:58:13",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Summit Therapeutics Inc is a biopharmaceutical company that focuses on the discovery, development, and commercialization of novel antibiotics for serious infectious diseases. Its\u00a0CDI (Clostridiodes difficile infection) product candidate is ridinilazole, an orally administered small molecule antibiotic. It has two geographical segments: the United States and the United Kingdom.",
@@ -5818,6 +5847,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/c21tdHR4LmNvbQ/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/c21tdHR4LmNvbQ/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/summit-therapeutics",
     "price": 18.24,
     "priceChange": -0.5994550408719508,
     "openPrice": 18.25,
@@ -5989,7 +6019,7 @@
   },
   {
     "symbol": "SAGE",
-    "timestamp": "2025-01-04 13:08:21",
+    "timestamp": "2025-01-04 13:58:17",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Sage Therapeutics Inc is a clinical-stage biopharmaceutical company focused on brain health medicines. The company is targeting diseases and disorders of the brain with three key focus areas: depression, neurology and neuropsychiatry; also targeting two critical central nervous system, or CNS, receptor systems, GABA and NMDA. Its products ZURZUVAE is a medicine for the treatment of postpartum depression, or PPD, in adults, and ZULRESSO is a CIV injection for the treatment of postpartum depression in individuals 15 years old and older. It also has other drugs in its pipeline such as SAGE-324, Dalzanemdor (SAGE-718) among others.",
@@ -5997,6 +6027,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/c2FnZXJ4LmNvbQ/images/2024-10-01_icon.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/c2FnZXJ4LmNvbQ/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/sage-therapeutics",
     "price": 6.14,
     "priceChange": 6.228373702422135,
     "openPrice": 5.81,
@@ -6174,7 +6205,7 @@
   },
   {
     "symbol": "MYNZ",
-    "timestamp": "2025-01-04 13:08:24",
+    "timestamp": "2025-01-04 13:58:20",
     "sector": "Healthcare",
     "industry": "Diagnostics & Research",
     "description": "Mainz Biomed NV develops market-ready molecular genetic diagnostic solutions for life-threatening conditions. The company's flagship product is ColoAlert, is an accurate, non-invasive and easy-to-use, early-detection diagnostic test for colorectal cancer based on real-time Polymerase Chain Reaction-based (PCR) multiplex detection of molecular-genetic biomarkers in stool samples.",
@@ -6182,6 +6213,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/bWFpbnpiaW9tZWQuY29t/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/bWFpbnpiaW9tZWQuY29t/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/mainz-biomed-nv-ordinary-shares",
     "price": 4.38,
     "priceChange": 1.8604651162790715,
     "openPrice": 4.3,
@@ -6353,7 +6385,7 @@
   },
   {
     "symbol": "GMAB",
-    "timestamp": "2025-01-04 13:08:27",
+    "timestamp": "2025-01-04 13:58:24",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Genmab AS is a Copenhagen-based biotechnology company specializing in antibody therapeutics for the treatment of cancer. Genmab's proprietary antibody technologies are DuoBody, HexaBody, DuoHexaBody, and HexElect. Johnson & Johnson partnered with Genmab to create Darzalex, which is regarded as the standard of care for multiple myeloma and is Genmab's leading product. Genmab also has Tepezza for thyroid eye disease (partnered with Horizon), Kesimpta for relapsing multiple sclerosis (partnered with Novartis), Rybrevant (partnered with Johnson & Johnson) for non-small cell lung cancer (NSCLC), Tivdak (partnered with Seagen) for cervical cancer, and Epkinly (partnered with AbbVie) for diffuse large B-cell lymphoma. Genmab has several pipeline candidates targeting other oncologic indications.",
@@ -6361,6 +6393,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/Z2VubWFiLmNvbQ/images/2024-10-01_icon.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/Z2VubWFiLmNvbQ/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/genmab-a/s-ads",
     "price": 21.47,
     "priceChange": 2.238095238095233,
     "openPrice": 21.15,
@@ -6532,7 +6565,7 @@
   },
   {
     "symbol": "NEO",
-    "timestamp": "2025-01-04 13:08:31",
+    "timestamp": "2025-01-04 13:58:29",
     "sector": "Healthcare",
     "industry": "Diagnostics & Research",
     "description": "NeoGenomics Inc operates a network of cancer-focused genetic testing laboratories in the United States as well as a laboratory in Switzerland. The company operates into two segments namely Clinical Services and Advanced Diagnostics. It offers types of genetic and molecular testing services namely Cytogenetics, Fluorescence In-Situ Hybridization, Flow cytometry, Immunohistochemistry, Molecular testing, Pathology consultation. Advanced Diagnostics segment supports pharmaceutical firms in their drug development programs by supporting various clinical trials and research. For Clinical Services, Its specialized diagnostic services are performed based on an online test order or a written test requisition form. The company generates majority of its revenue from Clinical Services.",
@@ -6540,6 +6573,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/bmVvZ2Vub21pY3MuY29t/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/bmVvZ2Vub21pY3MuY29t/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/neogenomics",
     "price": 16.98,
     "priceChange": 2.9714978775015286,
     "openPrice": 16.58,
@@ -6717,7 +6751,7 @@
   },
   {
     "symbol": "ARCT",
-    "timestamp": "2025-01-04 13:08:34",
+    "timestamp": "2025-01-04 13:58:32",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Arcturus Therapeutics Holdings Inc is an RNA medicines company focused on opportunities in rare diseases with a current focus on liver and respiratory diseases. It operates in the research and development segment of medical applications for nucleic acid-focused technology. The company's product pipeline includes LUNAR-OTC, LUNAR-CF, LUNAR-FLU and LUNAR-COV19.",
@@ -6725,6 +6759,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/YXJjdHVydXNyeC5jb20/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/YXJjdHVydXNyeC5jb20/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/arcturus-therapeutics-holdings",
     "price": 17.94,
     "priceChange": 5.096660808435858,
     "openPrice": 17.19,
@@ -6912,7 +6947,7 @@
   },
   {
     "symbol": "TEVA",
-    "timestamp": "2025-01-04 13:08:37",
+    "timestamp": "2025-01-04 13:58:36",
     "sector": "Healthcare",
     "industry": "Drug Manufacturers - Specialty & Generic",
     "description": "Teva Pharmaceutical Industries, based in Israel, is the leading generic drug manufacturer in the world. Teva derives half of its sales from North America and makes up a high-single-digit percentage of the total number of generic prescriptions in the US. It also has a significant presence in Europe, Japan, Russia, and Israel. Besides generics, Teva has a portfolio of innovative medicines and biosimilars in three main therapeutic areas: the central nervous system with Copaxone, Ajovy, and Austedo; respiratory with Qvar and ProAir; and oncology with Truxima, Herzuma, and Bendeka/Treanda. Teva also sells active pharmaceutical ingredients, offers contract manufacturing services, and owns Anda, a US-based generic and specialty drug distributor.",
@@ -6920,6 +6955,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/dGV2YXBoYXJtLmNvbQ/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/dGV2YXBoYXJtLmNvbQ/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/teva-pharmaceutical-industries-limited-american-depositary-shares",
     "price": 21.24,
     "priceChange": -0.2816901408450811,
     "openPrice": 21.4,
@@ -7107,7 +7143,7 @@
   },
   {
     "symbol": "VMD",
-    "timestamp": "2025-01-04 13:08:40",
+    "timestamp": "2025-01-04 13:58:39",
     "sector": "Healthcare",
     "industry": "Medical Devices",
     "description": "Viemed Healthcare Inc is a provider of medical equipment and home therapy to patients with respiratory disease, oxygen problems, sleep apnea and PAP treatment. The company also provides services such as respiratory disease management, neuromuscular care, in-home sleep testing and sleep apnea treatment, oxygen therapy, respiratory equipment rentals, and healthcare staffing services. The company generates majority its revenue from medical equipment rental, sales and supply.",
@@ -7115,6 +7151,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/dmllbWVkLmNvbQ/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/dmllbWVkLmNvbQ/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/viemed-healthcare-common-shares",
     "price": 8.12,
     "priceChange": -0.12300123001231934,
     "openPrice": 8.17,
@@ -7338,7 +7375,7 @@
   },
   {
     "symbol": "VERU",
-    "timestamp": "2025-01-04 13:08:43",
+    "timestamp": "2025-01-04 13:58:43",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Veru Inc is a biopharmaceutical company with a drug development program for the treatment of metabolic diseases, oncology, and acute respiratory distress syndrome (ARDS). The company is also in the late-stage development of certain drugs for the management of\u00a0breast and prostate cancers. It also has a sexual health program that includes two products, ENTADFI, for the treatment of benign prostatic hyperplasia (BPH) and the FC2 Female Condom (Internal Condom). The company operates in a single segment and generates revenue from the USA which is the key revenue generating market, Brazil, and other regions.",
@@ -7346,6 +7383,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/dmVydXBoYXJtYS5jb20/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/dmVydXBoYXJtYS5jb20/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/veru",
     "price": 0.7375,
     "priceChange": 13.148204970849953,
     "openPrice": 0.6558,
@@ -7524,7 +7562,7 @@
   },
   {
     "symbol": "VRCA",
-    "timestamp": "2025-01-04 13:08:46",
+    "timestamp": "2025-01-04 13:58:46",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Verrica Pharmaceuticals Inc is a dermatology therapeutics company engaged in the development and commercialization of novel treatments that provide a meaningful benefit for people living with skin diseases. Its\u00a0product candidate, VP-102, is developed for the treatment of molluscum contagiosum, or molluscum, a\u00a0contagious and pediatric viral skin disease, and common warts.",
@@ -7532,6 +7570,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/dmVycmljYS5jb20/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/dmVycmljYS5jb20/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/verrica-pharmaceuticals",
     "price": 0.7,
     "priceChange": -0.3700540848277892,
     "openPrice": 0.7094,
@@ -7737,7 +7776,7 @@
   },
   {
     "symbol": "SIGA",
-    "timestamp": "2025-01-04 13:08:49",
+    "timestamp": "2025-01-04 13:58:51",
     "sector": "Healthcare",
     "industry": "Drug Manufacturers - Specialty & Generic",
     "description": "SIGA Technologies Inc is a commercial-stage pharmaceutical company focused on the health security market. The company's main\u00a0product is TPOXX, an oral formulation antiviral drug for the treatment of human smallpox disease caused by the variola virus. The company derives maximum revenue from United States.",
@@ -7745,6 +7784,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/c2lnYS5jb20/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/c2lnYS5jb20/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/siga-technologies",
     "price": 6.33,
     "priceChange": 1.4423076923076898,
     "openPrice": 6.26,
@@ -7922,7 +7962,7 @@
   },
   {
     "symbol": "INMD",
-    "timestamp": "2025-01-04 13:08:52",
+    "timestamp": "2025-01-04 13:58:54",
     "sector": "Healthcare",
     "industry": "Medical Devices",
     "description": "InMode Ltd provides minimally and non-invasive surgical aesthetic and medical treatment solutions in the United States. Its products and solutions address three energy-based treatment categories that include face & body contouring, medical aesthetics, and women's health. InMode has developed products using its technology for plastic surgery, dermatology, gynecology, and ophthalmology. Its product platforms include BodyTite, Optimas, Votiva, Contoura, Triton, EmbraceRF, EvolveX, Evoke, EmpowerRF and Morpheus8. The majority of its revenue comes from the United States.",
@@ -7930,6 +7970,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/aW5tb2RlbWQuY29t/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/aW5tb2RlbWQuY29t/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/inmode-ordinary-shares",
     "price": 17.01,
     "priceChange": 0.29481132075472116,
     "openPrice": 16.995,
@@ -8101,7 +8142,7 @@
   },
   {
     "symbol": "EXEL",
-    "timestamp": "2025-01-04 13:08:55",
+    "timestamp": "2025-01-04 13:58:58",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Exelixis is a biopharmaceutical firm that discovers, develops, and commercializes treatments for cancer. Its lead molecule, cabozantinib, is indicated for the treatment of patients with metastatic medullary thyroid cancer under the name Cometriq and for the treatment of kidney and liver cancer under the name Cabometyx. Exelixis and its partner Roche have also brought Cotellic to market for the treatment of melanoma.",
@@ -8109,6 +8150,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/ZXhlbGl4aXMuY29t/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/ZXhlbGl4aXMuY29t/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/exelixis",
     "price": 33.97,
     "priceChange": 0.08839127872716894,
     "openPrice": 33.79,
@@ -8368,7 +8410,7 @@
   },
   {
     "symbol": "CPRX",
-    "timestamp": "2025-01-04 13:08:58",
+    "timestamp": "2025-01-04 13:59:02",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Catalyst Pharmaceuticals Inc is a biopharmaceutical company. It focuses on developing and commercializing, developing\u00a0therapies for people with rare, debilitating, chronic neuromuscular and neurological diseases. It offers Firdapse, a proprietary form of amifampridine phosphate for the treatment of patients with Lambert-Eaton myasthenic syndrome.",
@@ -8376,6 +8418,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/Y2F0YWx5c3RwaGFybWEuY29t/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/Y2F0YWx5c3RwaGFybWEuY29t/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/catalyst-pharmaceutical-",
     "price": 21.31,
     "priceChange": -0.9758364312267698,
     "openPrice": 21.55,
@@ -8707,7 +8750,7 @@
   },
   {
     "symbol": "HALO",
-    "timestamp": "2025-01-04 13:09:01",
+    "timestamp": "2025-01-04 13:59:05",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Halozyme Therapeutics Inc is a biotechnology company focused on developing and commercializing novel oncology therapies. The company seeks to create therapies focused on human enzymes that alter tumors. Halozyme focuses on developing its proprietary products in therapeutic areas with unmet medical needs, with a focus on oncology, and licensing its technology to biopharmaceutical companies to collaboratively develop products. The company's operations are based in the United States, with minimal long-lived assets located internationally.",
@@ -8715,6 +8758,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/aGFsb3p5bWUuY29t/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/aGFsb3p5bWUuY29t/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/halozyme-therapeutics",
     "price": 47.74,
     "priceChange": -0.5623828369089691,
     "openPrice": 48.2,
@@ -8929,7 +8973,7 @@
   },
   {
     "symbol": "NVOS",
-    "timestamp": "2025-01-04 13:09:04",
+    "timestamp": "2025-01-04 13:59:09",
     "sector": "Healthcare",
     "industry": "Medical Care Facilities",
     "description": null,
@@ -8937,6 +8981,7 @@
       "icon_url": null,
       "logo_url": null
     },
+    "investing_url": "https://www.investing.com/equities/novo-integrated-sciences",
     "price": 0.052,
     "priceChange": 3.1746031746031687,
     "openPrice": 0.0504,
@@ -9108,7 +9153,7 @@
   },
   {
     "symbol": "ATAI",
-    "timestamp": "2025-01-04 13:09:07",
+    "timestamp": "2025-01-04 13:59:12",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "ATAI Life Sciences NV is a clinical-stage biopharmaceutical company aiming to transform the treatment of mental health disorders. Its product candidates include COMP360/Psilocybin therapy, PCN-101/R-ketamine, RL-007/Compound, DMX-1002/Ibogaine, GRX-917/Deuterated etifoxine, VLS-01/DMT, EMP-01/MDMA derivative, RLS-01/Salvinorin A, KUR-101/Deuterated Mitragynine, and DMX-1001/Noribogaine. The business operates geographically in two regions being the United States and Germany.",
@@ -9116,6 +9161,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/YXRhaS5saWZl/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/YXRhaS5saWZl/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/atai-life-sciences-nv-common-shares",
     "price": 1.77,
     "priceChange": 10.624999999999996,
     "openPrice": 1.65,
@@ -9287,7 +9333,7 @@
   },
   {
     "symbol": "BNGO",
-    "timestamp": "2025-01-04 13:09:10",
+    "timestamp": "2025-01-04 13:59:16",
     "sector": "Healthcare",
     "industry": "Medical Instruments & Supplies",
     "description": "Bionano Genomics Inc is a life sciences instrumentation company in the genome analysis space. It is engaged in the development and marketing of the Saphyr system, a platform for ultra-sensitive and ultra-specific structural variation detection that enables researchers and clinicians to accelerate the search for new diagnostics and therapeutic targets and to streamline the study of changes in chromosomes. Geographically, it operates in Americas, EMEA and Asia Pacific; majority revenue being generated from Americas. They generate product revenue from sales of its OGM and Ionic Purification systems and consumables, which includes its instruments, and their VIA software.",
@@ -9295,6 +9341,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/YmlvbmFuby5jb20/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/YmlvbmFuby5jb20/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/bionano-genomics",
     "price": 0.3167,
     "priceChange": 24.050137093615334,
     "openPrice": 0.31,
@@ -9466,7 +9513,7 @@
   },
   {
     "symbol": "ENOV",
-    "timestamp": "2025-01-04 13:09:14",
+    "timestamp": "2025-01-04 13:59:19",
     "sector": "Industrials",
     "industry": "Specialty Industrial Machinery",
     "description": "Enovis Corp is a medical technology company focused on developing clinically differentiated solutions that generate measurable\u00a0patient outcomes and transform workflows by manufacturing and distributing high-quality medical devices with a broad\u00a0use for reconstructive surgery, rehabilitation, pain management, and physical therapy. The company conducts its operations through two operating segments: Prevention & Recovery (P&R) and Reconstructive (Recon). It generates the majority of revenue from the Prevention & Recovery segment.",
@@ -9474,6 +9521,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/ZW5vdmlzLmNvbQ/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/ZW5vdmlzLmNvbQ/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/enovisoration",
     "price": 43.27,
     "priceChange": -2.3250564334085646,
     "openPrice": 44.34,
@@ -9645,7 +9693,7 @@
   },
   {
     "symbol": "BIIB",
-    "timestamp": "2025-01-04 13:09:17",
+    "timestamp": "2025-01-04 13:59:23",
     "sector": "Healthcare",
     "industry": "Drug Manufacturers - General",
     "description": "Biogen and Idec merged in 2003, combining forces to market Biogen's multiple sclerosis drug Avonex and Idec's cancer drug Rituxan. Today, Rituxan and next-generation antibody Gazyva (oncology) and Ocrevus (multiple sclerosis) are marketed via a collaboration with Roche. Biogen markets several multiple sclerosis drugs including Plegridy, Tysabri, Tecfidera, and Vumerity. Biogen's newer products include Spinraza (SMA, with partner Ionis), Leqembi (Alzheimers, with partner Eisai), Skyclarys (Friedreich's Ataxia, Reata), Zurzuvae (postpartum depression, Sage), and Qalsody (ALS, Ionis). Biogen has several drug candidates in phase 3 trials in neurology, immunology, and rare diseases.",
@@ -9653,6 +9701,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/YmlvZ2VuLmNvbQ/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/YmlvZ2VuLmNvbQ/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/biogen",
     "price": 152.21,
     "priceChange": 1.4733333333333387,
     "openPrice": 149.73,
@@ -9830,7 +9879,7 @@
   },
   {
     "symbol": "MIST",
-    "timestamp": "2025-01-04 13:09:19",
+    "timestamp": "2025-01-04 13:59:28",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Milestone Pharmaceuticals Inc is a biopharmaceutical company dedicated to developing and commercializing etripamil for the treatment of cardiovascular indications. Etripamil is a calcium channel blocker developed as a rapid-onset nasal spray to be administered by the patient to terminate episodes of paroxysmal supraventricular tachycardia, or PSVT. The company has an ongoing Phase 2 clinical trial for patients with atrial fibrillation experiencing a rapid ventricular rate (AFib-RVR).",
@@ -9838,6 +9887,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/bWlsZXN0b25lcGhhcm1hLmNvbQ/images/2024-10-01_icon.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/bWlsZXN0b25lcGhhcm1hLmNvbQ/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/milestone-pharmaceuticals-common-shares",
     "price": 2.2,
     "priceChange": 1.3824884792626844,
     "openPrice": 2.16,
@@ -10009,7 +10059,7 @@
   },
   {
     "symbol": "ARDX",
-    "timestamp": "2025-01-04 13:09:22",
+    "timestamp": "2025-01-04 13:59:32",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Ardelyx Inc is a biotechnology company focused on the discovery, development, and commercialization of innovative, first-in-class medicines that meet significant unmet medical needs. The company has a proprietary drug discovery and design platform. Its lead product candidate is tenapanor, which aims to reduce the absorption of dietary sodium and phosphorus for the treatment of kidney disease, irritable bowel syndrome with constipation, and hyperphosphatemia in patients with dialysis.",
@@ -10017,6 +10067,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/YXJkZWx5eC5jb20/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/YXJkZWx5eC5jb20/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/ardelyx",
     "price": 4.97,
     "priceChange": -2.929687500000007,
     "openPrice": 5.12,
@@ -10267,7 +10318,7 @@
   },
   {
     "symbol": "CVM",
-    "timestamp": "2025-01-04 13:09:56",
+    "timestamp": "2025-01-04 13:59:35",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "CEL-SCI Corp is a player in the biotechnology sector. It is engaged in the research and development at developing the treatment of cancer and other diseases by using the immune system. The Company's core capabilities that include are drug discovery, research, development and manufacturing of complex biological substances. It is focused on the development of Multikine (Leukocyte Interleukin, Injection), investigational immunotherapy under development for the treatment of certain head and neck cancers, and anal warts or cervical dysplasia.",
@@ -10275,6 +10326,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/Y2VsLXNjaS5jb20/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/Y2VsLXNjaS5jb20/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/cel-scioration",
     "price": 0.431,
     "priceChange": 3.8804531212340327,
     "openPrice": 0.4141,
@@ -10446,7 +10498,7 @@
   },
   {
     "symbol": "ACLS",
-    "timestamp": "2025-01-04 13:09:58",
+    "timestamp": "2025-01-04 13:59:39",
     "sector": "Technology",
     "industry": "Semiconductor Equipment & Materials",
     "description": "Axcelis Technologies Inc designs, manufactures and services ion implantation and other processing equipment used in the fabrication of semiconductor chips. In addition to equipment, the company provide aftermarket lifecycle products and services, including used tools, spare parts, equipment upgrades, maintenance services and customer training. Geographically, the group has a business presence in North America, Asia Pacific and Europe, of which key revenue is derived from the Asia Pacific.",
@@ -10454,6 +10506,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/YXhjZWxpcy5jb20/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/YXhjZWxpcy5jb20/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/axcelis-technologies",
     "price": 71.96,
     "priceChange": 2.507122507122494,
     "openPrice": 70.33,
@@ -10631,7 +10684,7 @@
   },
   {
     "symbol": "IDYA",
-    "timestamp": "2025-01-04 13:10:01",
+    "timestamp": "2025-01-04 13:59:42",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "IDEAYA Biosciences Inc is an oncology-focused precision medicine company committed to the discovery and development of targeted therapeutics for patient populations selected using molecular diagnostics. It is engaged in applying capabilities across multiple classes of precision medicine, including direct targeting of oncogenic pathways and synthetic lethality. The company's product candidate IDE196 is a protein kinase C, or PKC, an inhibitor for genetically defined cancers having GNAQ or GNA11 gene mutations.",
@@ -10639,6 +10692,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/aWRlYXlhYmlvLmNvbQ/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/aWRlYXlhYmlvLmNvbQ/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/ideaya-biosciences",
     "price": 26,
     "priceChange": 3.3386327503974558,
     "openPrice": 25.27,
@@ -10810,7 +10864,7 @@
   },
   {
     "symbol": "RYTM",
-    "timestamp": "2025-01-04 13:10:04",
+    "timestamp": "2025-01-04 13:59:46",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Rhythm Pharmaceuticals Inc is a biopharmaceutical company. It is engaged in development and commercialization of therapies for patients with rare diseases. It is focused on the development and commercialization of peptide therapeutics for the treatment of gastrointestinal, or GI, diseases, and genetic deficiencies that result in metabolic disorders. The company's product candidate is setmelanotide (RM 493), which is a potent, melanocortin 4, or MC4, receptor agonist for the treatment of rare genetic disorders of obesity caused by MC4 pathway deficiencies. Geographically the company generates its revenue from the United states, Germany, and other with the majority being generated from the United states.",
@@ -10818,6 +10872,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/cmh5dGhtdHguY29t/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/cmh5dGhtdHguY29t/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/rhythm-pharmaceuticals",
     "price": 59.62,
     "priceChange": -0.7491260196437537,
     "openPrice": 60.23,
@@ -11050,7 +11105,7 @@
   },
   {
     "symbol": "TWST",
-    "timestamp": "2025-01-04 13:10:07",
+    "timestamp": "2025-01-04 13:59:50",
     "sector": "Healthcare",
     "industry": "Diagnostics & Research",
     "description": "Twist Bioscience Corp is a synthetic biology company. It develops a disruptive DNA synthesis platform to industrialize the engineering of biology. The company's DNA synthesis platform utilizes a proprietary semiconductor-based synthetic DNA manufacturing process that synthesizes DNA on silicon instead of on traditional well-plastic plates to enable the production of high-quality synthetic DNA faster and affordable as well as overcomes inefficiencies and powers cost-effective, rapid high-throughput synthesis, enabling researchers to realize opportunities ahead rapidly. Geographically, it derives a majority of its revenue from the United States.",
@@ -11058,6 +11113,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/dHdpc3RiaW9zY2llbmNlLmNvbQ/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/dHdpc3RiaW9zY2llbmNlLmNvbQ/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/twist-bioscienceoration",
     "price": 47.33,
     "priceChange": 4.458177002869115,
     "openPrice": 45.34,
@@ -11378,7 +11434,7 @@
   },
   {
     "symbol": "STEM",
-    "timestamp": "2025-01-04 13:10:11",
+    "timestamp": "2025-01-04 13:59:53",
     "sector": "Utilities",
     "industry": "Utilities - Renewable",
     "description": "Stem Inc is a provider of energy storage systems. The company bundles third-party hardware with its proprietary Athena software to provide customers a turnkey solution. Stem sells its solutions to commercial and industrial customers as well as independent power producers and renewable developers. Its solutions help customers maximize renewable energy generation and help build a cleaner and more resilient grid. The Company operates as one operating segment that is focused exclusively on innovative technology services that transform the way energy is distributed and consumed.",
@@ -11386,6 +11442,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/c3RlbS5jb20/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/c3RlbS5jb20/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/stem",
     "price": 1.22,
     "priceChange": 57.31785944551903,
     "openPrice": 0.889,
@@ -11557,7 +11614,7 @@
   },
   {
     "symbol": "GERN",
-    "timestamp": "2025-01-04 13:10:14",
+    "timestamp": "2025-01-04 13:59:57",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Geron Corp is a clinical-stage biopharmaceutical company focused on the research and development of cancer treatments. The company's\u00a0drug in development, Imelstat, is being tested for the treatment of myelodysplastic syndromes, which are disorders of the blood, and myelofibrosis, which is a rare blood cancer affecting bone marrow. The company earns revenue through collaboration agreements, milestones, royalties, and licensing arrangements. Geron possesses various\u00a0rights to this drug. The company operates as a single segment being, the development of therapeutic products for oncology.",
@@ -11565,6 +11622,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/Z2Vyb24uY29t/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/Z2Vyb24uY29t/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/geron",
     "price": 3.57,
     "priceChange": -0.8333333333333403,
     "openPrice": 3.63,
@@ -11742,7 +11800,7 @@
   },
   {
     "symbol": "VIR",
-    "timestamp": "2025-01-04 13:10:17",
+    "timestamp": "2025-01-04 14:00:01",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Vir Biotechnology Inc is an immunology company focused on combining cutting-edge technologies to treat and prevent serious infectious diseases and other serious conditions, including viral-associated diseases. Through internal development, collaborations, and acquisitions, it has four technology platforms, focused on antibodies, T cells, innate immunity, and small interfering ribonucleic acid, or siRNA. The company's pipeline consists of product candidates targeting hepatitis B, HBV, influenza A, human immunodeficiency virus, HIV, and tuberculosis, or TB. Its revenue sources are collaboration revenue, contract revenue, grant revenue, and license revenue.",
@@ -11750,6 +11808,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/dmlyLmJpbw/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/dmlyLmJpbw/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/vir-biotechnology",
     "price": 7.5,
     "priceChange": 3.1636863823934034,
     "openPrice": 7.31,
@@ -11927,7 +11986,7 @@
   },
   {
     "symbol": "ALKS",
-    "timestamp": "2025-01-04 13:10:21",
+    "timestamp": "2025-01-04 14:00:06",
     "sector": "Healthcare",
     "industry": "Drug Manufacturers - Specialty & Generic",
     "description": "Alkermes PLC is a fully integrated biotechnology company that applies its proprietary technologies to research, develop, and commercialize pharmaceutical products designed for unmet medical needs in\u00a0therapeutic areas. The company utilizes several to develop and commercialize products and, in so doing, access technological, financial, marketing, manufacturing, and other resources. Alkermes either purchases active drug products from third parties or receives them from its third-party licensees to formulate products using its technologies. It operates in U.S., which derives maximum revenue, Ireland and Rest of the world.",
@@ -11935,6 +11994,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/YWxrZXJtZXMuY29t/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/YWxrZXJtZXMuY29t/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/alkermes-plc",
     "price": 29.04,
     "priceChange": 1.00869565217391,
     "openPrice": 28.77,
@@ -12185,7 +12245,7 @@
   },
   {
     "symbol": "AMPH",
-    "timestamp": "2025-01-04 13:10:24",
+    "timestamp": "2025-01-04 14:00:12",
     "sector": "Healthcare",
     "industry": "Drug Manufacturers - Specialty & Generic",
     "description": "Amphastar Pharmaceuticals Inc is a biopharmaceutical company that focuses\u00a0on developing, manufacturing, marketing, and selling technically challenging generic and proprietary injectable, inhalation, and intranasal products. Additionally, the company sells insulin API products. The company's finished products are used in hospital or urgent care clinical settings and are contracted and distributed through group purchasing organizations and drug wholesalers. The company has two reportable segments finished pharmaceutical products and API products. Geographically the business presence of the firm is seen in the United States, China and France of which the U.S. accounts for the majority of the revenue.",
@@ -12193,6 +12253,7 @@
       "icon_url": null,
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/YW1waGFzdGFyLmNvbQ/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/amphastar-pharmaceuticals",
     "price": 36.3,
     "priceChange": -0.16501650165017126,
     "openPrice": 36.5,
@@ -12452,7 +12513,7 @@
   },
   {
     "symbol": "SVRA",
-    "timestamp": "2025-01-04 13:10:27",
+    "timestamp": "2025-01-04 14:00:16",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Savara Inc is a biopharmaceutical company. It is focused on rare respiratory diseases. The company's program, molgramostim nebulizer solution (molgramostim), is an inhaled granulocyte-macrophage colony-stimulating factor in Phase 3 development for autoimmune pulmonary alveolar proteinosis (aPAP). It has one segment specialty pharmaceuticals within the respiratory system.",
@@ -12460,6 +12521,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/c2F2YXJhcGhhcm1hLmNvbQ/images/2024-03-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/c2F2YXJhcGhhcm1hLmNvbQ/images/2024-03-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/savara",
     "price": 3.14,
     "priceChange": 2.2801302931596186,
     "openPrice": 3.09,
@@ -12647,7 +12709,7 @@
   },
   {
     "symbol": "EVLO",
-    "timestamp": "2025-01-04 13:10:30",
+    "timestamp": "2025-01-04 14:00:20",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": null,
@@ -12655,6 +12717,7 @@
       "icon_url": null,
       "logo_url": null
     },
+    "investing_url": "https://www.investing.com/equities/evelo-biosciences",
     "price": 0.0005,
     "priceChange": 0.0,
     "openPrice": 0.0005,
@@ -12813,7 +12876,7 @@
   },
   {
     "symbol": "GH",
-    "timestamp": "2025-01-04 13:10:33",
+    "timestamp": "2025-01-04 14:00:23",
     "sector": "Healthcare",
     "industry": "Diagnostics & Research",
     "description": "Guardant Health, Inc, based in Redwood City, California, is a leader in liquid-based cancer tests for clinical and research use. The company offers Guardant360 LDT, a liquid biopsy test for treatment selection in advanced stage cancer, Guardant360 CDx, an FDA-approved companion diagnostic for several targeted therapies, and Guardant OMNI, a broader gene panel for immuno-oncology research. In 2021, Guardant launched Reveal, a tumor-agnostic molecular residual disease, or MRD, test. In 2022, the company launched a lab-developed test version of Shield, a liquid biopsy for colorectal cancer, or CRC, screening. Additionally, Guardant offers research development services such as regulatory approval consultancy and clinical trial referrals.",
@@ -12821,6 +12884,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/Z3VhcmRhbnRoZWFsdGguY29t/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/Z3VhcmRhbnRoZWFsdGguY29t/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/guardant-health",
     "price": 33.76,
     "priceChange": 6.263770853005976,
     "openPrice": 32.06,
@@ -13017,7 +13081,7 @@
   },
   {
     "symbol": "NTLA",
-    "timestamp": "2025-01-04 13:10:35",
+    "timestamp": "2025-01-04 14:00:27",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Intellia Therapeutics is a gene editing company focused on the development of Crispr/Cas9-based therapeutics. Crispr/Cas9 stands for Clustered Regularly Interspaced Short Palindromic Repeats (Crispr)/Crispr-associated protein 9 (Cas9), which is a revolutionary technology for precisely altering specific sequences of genomic DNA. Intellia is focused on using this technology to treat genetically defined diseases. It's evaluating multiple gene editing approaches using in vivo and ex vivo therapies to address diseases with high unmet medical needs, including ATTR amyloidosis, hereditary angioedema, sickle cell disease, and immuno-oncology. Intellia has formed collaborations with several companies to advance its pipeline, including narrow-moat Regeneron and wide-moat Novartis.",
@@ -13025,6 +13089,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/aW50ZWxsaWF0eC5jb20/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/aW50ZWxsaWF0eC5jb20/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/intellia-therapeutics",
     "price": 12.13,
     "priceChange": -0.7364975450081821,
     "openPrice": 12.22,
@@ -13196,7 +13261,7 @@
   },
   {
     "symbol": "SRPT",
-    "timestamp": "2025-01-04 13:10:40",
+    "timestamp": "2025-01-04 14:00:33",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Sarepta Therapeutics Inc is a biotechnology company focused on treating rare, infectious, and other diseases. It targets a broad range of diseases while focusing on the rapid development of its drug candidates. Sarepta's strategy involves proprietary RNA-targeted technology platforms to be used for developing novel pharmaceutical products to treat a broad range of diseases and address key unmet medical needs. The company uses third-party contractors to manufacture its product candidates. Most of company's product candidates are at an early stage of development.",
@@ -13204,6 +13269,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/c2FyZXB0YS5jb20/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/c2FyZXB0YS5jb20/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/sarepta-therapeutics",
     "price": 126.29,
     "priceChange": 1.7729067612216962,
     "openPrice": 124.54,
@@ -13409,7 +13475,7 @@
   },
   {
     "symbol": "RARE",
-    "timestamp": "2025-01-04 13:10:43",
+    "timestamp": "2025-01-04 14:00:37",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Ultragenyx Pharmaceutical Inc is a USA-based biopharmaceutical company. It identifies, acquires, develops, and commercializes novel products for the treatment of serious rare and ultra-rare diseases, with a focus on serious, debilitating genetic diseases. The company's medicine portfolio includes Crysvita, Dojolvi, and Mepsevii. Crysvita is indicated for the treatment of X-linked hypophosphatemia (XLH) in adult and pediatric patients 1 year of age and older. Mepsevii is indicated in pediatric and adult patients for the treatment of Mucopolysaccharidosis VII.",
@@ -13417,6 +13483,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/dWx0cmFnZW55eC5jb20/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/dWx0cmFnZW55eC5jb20/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/ultragenyx-pharmaceutical",
     "price": 41.5,
     "priceChange": 0.8505467800729074,
     "openPrice": 41.15,
@@ -13622,7 +13689,7 @@
   },
   {
     "symbol": "TRVI",
-    "timestamp": "2025-01-04 13:10:46",
+    "timestamp": "2025-01-04 14:00:41",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Trevi Therapeutics Inc is a clinical-stage biopharmaceutical company focused on the development and commercialization of the investigational therapy Haduvio (oral nalbuphine ER) for the treatment of chronic cough in adults with idiopathic pulmonary fibrosis, or IPF, and other chronic cough indications, and for the treatment of prurigo nodularis. Haduvio is an oral extended-release formulation of nalbuphine.",
@@ -13630,6 +13697,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/dHJldml0aGVyYXBldXRpY3MuY29t/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/dHJldml0aGVyYXBldXRpY3MuY29t/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/trevi-therapeutics",
     "price": 4.59,
     "priceChange": 5.275229357798154,
     "openPrice": 4.4,
@@ -13807,7 +13875,7 @@
   },
   {
     "symbol": "PGEN",
-    "timestamp": "2025-01-04 13:10:50",
+    "timestamp": "2025-01-04 14:00:45",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Precigen Inc is a biotechnology company that develops synthetic biology solutions. The company designs build and regulate gene programs. Its technologies are broadly applicable across a wide range of diverse end markets. Intrexon's business model is to commercialize its technologies through exclusive channel collaborations with collaborators that have specific industry expertise, development resources, and sales and marketing capabilities, in order to bring new and improved products and processes to market. Its reportable segments are Biopharmaceuticals and Exemplar. The company's collaborators provide compensation through technology access fees, royalties, milestones, and reimbursement of certain costs.",
@@ -13815,6 +13883,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/cHJlY2lnZW4uY29t/images/2024-10-01_icon.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/cHJlY2lnZW4uY29t/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/precigen",
     "price": 1.2,
     "priceChange": 11.1111111111111,
     "openPrice": 1.08,
@@ -13986,7 +14055,7 @@
   },
   {
     "symbol": "EVH",
-    "timestamp": "2025-01-04 13:10:53",
+    "timestamp": "2025-01-04 14:00:50",
     "sector": "Healthcare",
     "industry": "Health Information Services",
     "description": "Evolent Health Inc is engaged in healthcare delivery and payment. The company supports health systems and physician organizations in their migration toward value-based care and population health management. It provides specialty care management services in oncology, cardiology, musculoskeletal markets and holistic total cost of care management along with an integrated platform for health plan administration and value-based business infrastructure under one go to market package. The primary solutions provided by the company include specialty care management services, total cost of care management, and administrative services.",
@@ -13994,6 +14063,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/ZXZvbGVudGhlYWx0aC5jb20/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/ZXZvbGVudGhlYWx0aC5jb20/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/evolent-health",
     "price": 11.88,
     "priceChange": 3.394255874673634,
     "openPrice": 11.49,
@@ -14165,7 +14235,7 @@
   },
   {
     "symbol": "ARQT",
-    "timestamp": "2025-01-04 13:10:56",
+    "timestamp": "2025-01-04 14:00:54",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Arcutis Biotherapeutics Inc is a medical dermatology company. It is developing treatments for patients with immune-mediated dermatological diseases and conditions. It is leveraging recent advances in immunology and inflammation to develop differentiated therapies against biologically validated targets to solve persistent treatment challenges in serious diseases of the skin. The company's lead product candidate ZORYVE roflumilast cream, has successfully completed pivotal Phase 3 clinical trials in plaque psoriasis, demonstrating symptomatic improvement and favorable tolerability in this population.",
@@ -14173,6 +14243,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/YXJjdXRpcy5jb20/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/YXJjdXRpcy5jb20/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/arcutis-biotherapeutics",
     "price": 14.62,
     "priceChange": 0.41208791208790324,
     "openPrice": 14.57,
@@ -14405,7 +14476,7 @@
   },
   {
     "symbol": "QNRX",
-    "timestamp": "2025-01-04 13:10:59",
+    "timestamp": "2025-01-04 14:00:57",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Quoin Pharmaceuticals Ltd is a clinical stage specialty pharmaceutical company focused on developing and commercializing therapeutic products that treat rare and orphan diseases. Its pipeline comprises three products that collectively have the potential to target a broad number of rare and orphan indications, including Netherton Syndrome, Peeling Skin Syndrome, Palmoplantar Keratoderma, Epidermolysis Bullosa, and others.",
@@ -14413,6 +14484,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/cXVvaW5waGFybWEuY29t/images/2024-10-01_icon.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/cXVvaW5waGFybWEuY29t/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/quoin-pharmaceuticals-american-depositary-shares",
     "price": 0.7003,
     "priceChange": 4.288905435591966,
     "openPrice": 0.713,
@@ -14600,7 +14672,7 @@
   },
   {
     "symbol": "SYRS",
-    "timestamp": "2025-01-04 13:11:02",
+    "timestamp": "2025-01-04 14:01:01",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Syros Pharmaceuticals Inc is a biopharmaceutical company committed to developing new standards of care for the frontline treatment of patients with hematologic malignancies.",
@@ -14608,6 +14680,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/c3lyb3MuY29t/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/c3lyb3MuY29t/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/syros-pharmaceuticals",
     "price": 0.243,
     "priceChange": 5.606258148631028,
     "openPrice": 0.2356,
@@ -14785,7 +14858,7 @@
   },
   {
     "symbol": "MNKD",
-    "timestamp": "2025-01-04 13:11:06",
+    "timestamp": "2025-01-04 14:01:06",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "MannKind Corp is a biopharmaceutical company focused on the development and commercialization of inhaled therapeutic products for patients with diseases such as diabetes and pulmonary arterial hypertension. Its approved product, Afrezza (insulin human) Inhalation Powder, is an ultra-rapid-acting inhaled insulin used to improve glycemic control in adults with diabetes. The product consists of a dry powder formulation of human insulin delivered from a small portable inhaler.",
@@ -14793,6 +14866,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/bWFubmtpbmRjb3JwLmNvbQ/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/bWFubmtpbmRjb3JwLmNvbQ/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/mannkindoration",
     "price": 6.48,
     "priceChange": -1.8181818181818064,
     "openPrice": 6.6,
@@ -14998,7 +15072,7 @@
   },
   {
     "symbol": "XERS",
-    "timestamp": "2025-01-04 13:11:09",
+    "timestamp": "2025-01-04 14:01:10",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Xeris Biopharma Holdings Inc is a biopharmaceutical company developing and commercializing unique therapies for patient populations in endocrinology, neurology, and gastroenterology. The company has three commercially available products, Gvoke, ready-to-use liquid glucagon for the treatment of severe hypoglycemia, Keveyis, the first FDA-approved therapy for primary periodic paralysis, and Recorlev, approved by the FDA for the treatment of endogenous hypercortisolemia in adult patients with Cushing's Syndrome. The Company also has a pipeline of development programs to bring new products forward using its proprietary formulation science, XeriSol and XeriJect.",
@@ -15006,6 +15080,7 @@
       "icon_url": null,
       "logo_url": null
     },
+    "investing_url": "https://www.investing.com/equities/xeris-biopharma-holdings",
     "price": 3.61,
     "priceChange": 4.335260115606934,
     "openPrice": 3.53,
@@ -15183,7 +15258,7 @@
   },
   {
     "symbol": "SNDX",
-    "timestamp": "2025-01-04 13:11:12",
+    "timestamp": "2025-01-04 14:01:13",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Syndax Pharmaceuticals Inc is a clinical-stage biopharmaceutical company focused on developing a pipeline of combination therapies in multiple cancer indications. The company's product candidates are entinostat which has direct effects on both cancer cells and immune regulatory cells, SNDX-6352 and SNDX-6352, an anti-CSF-1R monoclonal antibody, to enhance the body's immune response on tumors that have shown sensitivity to immunotherapy. Business activity of the group is primarily functioned through the region of United States.",
@@ -15191,6 +15266,7 @@
       "icon_url": null,
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/c3luZGF4LmNvbQ/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/syndax-pharmaceuticals",
     "price": 14.37,
     "priceChange": 2.059659090909085,
     "openPrice": 14.22,
@@ -15362,7 +15438,7 @@
   },
   {
     "symbol": "PLRX",
-    "timestamp": "2025-01-04 13:11:16",
+    "timestamp": "2025-01-04 14:01:18",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Pliant Therapeutics Inc is a clinical-stage biopharmaceutical company focused on discovering and developing novel therapies for the treatment of fibrosis and related diseases. Its primary\u00a0product candidate is bexotegrast (PLN-74809), an oral, small molecule, that the company is developing for the treatment of idiopathic pulmonary fibrosis, or IPF, and primary sclerosing cholangitis.",
@@ -15370,6 +15446,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/cGxpYW50cnguY29t/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/cGxpYW50cnguY29t/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/pliant-therapeutics",
     "price": 13.53,
     "priceChange": 1.8825301204819278,
     "openPrice": 13.42,
@@ -15541,7 +15618,7 @@
   },
   {
     "symbol": "MREO",
-    "timestamp": "2025-01-04 13:11:20",
+    "timestamp": "2025-01-04 14:01:23",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Mereo BioPharma Group PLC is a United Kingdom (U.K.) based biopharmaceutical company focused on the development of innovative therapeutics for rare diseases. The Company has developed a portfolio of late-stage clinical product candidates, and its two rare disease product candidates are setrusumab for the treatment of osteogenesis imperfecta (OI) and alvelestat primarily for the treatment of severe alpha-1 antitrypsin deficiency-associated lung disease (AATD-LD).",
@@ -15549,6 +15626,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/bWVyZW9iaW9waGFybWEuY29t/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/bWVyZW9iaW9waGFybWEuY29t/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/mereo-biopharma-group-plc-american-depositary-shares",
     "price": 3.73,
     "priceChange": 9.064327485380119,
     "openPrice": 3.45,
@@ -15720,7 +15798,7 @@
   },
   {
     "symbol": "MDGL",
-    "timestamp": "2025-01-04 13:11:23",
+    "timestamp": "2025-01-04 14:01:26",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Madrigal Pharmaceuticals Inc is a clinical-stage biopharmaceutical company. It focuses on the development and commercialization of therapeutic candidates for the treatment of cardiovascular-metabolic diseases and non-alcoholic steatohepatitis (NASH). The product portfolio of the company includes MGL-3196, an orally administered, small-molecule liver-directed B-selective THR agonist, which is used for the treatment of non-alcoholic steatohepatitis and familial hypercholesterolemia. Also, MGL-3196 reduces triglycerides in the plasma and liver by increasing fat metabolism and shows an anti-diabetic action.",
@@ -15728,6 +15806,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/bWFkcmlnYWxwaGFybWEuY29t/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/bWFkcmlnYWxwaGFybWEuY29t/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/madrigal-pharmaceuticals",
     "price": 319.69,
     "priceChange": 1.8834852444387868,
     "openPrice": 315.41,
@@ -15951,7 +16030,7 @@
   },
   {
     "symbol": "KZR",
-    "timestamp": "2025-01-04 13:11:26",
+    "timestamp": "2025-01-04 14:01:30",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Kezar Life Sciences Inc is a clinical-stage biotechnology company. It is engaged in discovering and developing novel small molecule therapeutics to treat unmet needs in autoimmunity and cancer. The pipeline consist of product candidates such as Zetomipzomib (KZR-616), and KZR-261.",
@@ -15959,6 +16038,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/a2V6YXJsaWZlc2NpZW5jZXMuY29t/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/a2V6YXJsaWZlc2NpZW5jZXMuY29t/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/kezar-life-sciences",
     "price": 6.86,
     "priceChange": 4.414003044140031,
     "openPrice": 6.5707,
@@ -16130,7 +16210,7 @@
   },
   {
     "symbol": "GALT",
-    "timestamp": "2025-01-04 13:11:28",
+    "timestamp": "2025-01-04 14:01:33",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Galectin Therapeutics Inc is a clinical-stage biopharmaceutical company. The company focuses on drug research and development to create new therapies for fibrotic disease, cancer, and selected other diseases. Its\u00a0galectin-3 inhibitor is belapectin (GR-MD-02), which has been demonstrated in preclinical models to reverse liver fibrosis and cirrhosis.",
@@ -16138,6 +16218,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/Z2FsZWN0aW50aGVyYXBldXRpY3MuY29t/images/2024-06-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/Z2FsZWN0aW50aGVyYXBldXRpY3MuY29t/images/2024-06-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/galectin-therapeutics",
     "price": 1.16,
     "priceChange": -0.8547008547008554,
     "openPrice": 1.16,
@@ -16315,7 +16396,7 @@
   },
   {
     "symbol": "ETNB",
-    "timestamp": "2025-01-04 13:11:31",
+    "timestamp": "2025-01-04 14:01:37",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "89bio Inc is a United States-based clinical-stage biopharmaceutical company focused on the development and commercialization of\u00a0therapies for the treatment of liver and cardio-metabolic diseases. Its product candidate, pegozafermin (previously BIO89-100), a specifically engineered glycoPEGylated analog of fibroblast growth factor 21 (FGF21), is currently being developed for the treatment of nonalcoholic steatohepatitis (NASH) and for the treatment of severe hypertriglyceridemia (SHTG).",
@@ -16323,6 +16404,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/ODliaW8uY29t/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/ODliaW8uY29t/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/89bio",
     "price": 7.96,
     "priceChange": -0.25062656641604586,
     "openPrice": 8,
@@ -16510,7 +16592,7 @@
   },
   {
     "symbol": "CMRX",
-    "timestamp": "2025-01-04 13:11:35",
+    "timestamp": "2025-01-04 14:01:41",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Chimerix Inc. is a biopharmaceutical company based in the United States that engages in the research, development, and commercialization of medicines. Its portfolio includes treatment for acute myeloid leukemia (or AML) and antiviral treatment for smallpox. The company generates revenue through revenue related to non-refundable upfront fees, royalties and milestone payments earned under license agreements, also by royalty revenue related to sales of TEMBEXA made by Emergent after the Asset Sale. The company operates only in one business segment namely pharmaceuticals.",
@@ -16518,6 +16600,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/Y2hpbWVyaXguY29t/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/Y2hpbWVyaXguY29t/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/chimerix",
     "price": 3.62,
     "priceChange": 6.784660766961652,
     "openPrice": 3.45,
@@ -16695,7 +16778,7 @@
   },
   {
     "symbol": "CDTX",
-    "timestamp": "2025-01-04 13:11:38",
+    "timestamp": "2025-01-04 14:01:45",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Cidara Therapeutics Inc is developing immunotherapeutics designed to help improve the standard of care for patients facing serious diseases. The Company's portfolio comprises new approaches aimed at transforming existing treatment and prevention paradigms, including DFCs from its proprietary Cloudbreak platform targeting oncologic, viral and autoimmune diseases.",
@@ -16703,6 +16786,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/Y2lkYXJhLmNvbQ/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/Y2lkYXJhLmNvbQ/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/cidara-therapeutics",
     "price": 26.62,
     "priceChange": -2.4908424908424895,
     "openPrice": 27.3,
@@ -16890,7 +16974,7 @@
   },
   {
     "symbol": "GYRE",
-    "timestamp": "2025-01-04 13:11:41",
+    "timestamp": "2025-01-04 14:01:48",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Gyre Therapeutics Inc is a biopharmaceutical company headquartered in San Diego, CA, that is primarily focused on the development and commercialization of Hydronidone (F351) for the treatment of Metabolic Dysfunction Associated Steatohepatitis (MASH-associated liver fibrosis (MASH fibrosis), formerly known as Nonalcoholic Steatohepatitis (NASH)) in the United States. In the United States, Hydronidone is currently being evaluated for the treatment of liver fibrosis across a broad spectrum of chronic liver diseases under an active Investigational New Drug (IND) application. Gyre is also advancing a diverse pipeline in China through a controlling interest in the Beijing Continent, including pirfenidone, F573, F528, and F230.",
@@ -16898,6 +16982,7 @@
       "icon_url": null,
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/Z3lyZXR4LmNvbQ/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/gyre-therapeutics",
     "price": 10.79,
     "priceChange": -10.08333333333334,
     "openPrice": 12.01,
@@ -17068,7 +17153,7 @@
   },
   {
     "symbol": "AGEN",
-    "timestamp": "2025-01-04 13:11:46",
+    "timestamp": "2025-01-04 14:01:53",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Agenus Inc is an American clinical-stage company with a pipeline of therapies designed to activate the body's immune system to fight cancer and infections, including immune-modulatory antibodies, adoptive cell therapies through its subsidiary MiNK Therapeutics Inc. and vaccine adjuvants through its subsidiary SaponiQx Inc. This robust product pipeline is supported by company's in-house capabilities, including current good manufacturing practice (cGMP) manufacturing and a clinical operations platform. The company's antibody candidates are botensilimab (a proprietary next-generation Fc-engineered CTLA-4 antibody, also known as AGEN1811) and balstilimab (a PD-1 antibody).",
@@ -17076,6 +17161,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/YWdlbnVzYmlvLmNvbQ/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/YWdlbnVzYmlvLmNvbQ/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/agenus",
     "price": 3.27,
     "priceChange": 5.825242718446607,
     "openPrice": 3.08,
@@ -17253,7 +17339,7 @@
   },
   {
     "symbol": "ABUS",
-    "timestamp": "2025-01-04 13:11:48",
+    "timestamp": "2025-01-04 14:01:57",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Arbutus Biopharma Corp is a biopharmaceutical company. The company discovers, develops, and commercializes cures for patients suffering from Hepatitis B infection. The company is focused on developing a portfolio of drug candidates with multiple mechanisms of action and is also involved in licensing Lipid nanoparticle technology.",
@@ -17261,6 +17347,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/YXJidXR1c2Jpby5jb20/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/YXJidXR1c2Jpby5jb20/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/arbutus-biopharmaoration",
     "price": 3.42,
     "priceChange": 3.9513677811550116,
     "openPrice": 3.29,
@@ -17432,7 +17519,7 @@
   },
   {
     "symbol": "ABCL",
-    "timestamp": "2025-01-04 13:11:51",
+    "timestamp": "2025-01-04 14:02:00",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "AbCellera Biologics Inc is an antibody discovery and development engine that's specifically designed to address the barriers of conventional discovery, finding the optimal clinical candidate with greater precision and speed, getting to the clinic and patients sooner. With the integrated AbCellera platform, the company's experts search a wide range of diverse antibodies to select the effective and developable leads fast and set partners up for enduring success. The company have extensive experience forging partnerships with emerging biotechs and pharmaceutical companies. AbCellera leverages proprietary hardware, software, and tools along with the latest data science, to operate as strategic partners and help develop optimized solutions faster for any program.",
@@ -17440,6 +17527,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/YWJjZWxsZXJhLmNvbQ/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/YWJjZWxsZXJhLmNvbQ/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/abcellera-biologics-common-shares",
     "price": 3.13,
     "priceChange": 3.3003300330033034,
     "openPrice": 3.05,
@@ -17627,7 +17715,7 @@
   },
   {
     "symbol": "LOGC",
-    "timestamp": "2025-01-04 13:11:54",
+    "timestamp": "2025-01-04 14:02:04",
     "sector": "Consumer Cyclical",
     "industry": "Internet Retail",
     "description": "ContextLogic Inc is an online shopping store. The store provides personalized products, clothing products, accessories, gaming products and equipment, cosmetics, plastic products, mobile covers, and other products. Geographically, it derives a majority of its revenue from Europe and also has a presence in North America; South America, and other countries.",
@@ -17635,6 +17723,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/d2lzaC5jb20/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/d2lzaC5jb20/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/contextlogic",
     "price": 7.29,
     "priceChange": 5.194805194805199,
     "openPrice": 6.95,
@@ -17812,7 +17901,7 @@
   },
   {
     "symbol": "ADVM",
-    "timestamp": "2025-01-04 13:11:59",
+    "timestamp": "2025-01-04 14:02:09",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Adverum Biotechnologies Inc is a U.S.-based clinical-stage gene therapy company. It develops gene therapy product candidates intended to provide durable efficacy by inducing sustained expression of a therapeutic protein. The company primarily generates revenue through license, research and collaboration arrangements with its strategic partners. Its lead product candidate is ADVM-022 which is a single, in-office intravitreal (IVT) injection gene therapy designed to deliver long-term durable levels of aflibercept associated with a robust, sustained treatment response, reducing the treatment burden and fluctuations in macular fluid associated with frequent anti-vascular endothelial growth factor (VEGF) injections. It has one segment developing and commercializing gene therapeutics.",
@@ -17820,6 +17909,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/YWR2ZXJ1bS5jb20/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/YWR2ZXJ1bS5jb20/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/adverum-biotechnologies",
     "price": 5.01,
     "priceChange": 4.375,
     "openPrice": 4.82,
@@ -17991,7 +18081,7 @@
   },
   {
     "symbol": "SNY",
-    "timestamp": "2025-01-04 13:12:01",
+    "timestamp": "2025-01-04 14:02:13",
     "sector": "Healthcare",
     "industry": "Drug Manufacturers - General",
     "description": "Sanofi develops and markets drugs with a concentration in oncology, immunology, cardiovascular disease, diabetes, over-the-counter treatments and vaccines. However, the company's decision in late 2019 to pull back from the cardio-metabolic area will likely reduce the firm's footprint in this large therapeutic area. The company offers a diverse array of drugs with its highest revenue generator, Dupixent, representing just over 20% of total sales, but profits are shared with Regeneron. Just over 40% of total revenue comes from the United States and 25% from Europe. Emerging markets represent the majority of the remainder of revenue.",
@@ -17999,6 +18089,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/c2Fub2ZpLmNvbQ/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/c2Fub2ZpLmNvbQ/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/sanofi-american-depositary-shares-(each-representing-one-half-of-one-ordinary-share)",
     "price": 48.15,
     "priceChange": -0.08300477277443277,
     "openPrice": 48.09,
@@ -18170,7 +18261,7 @@
   },
   {
     "symbol": "MRSN",
-    "timestamp": "2025-01-04 13:12:04",
+    "timestamp": "2025-01-04 14:02:16",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Mersana Therapeutics Inc is a clinical-stage biopharmaceutical company using its differentiated and proprietary ADC platforms to develop targeted drugs with increased tolerability and expanded opportunities to deliver meaningful clinical benefits to patients. The Company's early stage programs includes XMT-1660, a Dolasynthen ADC targeting B7-H4, as well as XMT-2056, a STING agonist ADC developed using the Company's Immunosynthen platform and targeting a novel epitope of human epidermal growth factor receptor 2. The Company also has two earlier stage preclinical candidates, XMT-2068 and XMT-2175, both of which leverage the Company's Immunosynthen platform and target tumor-associated antigens.",
@@ -18178,6 +18269,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/bWVyc2FuYS5jb20/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/bWVyc2FuYS5jb20/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/mersana-therapeutics",
     "price": 1.39,
     "priceChange": -0.714285714285715,
     "openPrice": 1.42,
@@ -18355,7 +18447,7 @@
   },
   {
     "symbol": "TCRT",
-    "timestamp": "2025-01-04 13:12:07",
+    "timestamp": "2025-01-04 14:02:19",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "Alaunos Therapeutics Inc is a clinical-stage cellular immuno-oncology company dedicated to the treatment of solid tumors through adoptive TCR-T cell therapy. It strikes cancer at its core by engineering cell therapies that target Neoantigens arising from genomic mutations.",
@@ -18363,6 +18455,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/YWxhdW5vcy5jb20/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/YWxhdW5vcy5jb20/images/2024-10-01_logo.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/alaunos-therapeutics",
     "price": 2.05,
     "priceChange": 4.060913705583748,
     "openPrice": 2,
@@ -18534,7 +18627,7 @@
   },
   {
     "symbol": "ASRT",
-    "timestamp": "2025-01-04 13:12:10",
+    "timestamp": "2025-01-04 14:02:23",
     "sector": "Healthcare",
     "industry": "Drug Manufacturers - Specialty & Generic",
     "description": "Assertio Holdings Inc is a pharmaceutical company. It is engaged in providing solutions to advance patient care in the areas of neurology, orphan and specialty medicines. The company markets three FDA-approved products for various neurological conditions including Gralise, tablets for the management of postherpetic neuralgia; CAMBIA, for acute treatment of migraine attacks with or without aura in adults of age or older; and Zipsor, liquid-filled capsules for relief of mild to moderate pain.",
@@ -18542,6 +18635,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/YXNzZXJ0aW90eC5jb20/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/YXNzZXJ0aW90eC5jb20/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/assertio-holdings",
     "price": 0.8845,
     "priceChange": 4.046582754970002,
     "openPrice": 0.85,
@@ -18719,7 +18813,7 @@
   },
   {
     "symbol": "ABBV",
-    "timestamp": "2025-01-04 13:12:13",
+    "timestamp": "2025-01-04 14:02:26",
     "sector": "Healthcare",
     "industry": "Drug Manufacturers - General",
     "description": "AbbVie is a pharmaceutical firm with a strong exposure to immunology (with Humira, Skyrizi, and Rinvoq) and oncology (with Imbruvica and Venclexta). The company was spun off from Abbott in early 2013. The 2020 acquisition of Allergan added several new products and drugs in aesthetics (including Botox).",
@@ -18727,6 +18821,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/YWJidmllaW52ZXN0b3IuY29t/images/2024-10-01_icon.png?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/YWJidmllaW52ZXN0b3IuY29t/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/abbvie",
     "price": 181.22,
     "priceChange": 0.9919750334373614,
     "openPrice": 179.66,
@@ -18923,7 +19018,7 @@
   },
   {
     "symbol": "ADMA",
-    "timestamp": "2025-01-04 13:12:16",
+    "timestamp": "2025-01-04 14:02:30",
     "sector": "Healthcare",
     "industry": "Biotechnology",
     "description": "ADMA Biologics Inc is an end-to-end commercial biopharmaceutical company dedicated to manufacturing, marketing and developing specialty plasma-derived biologics for the treatment of immunodeficient patients at risk for infection and others at risk for certain infectious diseases. The segments of the company are ADMA BioManufacturing which generates maximum revenue and Plasma Collection Centres, and corporate segment. The company sells plasma-derived intermediate fractions to certain customers, which are generated as part of its FDA-approved manufacturing process for IG and IVIG products. It also provides laboratory contracting services to certain customers and anticipates providing contract filling, labeling and packing services. The company derives maximum revenue from United States.",
@@ -18931,6 +19026,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/YWRtYWJpb2xvZ2ljcy5jb20/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/YWRtYWJpb2xvZ2ljcy5jb20/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/adma-biologics",
     "price": 18.44,
     "priceChange": 2.615470228158055,
     "openPrice": 18.05,
@@ -19127,7 +19223,7 @@
   },
   {
     "symbol": "RKLB",
-    "timestamp": "2025-01-04 13:12:19",
+    "timestamp": "2025-01-04 14:02:33",
     "sector": "Industrials",
     "industry": "Aerospace & Defense",
     "description": "Rocket Lab USA Inc is engaged in space, building rockets, and spacecraft. It provides end-to-end mission services that provide frequent and reliable access to space for civil, defense, and commercial markets. It designs and manufactures the Electron and Neutron launch vehicles and Photon satellite platform. Rocket Lab's Electron launch vehicle has delivered multiple satellites to orbit for private and public sector organizations, enabling operations in national security, scientific research, space debris mitigation, Earth observation, climate monitoring, and communications. The business operates in two segments being Launch Services and Space systems. Geographically it serves Japan, Germany, rest of the world and earns key revenue from the United States.",
@@ -19135,6 +19231,7 @@
       "icon_url": "https://api.polygon.io/v1/reference/company-branding/cm9ja2V0bGFidXNhLmNvbQ/images/2024-10-01_icon.jpeg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq",
       "logo_url": "https://api.polygon.io/v1/reference/company-branding/cm9ja2V0bGFidXNhLmNvbQ/images/2024-10-01_logo.svg?apiKey=WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
     },
+    "investing_url": "https://www.investing.com/equities/rocket-lab-usa",
     "price": 28.74,
     "priceChange": 15.14423076923076,
     "openPrice": 25.025,
