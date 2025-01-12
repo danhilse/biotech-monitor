@@ -199,10 +199,11 @@ export const Chart = ({
             top={innerHeight}
             scale={xScale}
             label="Price Change %"
-            labelOffset={40}
+            labelOffset={20}
             stroke="#ccc"
             tickStroke="#ccc"
             numTicks={width > 600 ? 10 : 5}
+            tickFormat={(value) => `${value}%`}
           />
 
           {/* Stock circles */}

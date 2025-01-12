@@ -2,9 +2,39 @@ import { useState, useMemo } from 'react';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
 import { Stock, FilterType } from '../types';
 import { Chart } from './components/Chart';
-import { ChartLegend } from './components/ChartLegend';
 import { FilterGroup } from './components/FilterGroup';
 import TriStateSwitch, { TriStateSwitchValue } from './components/TriStateSwitch';
+import React from 'react';
+import { getNodeColor } from './utils/colorUtils';
+
+
+const CompactLegend = () => {
+  return (
+    <div className="absolute bottom-0 right-0 bg-white/90 rounded-tl-lg shadow-sm p-3 text-xs border border-gray-100">
+      <div className="flex flex-col gap-2">
+        {/* Size legend */}
+        <div className="flex items-center gap-2">
+          <div className="flex items-center">
+            <div className="w-2 h-2 rounded-full bg-gray-400 mr-1" />
+            <div className="w-3 h-3 rounded-full bg-gray-400 mr-1" />
+            <div className="w-4 h-4 rounded-full bg-gray-400" />
+          </div>
+          <span className="text-gray-600">Market Cap</span>
+        </div>
+        
+        {/* Color legend */}
+        <div className="flex items-center gap-2">
+          <div className="flex items-center">
+            <div className="w-3 h-3" style={{ backgroundColor: getNodeColor(12, 0, 100) }} />
+            <div className="w-3 h-3" style={{ backgroundColor: getNodeColor(50, 0, 100) }} />
+            <div className="w-3 h-3" style={{ backgroundColor: getNodeColor(80, 0, 90) }} />
+          </div>
+          <span className="text-gray-600">52W Low → High</span>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 type OutlierMode = 'all' | 'remove' | 'only';
 
@@ -213,7 +243,7 @@ export const MarketScatterPlot = ({ data, onStockSelect }: Props) => {
         </div>
       </div>
 
-      <div className="h-[500px]">
+      <div className="relative h-[500px]">
         <ParentSize>
           {({ width, height }) => (
             <Chart
@@ -223,13 +253,13 @@ export const MarketScatterPlot = ({ data, onStockSelect }: Props) => {
               filterStocksFn={(stock, filter) => filterStocksFn(stock, filter, thresholds)}
               onStockSelect={onStockSelect}
               width={width}
-              height={height}
+              height={height - 24} // Reduce height to accommodate x-axis label
               outlierMode={outlierMode}
             />
           )}
         </ParentSize>
+        <CompactLegend />
       </div>
-      <ChartLegend />
     </div>
   );
 };

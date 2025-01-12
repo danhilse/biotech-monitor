@@ -117,10 +117,10 @@ export const FilterGroup = ({
               variant="ghost"
               size="icon"
               className={cn(
-                "h-full absolute right-0 px-2 transition-colors",
+                "h-full absolute right-0 px-2 transition-opacity",
                 isActive 
-                  ? "text-primary-foreground hover:text-primary-foreground" 
-                  : "hover:bg-transparent",
+                  ? "text-primary-foreground hover:opacity-50" 
+                  : "hover:opacity-50",
                 !isActive && isHovered && "text-muted-foreground"
               )}
               onClick={handleDropdownClick}
