@@ -57,7 +57,7 @@ const calculateStandardDeviation = (values: number[]): number => {
   return Math.sqrt(variance);
 };
 
-const filterOutliers = (data: Stock[], mode: OutlierMode, stdDevMultiplier = 2): Stock[] => {
+const filterOutliers = (data: Stock[], mode: OutlierMode, stdDevMultiplier = 2.8): Stock[] => {
   if (mode === 'all') return data;
 
   const priceChanges = data.map(d => d.priceChange);
@@ -243,7 +243,7 @@ export const MarketScatterPlot = ({ data, onStockSelect }: Props) => {
         </div>
       </div>
 
-      <div className="relative h-[500px]">
+      <div className="relative h-[60vh] min-h-123">
         <ParentSize>
           {({ width, height }) => (
             <Chart

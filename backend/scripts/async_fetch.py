@@ -390,6 +390,7 @@ class HybridDataFetcher:
         
         # Convert to lowercase and replace spaces with dashes
         name = name.lower().replace(' ', '-')
+        name = name.replace('-inc', '').replace('-corp', '').replace('-ltd', '')
         name = name.replace('-common-stock', '').replace('-class-a', '').replace('-class-b', '')
         print(name)
         
@@ -400,123 +401,29 @@ class HybridDataFetcher:
         """
         Generate Investing.com URL using Polygon.io name as primary source
         """
-        
-        common_mappings = {
-            'VERA': 'https://www.investing.com/equities/vera-therapeutics',
-            'ANIX': 'https://www.investing.com/equities/copytele-inc',
-            'INMB': 'https://www.investing.com/equities/inmune-bio',
-            'GUTS': 'https://www.investing.com/equities/fractyl-health-consensus-estimates',
-            'MIRA': 'https://www.investing.com/equities/mira-pharmaceuticals',
-            'EYPT': 'https://uk.investing.com/equities/psivida-corp',
-            'GNPX': 'https://www.investing.com/equities/genprex',
-            'GLUE': 'https://www.investing.com/equities/monte-rosa-therapeutics',
-            'TGTX': 'https://www.investing.com/equities/tg-therapeutics-inc',
-            'AUPH': 'https://www.investing.com/equities/aurinia-pharmace',
-            'ITCI': 'https://in.investing.com/equities/intracellular-th',
-            'CLOV': 'https://www.investing.com/equities/social-capital-hedosophia-hold-iii',
-            'CERE': 'https://www.investing.com/equities/arya-sciences-acquisition-ii',
-            'IPHA': 'https://www.investing.com/equities/innate-pharma-news?cid=1153095',
-            'MDWD': 'https://www.investing.com/equities/mediwound-l',
-            'ZYME': 'https://www.investing.com/equities/zymeworks-inc',
-            'ASMB': 'https://www.investing.com/equities/ventrus-bioscienc',
-            'JAZZ': 'https://www.investing.com/equities/jazz-pharmaceuticals',
-            'PRTA': 'https://www.investing.com/equities/prothena-corp',
-            'TMDX': 'https://www.investing.com/equities/transmedics-group-inc',
-            'GILD': 'https://www.investing.com/equities/gilead-sciences-inc',
-            'NTNX': 'https://www.investing.com/equities/nutanix-inc',
-            'INAB': 'https://www.investing.com/equities/in8bio-inc',
-            'MNPR': 'https://ph.investing.com/equities/monopar-therapeutics-inc',
-            'APVO': 'https://www.investing.com/equities/aptevo-therapeutics-inc',
-            'HRMY': 'https://www.investing.com/equities/harmony-biosciences-holdings',
-            'BHC': 'https://www.investing.com/equities/valeant-pharma',
-            'BCRX': 'https://www.investing.com/equities/biocryst-pharmaceuticals',
-            'GRTX': 'https://www.investing.com/equities/galera-therapeutics-inc',
-            'AXSM': 'https://www.investing.com/equities/axsome-therapeutics-inc',
-            'SMMT': 'https://www.investing.com/equities/summit-therapeutics-plc',
-            'SAGE': 'https://www.investing.com/equities/sage-therapeutic',
-            'MYNZ': 'https://www.investing.com/equities/mainz-biomed-bv',
-            'GMAB': 'https://www.investing.com/equities/genmab',
-            'LUMO': 'https://uk.investing.com/equities/newlink-genetics-news/7',
-            'NEO': 'https://www.investing.com/equities/neo-energy-metals-consensus-estimates',
-            'ARCT': 'https://www.investing.com/equities/alcobra-ltd',
-            'TEVA': 'https://www.investing.com/equities/teva-pharmaceutical-inds-ltd',
-            'VMD': 'https://ca.investing.com/equities/viemed-healthcare',
-            'VERU': 'https://www.investing.com/equities/female-health-com',
-            'VRCA': 'https://in.investing.com/equities/verrica-pharmaceuticals',
-            'SIGA': 'https://www.investing.com/equities/siga-technologies',
-            'INMD': 'https://www.investing.com/equities/inmode-ltd',
-            'EXEL': 'https://www.investing.com/equities/exelixis-inc',
-            'CPRX': 'https://www.investing.com/equities/catalyst-pharmaceuticals',
-            'HALO': 'https://www.investing.com/equities/halo-technologies-holdings-scoreboard',
-            'NVOS': 'https://www.investing.com/equities/turbine-truck-engine',
-            'ATAI': 'https://www.investing.com/equities/atai-life-sciences-bv',
-            'BNGO': 'https://www.investing.com/equities/bionano-genomics',
-            'ENOV': 'https://in.investing.com/equities/colfax',
-            'BIIB': 'https://www.investing.com/equities/biogen-idec-inc',
-            'MIST': 'https://www.investing.com/equities/milestone-pharmaceuticals-inc',
-            'ARDX': 'https://www.investing.com/equities/ardelyx-inc',
-            'CVM': 'https://www.investing.com/equities/cel-sci-corp',
-            'ACLS': 'https://www.investing.com/equities/axcelis-tech',
-            'IDYA': 'https://www.investing.com/equities/ideaya-biosciences-inc',
-            'RYTM': 'https://www.investing.com/equities/rhythm-pharma',
-            'TWST': 'https://www.investing.com/equities/twist-bioscience-corporation',
-            'STEM': 'https://www.investing.com/equities/star-peak-energy-transition',
-            'GERN': 'https://www.investing.com/equities/geron-corp',
-            'VIR': 'https://www.investing.com/equities/vir-biotechnology-inc',
-            'ALKS': 'https://www.investing.com/equities/alkermes-plc',
-            'AMPH': 'https://www.investing.com/equities/amphastar-p',
-            'SVRA': 'https://uk.investing.com/equities/mast-therapeutics',
-            'EVLO': 'https://www.investing.com/equities/evelo-biosciences',
-            'GH': 'https://www.investing.com/equities/gh-research',
-            'NTLA': 'https://www.investing.com/equities/intellia-therapeutics-inc',
-            'MRTX': 'https://www.investing.com/equities/mirati-ther',
-            'SRPT': 'https://www.investing.com/equities/sarepta',
-            'RARE': 'https://www.investing.com/equities/ultragenyx',
-            'TRVI': 'https://www.investing.com/equities/trevi-therapeutics-inc',
-            'PGEN': 'https://www.investing.com/equities/intrexon-corpn',
-            'EVH': 'https://www.investing.com/equities/evolent-health-inc',
-            'ARQT': 'https://www.investing.com/equities/arcutis-biotherapeutics-inc',
-            'QNRX': 'https://www.investing.com/equities/cellect-biotechnology-adr',
-            'SYRS': 'https://www.investing.com/equities/syros-pharmaceuticals-inc',
-            'GTHX': 'https://www.investing.com/equities/g1-therapeutics-inc',
-            'MNKD': 'https://www.investing.com/equities/mannkind-corp',
-            'XERS': 'https://www.investing.com/equities/xeris-pharmaceuticals',
-            'SNDX': 'https://www.investing.com/equities/syndax-pharmaceuticals-consensus-estimates',
-            'PRTK': 'https://www.investing.com/equities/transcept-pharmaceuticals',
-            'PLRX': 'https://www.investing.com/equities/pliant-therapeutics-inc',
-            'MREO': 'https://www.investing.com/equities/mereo-biopharma-group',
-            'MDGL': 'https://uk.investing.com/equities/synta-pharmaceuticals-historical-data',
-            'KZR': 'https://uk.investing.com/equities/kalamazoo-resources-ltd',
-            'GALT': 'https://www.investing.com/equities/galectin-therapeutics-inc.',
-            'ETNB': 'https://www.investing.com/equities/89bio-inc',
-            'EPZM': 'https://www.investing.com/equities/epizyme-inc',
-            'CMRX': 'https://www.investing.com/equities/chimerix-inc',
-            'CDTX': 'https://www.investing.com/equities/cidara-therapeutics-inc',
-            'GYRE': 'https://www.investing.com/equities/targacept',
-            'CBAY': 'https://www.investing.com/equities/cymabay-therapeu',
-            'AGEN': 'https://www.investing.com/equities/agenus-inc',
-            'ABUS': 'https://www.investing.com/equities/tekmira-pharmaceuticals-corp',
-            'ABCL': 'https://www.investing.com/equities/abcellera-biologics',
-            'LOGC': 'https://www.investing.com/equities/logicbio-therapeutics',
-            'BLCM': 'https://www.investing.com/equities/bellicum-pharmaceuticals-inc-consensus-estimates',
-            'ADVM': 'https://www.investing.com/equities/avalanche-biotec',
-            'SNY': 'https://www.investing.com/equities/sanofi',
-            'MRSN': 'https://www.investing.com/equities/mersana-therapeutics-inc',
-            'TCRT': 'https://www.investing.com/equities/ziopharm-oncology',
-            'ASRT': 'https://www.investing.com/equities/depomed',
-            'ABBV': 'https://www.investing.com/equities/abbvie-inc',
-            'ADMA': 'https://www.investing.com/equities/adma-biologics-inc',
-            'RKLB': 'https://www.investing.com/equities/vector-acquisition'
-        }
-        
         try:
+            # Common URL pattern transformations
+            common_mappings = {
+
+            }
             
             # Check if we have a direct mapping
             if symbol in common_mappings:
-                stock_url = common_mappings[symbol]
-                return stock_url
+                base_name = common_mappings[symbol]
             else:
-                return f"https://www.investing.com/search/?q={symbol}"
+                # Use Polygon.io to get the formatted company name 
+                polygon_formatted_name = self.get_company_name(symbol)
+                
+                if polygon_formatted_name:
+                    base_name = polygon_formatted_name
+                elif yf_name:
+                    # Fallback to yfinance name if Polygon name fails
+                    base_name = self.format_company_name(yf_name)
+                else:
+                    # Last resort: use symbol
+                    base_name = symbol.lower()
+            
+            return f"https://www.investing.com/equities/{base_name}"
         
         except Exception as e:
             logger.error(f"Error generating Investing.com URL for {symbol}: {str(e)}")
