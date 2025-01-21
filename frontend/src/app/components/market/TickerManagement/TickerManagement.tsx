@@ -13,7 +13,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Search, AlertCircle, Plus, Trash2 } from 'lucide-react';
-import { Stock } from '../types';
+import { Stock } from './types';
 import { marketDataService } from '@/lib/services/marketDataService';
 import { tickerService } from '@/lib/services/tickerService';
 
