@@ -31,6 +31,7 @@ interface RefreshStatus {
 //   [key: string]: string | number | undefined; // specify possible value types
 // }
 
+
 const MarketDashboard = () => {
   const [marketData, setMarketData] = useState<Stock[]>([]);
   const [selectedStock, setSelectedStock] = useState<Stock | null>(null);
@@ -40,6 +41,13 @@ const MarketDashboard = () => {
   const [activeTab, setActiveTab] = useState('market');
   const [refreshStatus, setRefreshStatus] = useState<RefreshStatus | null>(null);
   const [refreshing, setRefreshing] = useState(false);
+
+  const handleOutsideClick = (event: React.MouseEvent) => {
+    // Only reset if clicking directly on the container (not its children)
+    if (event.target === event.currentTarget) {
+      setSelectedStock(null);
+    }
+  };
 
   
   
@@ -223,7 +231,10 @@ const MarketDashboard = () => {
         </div>
 
         <TabsContent value="market" className="mt-6">
-          <div className="grid grid-cols-1 gap-6">
+          <div 
+            className="grid grid-cols-1 gap-6" 
+            onClick={handleOutsideClick}
+          >
             <Card className="bg-white shadow-sm">
               <CardContent className="pt-6">
                 <MarketScatterPlot 

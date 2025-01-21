@@ -133,7 +133,10 @@ export const Chart = ({
     hideTooltip();
   }, [hideTooltip]);
 
-  const handleClick = useCallback((stock: Stock) => {
+  const handleClick = useCallback((event: React.MouseEvent, stock: Stock) => {
+    // Prevent the click from propagating to parent elements
+    event.stopPropagation();
+    
     const isCurrentlySelected = selectedSymbol === stock.symbol;
     setSelectedSymbol(isCurrentlySelected ? null : stock.symbol);
     onStockSelect(isCurrentlySelected ? null : stock);
@@ -156,7 +159,12 @@ export const Chart = ({
 
   return (
     <div className="relative">
-      <svg ref={svgRef} width={width} height={height}>
+      <svg 
+  ref={svgRef} 
+  width={width} 
+  height={height}
+  onClick={(e) => e.stopPropagation()}
+>
         <defs>
           {filteredData.map((stock) => {
             const nodeColor = getNodeColor(stock.price, stock.fiftyTwoWeekLow, stock.fiftyTwoWeekHigh);
@@ -277,7 +285,7 @@ export const Chart = ({
                 strokeOpacity={0.3}
                 onMouseMove={(e) => handleVoronoiMouseMove(e, stock)}
                 onMouseLeave={handleVoronoiMouseLeave}
-                onClick={() => handleClick(stock)}
+                onClick={(e) => handleClick(e, stock)}
                 style={{ 
                   cursor: 'pointer',
                   transition: 'all 500ms cubic-bezier(0.4, 0, 0.2, 1)'
