@@ -27,43 +27,33 @@ class StaticTickerService implements TickerService {
     }
   }
 
+  
   async getManagedTickers(): Promise<SearchResult[]> {
     try {
-      const response = await fetch(`${this.API_BASE}/tickers`);
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const symbols = await response.json();
-      
-      // Fetch details for each ticker
-      const detailPromises = symbols.map(async (symbol: string) => {
-        try {
-          const detailResponse = await fetch(`${this.API_BASE}/ticker-details/${symbol}`);
-          if (detailResponse.ok) {
-            const details = await detailResponse.json();
-            return {
-              symbol,
-              name: details.name,
-              sector: details.sector,
-              industry: details.industry
-            };
-          }
-          return { symbol, name: symbol, sector: '', industry: '' };
-        } catch (error) {
-          console.warn(`Failed to fetch details for ${symbol}:`, error);
-          return { symbol, name: symbol, sector: '', industry: '' };
+        const response = await fetch(`${this.API_BASE}/tickers`);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
-      });
 
-      return await Promise.all(detailPromises);
+        const data = await response.json();
+        const tickers = data.tickers || [];
+        
+        // Map the tickers directly since they already contain the details
+        const results = tickers.map(ticker => ({
+            symbol: ticker.symbol,
+            name: ticker.name || ticker.symbol,
+            sector: ticker.sector || '',
+            industry: ticker.industry || '',
+            names: ticker.names || {}
+        }));
+
+        return results;
     } catch (error) {
-      console.warn('Failed to fetch managed tickers:', error);
-      return [];
+        console.warn('Failed to fetch managed tickers:', error);
+        return [];
     }
-  }
-
+}
   async addTicker(symbol: string): Promise<boolean> {
     try {
       const response = await fetch(`${this.API_BASE}/tickers`, {

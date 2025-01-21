@@ -10,6 +10,18 @@ import { Stock, FilterType } from './types';
 import { MarketDetailView } from './MarketDetailView';
 import TickerManagement from './TickerManagement/TickerManagement';
 import { marketDataService } from '@/lib/services/marketDataService';
+import { Progress } from '@/components/ui/progress';
+
+// Add these types
+interface RefreshStatus {
+  status: 'idle' | 'running' | 'complete';
+  progress: number;
+  current_ticker: string;
+  total_tickers: number;
+  processed_tickers: number;
+  error: string | null;
+}
+
 
 const MarketDashboard = () => {
   const [marketData, setMarketData] = useState<Stock[]>([]);
@@ -18,6 +30,10 @@ const MarketDashboard = () => {
   const [error, setError] = useState<string | null>(null);
   const [activeFilter] = useState<FilterType>(null);
   const [activeTab, setActiveTab] = useState('market');
+  const [refreshStatus, setRefreshStatus] = useState<RefreshStatus | null>(null);
+  const [refreshing, setRefreshing] = useState(false);
+
+  
   
   const fetchData = async () => {
     setLoading(true);
@@ -67,53 +83,114 @@ const MarketDashboard = () => {
     setSelectedStock(stock);
   };
 
-  const handleRefresh = async () => {
-    await fetchData();
+  // Add this function to check refresh status
+  const checkRefreshStatus = async () => {
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/market-data/refresh/status`);
+      if (!response.ok) throw new Error('Failed to get refresh status');
+      
+      const status: RefreshStatus = await response.json();
+      setRefreshStatus(status);
+      
+      if (status.status === 'running') {
+        // Continue polling
+        setTimeout(checkRefreshStatus, 1000);
+      } else if (status.status === 'complete') {
+        // Refresh the market data
+        await fetchData();
+        setRefreshing(false);
+      }
+    } catch (error) {
+      console.error('Error checking refresh status:', error);
+      setRefreshing(false);
+    }
   };
+
+  // Update the handleRefresh function
+  const handleRefresh = async () => {
+    setRefreshing(true);
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/market-data/refresh`, {
+        method: 'POST'
+      });
+      
+      if (!response.ok) throw new Error('Failed to trigger refresh');
+      
+      // Start polling for status
+      checkRefreshStatus();
+    } catch (error) {
+      console.error('Error triggering refresh:', error);
+      setRefreshing(false);
+    }
+  };
+
 
   return (
     <div className="w-full space-y-6 p-6 bg-gray-50 min-h-screen">
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <div className="flex justify-between items-center bg-white p-4 rounded-lg shadow-sm">
-          <div className="flex items-center gap-8">
-            <div>
-              <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
-                Biotech Market Overview
-              </h2>
-              <p className="text-gray-500 text-sm mt-1">
-                Tracking {marketData.length} stocks in real-time
+        <div className="space-y-4">
+          <div className="flex justify-between items-center bg-white p-4 rounded-lg shadow-sm">
+            <div className="flex items-center gap-8">
+              <div>
+                <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+                  Biotech Market Overview
+                </h2>
+                <p className="text-gray-500 text-sm mt-1">
+                  Tracking {marketData.length} stocks in real-time
+                </p>
+              </div>
+              <TabsList className="bg-gray-100">
+                <TabsTrigger value="market" className="data-[state=active]:bg-white">
+                  Market View
+                </TabsTrigger>
+                <TabsTrigger value="tickers" className="data-[state=active]:bg-white">
+                  Manage Tickers
+                </TabsTrigger>
+              </TabsList>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="text-sm text-gray-500 flex items-center">
+                <Circle className="w-2 h-2 text-green-500 mr-2 animate-pulse" />
+                {lastUpdated && `Last updated: ${lastUpdated.toLocaleTimeString()}`}
+              </div>
+              <button 
+                onClick={handleRefresh}
+                disabled={refreshing}
+                className="p-2 hover:bg-gray-100 rounded-full transition-colors disabled:opacity-50"
+                aria-label="Refresh data"
+              >
+                <RefreshCw className={`w-5 h-5 text-blue-500 ${refreshing ? 'animate-spin' : ''}`} />
+              </button>
+            </div>
+          </div>
+
+          {refreshStatus && refreshStatus.status === 'running' && (
+            <div className="p-4 bg-white rounded-lg shadow-sm">
+              <div className="mb-2 flex justify-between text-sm text-gray-600">
+                <span>Collecting market data...</span>
+                <span>{refreshStatus.processed_tickers} / {refreshStatus.total_tickers} tickers</span>
+              </div>
+              <Progress value={refreshStatus.progress} className="h-2" />
+              <p className="mt-2 text-xs text-gray-500">
+                Currently processing: {refreshStatus.current_ticker}
               </p>
             </div>
-            <TabsList className="bg-gray-100">
-              <TabsTrigger value="market" className="data-[state=active]:bg-white">
-                Market View
-              </TabsTrigger>
-              <TabsTrigger value="tickers" className="data-[state=active]:bg-white">
-                Manage Tickers
-              </TabsTrigger>
-            </TabsList>
-          </div>
-          <div className="flex items-center gap-4">
-            <div className="text-sm text-gray-500 flex items-center">
-              <Circle className="w-2 h-2 text-green-500 mr-2 animate-pulse" />
-              {lastUpdated && `Last updated: ${lastUpdated.toLocaleTimeString()}`}
-            </div>
-            <button 
-              onClick={handleRefresh}
-              className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-              aria-label="Refresh data"
-            >
-              <RefreshCw className="w-5 h-5 text-blue-500" />
-            </button>
-          </div>
-        </div>
+          )}
 
-        {error && (
-          <Alert variant="destructive" className="animate-slide-in-top">
-            <AlertCircle className="h-4 w-4" />
-            <AlertDescription>{error}</AlertDescription>
-          </Alert>
-        )}
+          {refreshStatus?.error && (
+            <Alert variant="destructive">
+              <AlertCircle className="h-4 w-4" />
+              <AlertDescription>Error refreshing data: {refreshStatus.error}</AlertDescription>
+            </Alert>
+          )}
+
+          {error && (
+            <Alert variant="destructive" className="animate-slide-in-top">
+              <AlertCircle className="h-4 w-4" />
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
+          )}
+        </div>
 
         <TabsContent value="market" className="mt-6">
           <div className="grid grid-cols-1 gap-6">
@@ -145,5 +222,6 @@ const MarketDashboard = () => {
     </div>
   );
 };
+
 
 export default MarketDashboard;

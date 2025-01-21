@@ -14,6 +14,9 @@ import math
 from dotenv import load_dotenv
 import os
 
+from .progress_tracker import progress_tracker
+
+
 load_dotenv()
 POLYGON_KEY = os.getenv('POLYGON_API_KEY')
 
@@ -1127,29 +1130,82 @@ class HybridDataFetcher:
         return market_data
 
 from data.ticker_manager import TickerManager
+from pathlib import Path
+
+
+def get_project_root() -> Path:
+    """Get the project root directory"""
+    current_file = Path(__file__).resolve()
+    # Go up two levels from services/ to reach project root
+    return current_file.parent.parent
 
 def main():
     POLYGON_KEY = os.getenv('POLYGON_API_KEY')
+    if not POLYGON_KEY:
+        error_msg = "POLYGON_API_KEY environment variable not set"
+        logger.error(error_msg)
+        progress_tracker.set_error(error_msg)
+        return False
     
     # Use TickerManager to get tickers
     ticker_manager = TickerManager()
     tickers = ticker_manager.get_tickers()
     
-    fetcher = HybridDataFetcher(POLYGON_KEY)
-    market_data = fetcher.fetch_market_data(tickers)
+    if not tickers:
+        error_msg = "No tickers found in TickerManager"
+        logger.error(error_msg)
+        progress_tracker.set_error(error_msg)
+        return False
     
-    # Save market data to a separate JSON file
+    # Initialize progress tracking with total number of tickers
+    progress_tracker.start_collection(len(tickers))
+    
     try:
-        cleaned_data, nan_fields = fetcher.validate_numeric_fields(market_data)
-        output_dir = os.path.join(os.path.dirname(__file__), '../../frontend/public/data')
-        os.makedirs(output_dir, exist_ok=True)
+        fetcher = HybridDataFetcher(POLYGON_KEY)
         
-        with open(os.path.join(output_dir, 'market_data.json'), 'w') as f:
+        # Update progress as we fetch each ticker
+        for i, ticker in enumerate(tickers, 1):
+            try:
+                # Update progress before processing each ticker
+                progress_tracker.update_progress(ticker)
+                
+                logger.info(f"Processing {ticker} ({i}/{len(tickers)})")
+                
+            except Exception as e:
+                logger.error(f"Error processing {ticker}: {str(e)}")
+                # Continue with next ticker rather than failing entirely
+                continue
+        
+        # Fetch all market data
+        market_data = fetcher.fetch_market_data(tickers)
+        
+        if not market_data:
+            error_msg = "No market data returned from fetch_market_data"
+            logger.error(error_msg)
+            progress_tracker.set_error(error_msg)
+            return False
+            
+        # Process and save the collected data
+        cleaned_data, nan_fields = fetcher.validate_numeric_fields(market_data)
+        
+        # Save to data directory in project root
+        data_dir = get_project_root() / 'data'
+        data_dir.mkdir(exist_ok=True)
+        
+        market_data_path = data_dir / 'market_data.json'
+        
+        with market_data_path.open('w') as f:
             json.dump(cleaned_data, f, indent=2)
-        print(f"Saved data for {len(market_data)} stocks")
+            
+        logger.info(f"Saved market data to {market_data_path}")
+        progress_tracker.complete()
+        return True
         
     except Exception as e:
-        print(f"Error saving market data: {str(e)}")
+        error_msg = f"Error in data collection: {str(e)}"
+        logger.error(error_msg)
+        progress_tracker.set_error(error_msg)
+        return False
 
 if __name__ == "__main__":
     main()

@@ -7,12 +7,12 @@ interface MarketDataService {
 }
 
 class StaticMarketDataService implements MarketDataService {
+  private readonly API_URL = process.env.NEXT_PUBLIC_API_URL;
   private lastUpdated: Date | null = null;
   private cache: Stock[] = [];
   private readonly CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
   private isFetching: boolean = false;
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private validateStockData(data: any[]): boolean {
     return Array.isArray(data) && data.every(item => 
       item && 
@@ -30,29 +30,31 @@ class StaticMarketDataService implements MarketDataService {
     );
   }
 
+  private waitForCache(): Promise<Stock[]> {
+    return new Promise((resolve) => {
+      const checkCache = setInterval(() => {
+        if (!this.isFetching && this.cache.length > 0) {
+          clearInterval(checkCache);
+          resolve(this.cache);
+        }
+      }, 100);
+    });
+  }
+
   async fetchMarketData(): Promise<Stock[]> {
-    // Return cached data if valid
     if (this.isDataValid()) {
       return this.cache;
     }
 
-    // Prevent multiple simultaneous fetches
     if (this.isFetching) {
-      return new Promise((resolve) => {
-        const checkCache = setInterval(() => {
-          if (!this.isFetching && this.cache.length > 0) {
-            clearInterval(checkCache);
-            resolve(this.cache);
-          }
-        }, 100);
-      });
+      return this.waitForCache();
     }
 
     this.isFetching = true;
 
     try {
-      // Updated path to match the actual file location
-      const response = await fetch('/data/market_data.json', {
+      // Update the URL to include the backend server address
+      const response = await fetch(`${this.API_URL}/api/market-data`, {
         headers: {
           'Cache-Control': 'no-cache',
           'Pragma': 'no-cache'
@@ -65,30 +67,22 @@ class StaticMarketDataService implements MarketDataService {
 
       const data = await response.json();
 
-      // Validate data structure
       if (!this.validateStockData(data)) {
         throw new Error('Invalid market data format');
       }
 
-      // Process and store the data
       this.cache = data;
-      this.lastUpdated = new Date(data[0]?.timestamp || Date.now());
+      this.lastUpdated = new Date();
 
       return this.cache;
 
     } catch (error) {
       console.error('Market data fetch error:', error);
-
-      // If we have cached data, return it as fallback
       if (this.cache.length > 0) {
         console.warn('Returning cached data due to fetch error');
         return this.cache;
       }
-
-      throw new Error(
-        error instanceof Error ? error.message : 'Failed to fetch market data'
-      );
-
+      throw error;
     } finally {
       this.isFetching = false;
     }
@@ -99,5 +93,4 @@ class StaticMarketDataService implements MarketDataService {
   }
 }
 
-// Create a singleton instance
 export const marketDataService = new StaticMarketDataService();
