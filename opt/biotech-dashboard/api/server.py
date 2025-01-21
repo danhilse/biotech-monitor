@@ -2,25 +2,38 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from data.ticker_manager import TickerManager
 from typing import List, Dict, Any
 import requests
 import os
 import json
+import sys
 from pathlib import Path
 from dotenv import load_dotenv
 import asyncio
-from services.progress_tracker import get_progress_tracker
-from services.polygon_fetch import main as fetch_data
 from fastapi.responses import JSONResponse
+
+# Add root directory to Python path
+root_dir = Path(__file__).parent.parent
+sys.path.append(str(root_dir))
+
+# Now use absolute imports
+from scripts.ticker_manager import TickerManager
+from scripts.progress_tracker import get_progress_tracker
+from scripts.polygon_fetch import main as fetch_data
 
 progress_tracker = get_progress_tracker()
 
 
 
-# Load environment variables
-load_dotenv()
+
+
+# Load environment variables from known production path
+env_path = Path("/opt/biotech-dashboard/.env")
+load_dotenv(env_path)
+
 POLYGON_KEY = os.getenv('POLYGON_API_KEY')
+
+
 
 # Initialize FastAPI app once
 app = FastAPI()
@@ -40,7 +53,11 @@ manager = TickerManager()
 # Helper functions
 def get_project_root() -> Path:
     """Get the project root directory"""
-    return Path(__file__).resolve().parent
+    # For local development, use relative path
+    if os.getenv('ENV') == 'development':
+        return Path(__file__).parent.parent
+    # For production, use absolute path
+    return Path("/opt/biotech-dashboard")
 
 # Models
 class TickerSymbol(BaseModel):

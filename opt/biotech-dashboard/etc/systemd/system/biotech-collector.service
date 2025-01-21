@@ -1,0 +1,9 @@
+# /etc/systemd/system/biotech-collector.service
+[Unit]
+Description=Biotech Data Collection Service
+
+[Service]
+Type=oneshot
+User=biotech
+WorkingDirectory=/opt/biotech-dashboard/scripts
+ExecStart=/usr/bin/python3 polygon_fetch.py

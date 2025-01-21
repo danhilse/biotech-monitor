@@ -10,13 +10,39 @@ from typing import Dict, List, Any
 from ratelimit import limits, sleep_and_retry
 import pandas as pd
 import math
-
+import sys
+from pathlib import Path
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
+
+def get_project_root() -> Path:
+    """Get the project root directory"""
+    if os.getenv('ENV') == 'development':
+        current_file = Path(__file__).resolve()
+        return current_file.parent.parent
+    return Path("/opt/biotech-dashboard")
+
+# Add root directory to Python path
+root_dir = get_project_root()
+sys.path.append(str(root_dir))
+
+# Load environment variables from known production path
+env_path = Path("/opt/biotech-dashboard/.env") if os.getenv('ENV') != 'development' else root_dir / '.env'
+load_dotenv(env_path)
+
 POLYGON_KEY = os.getenv('POLYGON_API_KEY')
 
+try:
+    # Try relative imports first (when running as module)
+    from .progress_tracker import get_progress_tracker
+    from .ticker_manager import TickerManager
+except ImportError:
+    # Fall back to regular imports (when running as script)
+    from progress_tracker import get_progress_tracker
+    from ticker_manager import TickerManager
+
+progress_tracker = get_progress_tracker()
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -53,13 +79,13 @@ class HybridDataFetcher:
         try:
             ticker = yf.Ticker(symbol)
             
-            # Get statements and log what we receive
-            income_stmt = ticker.income_stmt
-            cashflow = ticker.cashflow
+            # # Get statements and log what we receive
+            # income_stmt = ticker.income_stmt
+            # cashflow = ticker.cashflow
             
-            # Convert to DataFrame if not already
-            quarterly_income = pd.DataFrame(income_stmt)
-            quarterly_cashflow = pd.DataFrame(cashflow)
+            # # Convert to DataFrame if not already
+            # quarterly_income = pd.DataFrame(income_stmt)
+            # quarterly_cashflow = pd.DataFrame(cashflow)
             
             financials = {
                 "revenue": [],
@@ -72,61 +98,6 @@ class HybridDataFetcher:
                 "freeCashFlowChanges": [],
                 "dates": []
             }
-            
-            if not quarterly_income.empty:
-                revenue = quarterly_income.loc['Total Revenue'] if 'Total Revenue' in quarterly_income.index else None
-                net_income = quarterly_income.loc['Net Income'] if 'Net Income' in quarterly_income.index else None
-                operating_income = quarterly_income.loc['Operating Income'] if 'Operating Income' in quarterly_income.index else None
-                
-                if revenue is not None:
-                    for date in revenue.index:
-                        # Add date
-                        financials["dates"].append(date.strftime('%Y-%m-%d'))
-                        
-                        # Process Revenue
-                        current_revenue = float(revenue[date])
-                        financials["revenue"].append(current_revenue)
-                        
-                        # Calculate YoY revenue change
-                        if date.year > revenue.index[0].year:
-                            prev_year_value = revenue[revenue.index[revenue.index.year == date.year - 1][0]]
-                            revenue_change = ((current_revenue - prev_year_value) / prev_year_value * 100 if prev_year_value != 0 else 0)
-                            financials["revenueChanges"].append(round(revenue_change, 2))
-                        else:
-                            financials["revenueChanges"].append(None)
-                        
-                        # Process Net Income
-                        if net_income is not None and date in net_income.index:
-                            current_net_income = float(net_income[date])
-                            financials["netIncome"].append(current_net_income)
-                            
-                            if date.year > net_income.index[0].year:
-                                prev_year_value = net_income[net_income.index[net_income.index.year == date.year - 1][0]]
-                                net_income_change = ((current_net_income - prev_year_value) / abs(prev_year_value) * 100 if prev_year_value != 0 else 0)
-                                financials["netIncomeChanges"].append(round(net_income_change, 2))
-                            else:
-                                financials["netIncomeChanges"].append(None)
-                        else:
-                            financials["netIncome"].append(None)
-                            financials["netIncomeChanges"].append(None)
-                        
-                        # Process Operating Margin
-                        if operating_income is not None and date in operating_income.index:
-                            current_operating_income = float(operating_income[date])
-                            current_operating_margin = (current_operating_income / current_revenue * 100) if current_revenue != 0 else 0
-                            financials["operatingMargin"].append(round(current_operating_margin, 2))
-                            
-                            if date.year > operating_income.index[0].year:
-                                prev_year_revenue = revenue[revenue.index[revenue.index.year == date.year - 1][0]]
-                                prev_year_operating_income = operating_income[operating_income.index[operating_income.index.year == date.year - 1][0]]
-                                prev_operating_margin = (prev_year_operating_income / prev_year_revenue * 100) if prev_year_revenue != 0 else 0
-                                margin_change = current_operating_margin - prev_operating_margin
-                                financials["operatingMarginChanges"].append(round(margin_change, 2))
-                            else:
-                                financials["operatingMarginChanges"].append(None)
-                        else:
-                            financials["operatingMargin"].append(None)
-                            financials["operatingMarginChanges"].append(None)
             
             return financials
             
@@ -172,10 +143,10 @@ class HybridDataFetcher:
                 }
             }
             
-            # Get quarterly data
-            quarterly_revenue = pd.DataFrame(ticker.quarterly_earnings)
-            quarterly_balance = pd.DataFrame(ticker.quarterly_balance_sheet)
-            quarterly_cashflow = pd.DataFrame(ticker.quarterly_cashflow)
+            # # Get quarterly data
+            # quarterly_revenue = pd.DataFrame(ticker.quarterly_earnings)
+            # quarterly_balance = pd.DataFrame(ticker.quarterly_balance_sheet)
+            # quarterly_cashflow = pd.DataFrame(ticker.quarterly_cashflow)
             
             # Process quarterly data
             quarterly_metrics = {
@@ -184,18 +155,18 @@ class HybridDataFetcher:
                 "periods": []
             }
             
-            if not quarterly_revenue.empty:
-                for date, row in quarterly_revenue.iterrows():
-                    quarterly_metrics["periods"].append(date.strftime('%Y-%m-%d'))
-                    quarterly_metrics["revenue"].append(float(row['Revenue']))
-                    # Calculate YoY change
-                    prev_year = date - pd.DateOffset(years=1)
-                    if prev_year in quarterly_revenue.index:
-                        change = ((row['Revenue'] - quarterly_revenue.loc[prev_year, 'Revenue']) / 
-                                quarterly_revenue.loc[prev_year, 'Revenue'] * 100)
-                        quarterly_metrics["revenueChange"].append(round(change, 2))
-                    else:
-                        quarterly_metrics["revenueChange"].append(None)
+            # if not quarterly_revenue.empty:
+            #     for date, row in quarterly_revenue.iterrows():
+            #         quarterly_metrics["periods"].append(date.strftime('%Y-%m-%d'))
+            #         quarterly_metrics["revenue"].append(float(row['Revenue']))
+            #         # Calculate YoY change
+            #         prev_year = date - pd.DateOffset(years=1)
+            #         if prev_year in quarterly_revenue.index:
+            #             change = ((row['Revenue'] - quarterly_revenue.loc[prev_year, 'Revenue']) / 
+            #                     quarterly_revenue.loc[prev_year, 'Revenue'] * 100)
+            #             quarterly_metrics["revenueChange"].append(round(change, 2))
+            #         else:
+            #             quarterly_metrics["revenueChange"].append(None)
             
             metrics = {
                 "peRatios": pe_ratios,
@@ -390,7 +361,6 @@ class HybridDataFetcher:
         
         # Convert to lowercase and replace spaces with dashes
         name = name.lower().replace(' ', '-')
-        name = name.replace('-inc', '').replace('-corp', '').replace('-ltd', '')
         name = name.replace('-common-stock', '').replace('-class-a', '').replace('-class-b', '')
         print(name)
         
@@ -401,29 +371,123 @@ class HybridDataFetcher:
         """
         Generate Investing.com URL using Polygon.io name as primary source
         """
+        
+        common_mappings = {
+            'VERA': 'https://www.investing.com/equities/vera-therapeutics',
+            'ANIX': 'https://www.investing.com/equities/copytele-inc',
+            'INMB': 'https://www.investing.com/equities/inmune-bio',
+            'GUTS': 'https://www.investing.com/equities/fractyl-health-consensus-estimates',
+            'MIRA': 'https://www.investing.com/equities/mira-pharmaceuticals',
+            'EYPT': 'https://uk.investing.com/equities/psivida-corp',
+            'GNPX': 'https://www.investing.com/equities/genprex',
+            'GLUE': 'https://www.investing.com/equities/monte-rosa-therapeutics',
+            'TGTX': 'https://www.investing.com/equities/tg-therapeutics-inc',
+            'AUPH': 'https://www.investing.com/equities/aurinia-pharmace',
+            'ITCI': 'https://in.investing.com/equities/intracellular-th',
+            'CLOV': 'https://www.investing.com/equities/social-capital-hedosophia-hold-iii',
+            'CERE': 'https://www.investing.com/equities/arya-sciences-acquisition-ii',
+            'IPHA': 'https://www.investing.com/equities/innate-pharma-news?cid=1153095',
+            'MDWD': 'https://www.investing.com/equities/mediwound-l',
+            'ZYME': 'https://www.investing.com/equities/zymeworks-inc',
+            'ASMB': 'https://www.investing.com/equities/ventrus-bioscienc',
+            'JAZZ': 'https://www.investing.com/equities/jazz-pharmaceuticals',
+            'PRTA': 'https://www.investing.com/equities/prothena-corp',
+            'TMDX': 'https://www.investing.com/equities/transmedics-group-inc',
+            'GILD': 'https://www.investing.com/equities/gilead-sciences-inc',
+            'NTNX': 'https://www.investing.com/equities/nutanix-inc',
+            'INAB': 'https://www.investing.com/equities/in8bio-inc',
+            'MNPR': 'https://ph.investing.com/equities/monopar-therapeutics-inc',
+            'APVO': 'https://www.investing.com/equities/aptevo-therapeutics-inc',
+            'HRMY': 'https://www.investing.com/equities/harmony-biosciences-holdings',
+            'BHC': 'https://www.investing.com/equities/valeant-pharma',
+            'BCRX': 'https://www.investing.com/equities/biocryst-pharmaceuticals',
+            'GRTX': 'https://www.investing.com/equities/galera-therapeutics-inc',
+            'AXSM': 'https://www.investing.com/equities/axsome-therapeutics-inc',
+            'SMMT': 'https://www.investing.com/equities/summit-therapeutics-plc',
+            'SAGE': 'https://www.investing.com/equities/sage-therapeutic',
+            'MYNZ': 'https://www.investing.com/equities/mainz-biomed-bv',
+            'GMAB': 'https://www.investing.com/equities/genmab',
+            'LUMO': 'https://uk.investing.com/equities/newlink-genetics-news/7',
+            'NEO': 'https://www.investing.com/equities/neo-energy-metals-consensus-estimates',
+            'ARCT': 'https://www.investing.com/equities/alcobra-ltd',
+            'TEVA': 'https://www.investing.com/equities/teva-pharmaceutical-inds-ltd',
+            'VMD': 'https://ca.investing.com/equities/viemed-healthcare',
+            'VERU': 'https://www.investing.com/equities/female-health-com',
+            'VRCA': 'https://in.investing.com/equities/verrica-pharmaceuticals',
+            'SIGA': 'https://www.investing.com/equities/siga-technologies',
+            'INMD': 'https://www.investing.com/equities/inmode-ltd',
+            'EXEL': 'https://www.investing.com/equities/exelixis-inc',
+            'CPRX': 'https://www.investing.com/equities/catalyst-pharmaceuticals',
+            'HALO': 'https://www.investing.com/equities/halo-technologies-holdings-scoreboard',
+            'NVOS': 'https://www.investing.com/equities/turbine-truck-engine',
+            'ATAI': 'https://www.investing.com/equities/atai-life-sciences-bv',
+            'BNGO': 'https://www.investing.com/equities/bionano-genomics',
+            'ENOV': 'https://in.investing.com/equities/colfax',
+            'BIIB': 'https://www.investing.com/equities/biogen-idec-inc',
+            'MIST': 'https://www.investing.com/equities/milestone-pharmaceuticals-inc',
+            'ARDX': 'https://www.investing.com/equities/ardelyx-inc',
+            'CVM': 'https://www.investing.com/equities/cel-sci-corp',
+            'ACLS': 'https://www.investing.com/equities/axcelis-tech',
+            'IDYA': 'https://www.investing.com/equities/ideaya-biosciences-inc',
+            'RYTM': 'https://www.investing.com/equities/rhythm-pharma',
+            'TWST': 'https://www.investing.com/equities/twist-bioscience-corporation',
+            'STEM': 'https://www.investing.com/equities/star-peak-energy-transition',
+            'GERN': 'https://www.investing.com/equities/geron-corp',
+            'VIR': 'https://www.investing.com/equities/vir-biotechnology-inc',
+            'ALKS': 'https://www.investing.com/equities/alkermes-plc',
+            'AMPH': 'https://www.investing.com/equities/amphastar-p',
+            'SVRA': 'https://uk.investing.com/equities/mast-therapeutics',
+            'EVLO': 'https://www.investing.com/equities/evelo-biosciences',
+            'GH': 'https://www.investing.com/equities/gh-research',
+            'NTLA': 'https://www.investing.com/equities/intellia-therapeutics-inc',
+            'MRTX': 'https://www.investing.com/equities/mirati-ther',
+            'SRPT': 'https://www.investing.com/equities/sarepta',
+            'RARE': 'https://www.investing.com/equities/ultragenyx',
+            'TRVI': 'https://www.investing.com/equities/trevi-therapeutics-inc',
+            'PGEN': 'https://www.investing.com/equities/intrexon-corpn',
+            'EVH': 'https://www.investing.com/equities/evolent-health-inc',
+            'ARQT': 'https://www.investing.com/equities/arcutis-biotherapeutics-inc',
+            'QNRX': 'https://www.investing.com/equities/cellect-biotechnology-adr',
+            'SYRS': 'https://www.investing.com/equities/syros-pharmaceuticals-inc',
+            'GTHX': 'https://www.investing.com/equities/g1-therapeutics-inc',
+            'MNKD': 'https://www.investing.com/equities/mannkind-corp',
+            'XERS': 'https://www.investing.com/equities/xeris-pharmaceuticals',
+            'SNDX': 'https://www.investing.com/equities/syndax-pharmaceuticals-consensus-estimates',
+            'PRTK': 'https://www.investing.com/equities/transcept-pharmaceuticals',
+            'PLRX': 'https://www.investing.com/equities/pliant-therapeutics-inc',
+            'MREO': 'https://www.investing.com/equities/mereo-biopharma-group',
+            'MDGL': 'https://uk.investing.com/equities/synta-pharmaceuticals-historical-data',
+            'KZR': 'https://uk.investing.com/equities/kalamazoo-resources-ltd',
+            'GALT': 'https://www.investing.com/equities/galectin-therapeutics-inc.',
+            'ETNB': 'https://www.investing.com/equities/89bio-inc',
+            'EPZM': 'https://www.investing.com/equities/epizyme-inc',
+            'CMRX': 'https://www.investing.com/equities/chimerix-inc',
+            'CDTX': 'https://www.investing.com/equities/cidara-therapeutics-inc',
+            'GYRE': 'https://www.investing.com/equities/targacept',
+            'CBAY': 'https://www.investing.com/equities/cymabay-therapeu',
+            'AGEN': 'https://www.investing.com/equities/agenus-inc',
+            'ABUS': 'https://www.investing.com/equities/tekmira-pharmaceuticals-corp',
+            'ABCL': 'https://www.investing.com/equities/abcellera-biologics',
+            'LOGC': 'https://www.investing.com/equities/logicbio-therapeutics',
+            'BLCM': 'https://www.investing.com/equities/bellicum-pharmaceuticals-inc-consensus-estimates',
+            'ADVM': 'https://www.investing.com/equities/avalanche-biotec',
+            'SNY': 'https://www.investing.com/equities/sanofi',
+            'MRSN': 'https://www.investing.com/equities/mersana-therapeutics-inc',
+            'TCRT': 'https://www.investing.com/equities/ziopharm-oncology',
+            'ASRT': 'https://www.investing.com/equities/depomed',
+            'ABBV': 'https://www.investing.com/equities/abbvie-inc',
+            'ADMA': 'https://www.investing.com/equities/adma-biologics-inc',
+            'RKLB': 'https://www.investing.com/equities/vector-acquisition'
+        }
+        
         try:
-            # Common URL pattern transformations
-            common_mappings = {
-
-            }
             
             # Check if we have a direct mapping
             if symbol in common_mappings:
-                base_name = common_mappings[symbol]
+                stock_url = common_mappings[symbol]
+                return stock_url
             else:
-                # Use Polygon.io to get the formatted company name 
-                polygon_formatted_name = self.get_company_name(symbol)
-                
-                if polygon_formatted_name:
-                    base_name = polygon_formatted_name
-                elif yf_name:
-                    # Fallback to yfinance name if Polygon name fails
-                    base_name = self.format_company_name(yf_name)
-                else:
-                    # Last resort: use symbol
-                    base_name = symbol.lower()
-            
-            return f"https://www.investing.com/equities/{base_name}"
+                return f"https://www.investing.com/search/?q={symbol}"
         
         except Exception as e:
             logger.error(f"Error generating Investing.com URL for {symbol}: {str(e)}")
@@ -449,7 +513,7 @@ class HybridDataFetcher:
                 endpoint = f"/v3/reference/tickers/{symbol}"
                 polygon_data = self._make_request(endpoint)
                 
-                if polygon_data and 'results' in polygon_data:
+                if (polygon_data and 'results' in polygon_data):
                     results = polygon_data['results']
                     branding = results.get('branding', {})
                     
@@ -927,6 +991,12 @@ class HybridDataFetcher:
                     "symbol": symbol,
                     "timestamp": datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
                     # Enhanced company info
+                        # Company names
+                    "names": {
+                        "long": company_details['names'].get('yfinance'),
+                        "short": company_details['names'].get('short'),
+                        "polygon": company_details['names'].get('polygon')
+                    },
                     "sector": company_details['sector'],
                     "industry": company_details['industry'],
                     "description": company_details['description'],
@@ -1016,10 +1086,10 @@ class HybridDataFetcher:
         
         # Save to JSON file
         try:
-            # with open('../../../frontend/market_data.json', 'w') as f:
             cleaned_data, nan_fields = self.validate_numeric_fields(market_data)
 
-            with open('../../frontend/public/data/market_data.json', 'w') as f:
+            market_data_path = get_project_root() / 'data' / 'market_data.json'
+            with market_data_path.open('w') as f:
                 json.dump(cleaned_data, f, indent=2)
             logger.info(f"Saved data for {len(market_data)} stocks")
         except Exception as e:
@@ -1027,51 +1097,82 @@ class HybridDataFetcher:
         
         return market_data
 
-def main():
-    POLYGON_KEY = "WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
-    
-    # Test with a smaller list first
-    # tickers = ["VERA", "ANIX", "INMB", "GUTS"]  # Add your full list here    
-    
-    # tickers = ["VERA", "MIRA"]  # Add your full list here    
-    tickers = ["VERA", "ANIX", "INMB", "GUTS", "MIRA", "EYPT", "GNPX", "GLUE", "TGTX", "AUPH", 
-               "ITCI", "CLOV", "CERE", "IPHA", "MDWD", "ZYME", "ASMB", "JAZZ", "PRTA", "TMDX",
-               "GILD", "NTNX", "INAB", "MNPR", "APVO", "HRMY", "BHC", "BCRX", "GRTX", "AXSM",
-               "SMMT", "SAGE", "MYNZ", "GMAB", "LUMO", "NEO", "ARCT", "TEVA", "VMD", "VERU",
-               "VRCA", "SIGA", "INMD", "EXEL", "CPRX", "HALO", "NVOS", "ATAI", "BNGO", "ENOV",
-               "BIIB", "MIST", "ARDX", "CVM", "ACLS", "IDYA", "RYTM", "TWST", "STEM", "GERN",
-               "VIR", "ALKS", "AMPH", "SVRA", "EVLO", "GH", "NTLA", "MRTX", "SRPT", "RARE",
-               "TRVI", "PGEN", "EVH", "ARQT", "QNRX", "SYRS", "GTHX", "MNKD", "XERS", "SNDX",
-               "PRTK", "PLRX", "MREO", "MDGL", "KZR", "GALT", "ETNB", "EPZM", "CMRX", "CDTX",
-    
-               "GYRE", "CBAY", "AGEN", "ABUS", "ABCL", "LOGC", "BLCM", "ADVM", "SNY", "MRSN",
-               "TCRT", "ASRT", "ABBV", "ADMA", "RKLB"]  # Add your full list here
-    
-    fetcher = HybridDataFetcher(POLYGON_KEY)
-    market_data = fetcher.fetch_market_data(tickers)
-    
-    print("\nStocks with alerts:")
-    alerts = [stock for stock in market_data if stock['alerts'] > 0]
-    alerts.sort(key=lambda x: x['alerts'], reverse=True)
-    
-    for stock in alerts:
-        print(f"\n{stock['symbol']} ({stock['sector']}): {stock['alerts']} alerts")
-        print(f"  Price: ${stock['price']:.2f} ({stock['priceChange']:.2f}%)")
-        if stock['technicals']['rsi']:
-            print(f"  RSI: {stock['technicals']['rsi']:.2f}")
-        
-        if stock['alertDetails']['priceAlert']:
-            print("  - Major price movement")
-        if stock['alertDetails']['volumeSpike20']:
-            print("  - Major volume spike")
-        if stock['alertDetails']['insiderAlert']:
-            print(f"  - Recent insider activity: {len(stock['insiderActivity']['notable_trades'])} notable trades")
-        if stock['alertDetails']['newsAlert']:
-            print("  - Recent news:")
-            for article in stock['recentNews'][:2]:
-                print(f"    * {article['title']}")
-        if stock['alertDetails']['technicalAlert']:
-            print(f"  - Technical alert (RSI: {stock['technicals']['rsi']:.2f})")
 
+
+def main():
+    POLYGON_KEY = os.getenv('POLYGON_API_KEY')
+    if not POLYGON_KEY:
+        error_msg = "POLYGON_API_KEY environment variable not set"
+        logger.error(error_msg)
+        progress_tracker.set_error(error_msg)
+        return False
+    
+    # Use TickerManager to get tickers
+    ticker_manager = TickerManager()
+    tickers = ticker_manager.get_tickers()
+    
+    if not tickers:
+        error_msg = "No tickers found in TickerManager"
+        logger.error(error_msg)
+        progress_tracker.set_error(error_msg)
+        return False
+    
+    try:
+        fetcher = HybridDataFetcher(POLYGON_KEY)
+        
+        # Initialize progress tracking with total number of tickers
+        progress_tracker.start_collection(len(tickers))
+        all_market_data = []
+        
+        # Process each ticker individually
+        for ticker in tickers:
+            try:
+                # Update progress for current ticker
+                progress_tracker.update_progress(ticker)
+                logger.info(f"Processing {ticker}")
+                
+                # Fetch data for this individual ticker
+                ticker_data = fetcher.fetch_market_data([ticker])
+                if ticker_data:
+                    all_market_data.extend(ticker_data)
+                
+                # Add a small delay to prevent rate limiting
+                time.sleep(0.2)
+                
+            except Exception as e:
+                logger.error(f"Error processing {ticker}: {str(e)}")
+                # Continue with next ticker rather than failing entirely
+                continue
+        
+        if not all_market_data:
+            error_msg = "No market data collected"
+            logger.error(error_msg)
+            progress_tracker.set_error(error_msg)
+            return False
+        
+        # Clean and save the collected data
+        cleaned_data, nan_fields = fetcher.validate_numeric_fields(all_market_data)
+        
+        # Save to data directory in project root
+        data_dir = get_project_root() / 'data'
+        data_dir.mkdir(exist_ok=True)
+        
+        # Update data file paths
+        market_data_path = get_project_root() / 'data' / 'market_data.json'     # Use this instead
+
+        
+        with market_data_path.open('w') as f:
+            json.dump(cleaned_data, f, indent=2)
+            
+        logger.info(f"Saved market data to {market_data_path}")
+        progress_tracker.complete()
+        return True
+        
+    except Exception as e:
+        error_msg = f"Error in data collection: {str(e)}"
+        logger.error(error_msg)
+        progress_tracker.set_error(error_msg)
+        return False
+    
 if __name__ == "__main__":
     main()

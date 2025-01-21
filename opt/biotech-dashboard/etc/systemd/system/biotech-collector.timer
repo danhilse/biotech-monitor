@@ -1,0 +1,10 @@
+# /etc/systemd/system/biotech-collector.timer
+[Unit]
+Description=Biotech Data Collection Timer
+
+[Timer]
+OnCalendar=*-*-* *:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target
