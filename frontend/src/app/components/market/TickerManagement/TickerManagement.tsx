@@ -1,5 +1,5 @@
 // src/app/components/market/TickerManagement/TickerManagement.tsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -29,35 +29,14 @@ interface DeleteConfirmation {
 
 const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) => {
   const [managedTickers, setManagedTickers] = useState<Stock[]>([]);
-  const [marketData, setMarketData] = useState<Record<string, { price: number; priceChange: number }>>({});
+  const [marketData, setMarketData] = useState<Record<string, { price: number; priceChange: number; volume: number }>>({});
   const [searchQuery, setSearchQuery] = useState('');
-  const [debouncedQuery, setDebouncedQuery] = useState('');
+  const [debouncedQuery] = useState('');
   const [searchResults, setSearchResults] = useState<Stock[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [confirmTicker, setConfirmTicker] = useState<Stock | null>(null);
   const [deleteConfirm, setDeleteConfirm] = useState<DeleteConfirmation | null>(null);
-
-
-  useEffect(() => {
-    loadManagedTickers();
-  }, []);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDebouncedQuery(searchQuery);
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, [searchQuery]);
-
-  useEffect(() => {
-    if (debouncedQuery.length >= 2) {
-      searchTickers();
-    } else {
-      setSearchResults([]);
-    }
-  }, [debouncedQuery]);
 
   const loadManagedTickers = async () => {
     try {
@@ -66,18 +45,25 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
       const marketDataMap = data.reduce((acc, stock) => {
         acc[stock.symbol] = {
           price: stock.price,
-          priceChange: stock.priceChange
+          priceChange: stock.priceChange,
+          volume: stock.volume || 0
         };
         return acc;
-      }, {} as Record<string, { price: number; priceChange: number }>);
+      }, {} as Record<string, { price: number; priceChange: number; volume: number }>);
       setMarketData(marketDataMap);
-
-      // Load full ticker list with details
+  
+      // Load full ticker list with details and ensure all required properties have values
       const tickers = await tickerService.getManagedTickers();
       setManagedTickers(tickers.map(ticker => ({
         ...ticker,
         price: marketDataMap[ticker.symbol]?.price || 0,
-        priceChange: marketDataMap[ticker.symbol]?.priceChange || 0
+        priceChange: marketDataMap[ticker.symbol]?.priceChange || 0,
+        volume: marketDataMap[ticker.symbol]?.volume || 0,
+        marketCap: ticker.marketCap || 0,  // Ensure marketCap has a default value
+        symbol: ticker.symbol,
+        name: ticker.name,
+        sector: ticker.sector || '',       // Optional property
+        industry: ticker.industry || ''    // Optional property
       })));
       
       setError(null);
@@ -87,18 +73,29 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
     }
   };
 
-  const searchTickers = async () => {
+  const searchTickers = useCallback(async () => {
     if (!debouncedQuery.trim()) {
       setSearchResults([]);
       return;
     }
-
+  
     setLoading(true);
     setError(null);
-
+  
     try {
       const results = await tickerService.searchTickers(debouncedQuery);
-      setSearchResults(results);
+      // Convert SearchResult to Stock with default values for missing properties
+      const completeResults: Stock[] = results.map(result => ({
+        symbol: result.symbol,
+        name: result.name,
+        price: result.price || 0,
+        priceChange: 0,        // Default value since not in SearchResult
+        volume: 0,             // Default value since not in SearchResult
+        marketCap: 0,          // Default value since not in SearchResult
+        sector: result.sector || '',
+        industry: result.industry || ''
+      }));
+      setSearchResults(completeResults);
     } catch (err) {
       console.error('Search error:', err);
       setError('Failed to search tickers');
@@ -106,7 +103,15 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
     } finally {
       setLoading(false);
     }
-  };
+  }, [debouncedQuery]);
+
+  useEffect(() => {
+    if (debouncedQuery.length >= 2) {
+      searchTickers();
+    } else {
+      setSearchResults([]);
+    }
+  }, [debouncedQuery, searchTickers]);
 
   const handleAddTicker = (ticker: Stock) => {
     setConfirmTicker(ticker);
@@ -133,6 +138,7 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
       setConfirmTicker(null);
     }
   };
+
   const handleDeleteTicker = (stock: Stock) => {
     setDeleteConfirm({
       symbol: stock.symbol,
@@ -237,7 +243,6 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
         </CardContent>
       </Card>
 
-      {/* Update the Button in managed tickers list */}
       <Card className="bg-white">
         <CardHeader>
           <CardTitle>Managed Tickers</CardTitle>
@@ -290,7 +295,6 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
         </CardContent>
       </Card>
 
-      {/* Add confirmation dialog */}
       <Dialog open={confirmTicker !== null} onOpenChange={(open) => !open && setConfirmTicker(null)}>
         <DialogContent>
           <DialogHeader>
@@ -338,7 +342,6 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
         </DialogContent>
       </Dialog>
 
-      {/* Delete confirmation dialog */}
       <Dialog open={deleteConfirm !== null} onOpenChange={(open) => !open && setDeleteConfirm(null)}>
         <DialogContent>
           <DialogHeader>
@@ -384,6 +387,5 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
     </div>
   );
 };
-
 
 export default TickerManagement;

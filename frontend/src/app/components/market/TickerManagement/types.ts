@@ -1,5 +1,13 @@
 // src/app/components/market/TickerManagement/types.ts
 
+export interface SearchResult {
+  symbol: string;
+  name: string;
+  price?: number;
+  sector?: string;
+  industry?: string;
+}
+
 export interface Stock {
   symbol: string;
   name: string;
@@ -12,7 +20,6 @@ export interface Stock {
   isTracked?: boolean;
 }
 
-// Keep existing interfaces
 export interface ManagedTicker {
   symbol: string;
   name: string;
