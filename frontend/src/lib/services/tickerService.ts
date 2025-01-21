@@ -28,32 +28,38 @@ class StaticTickerService implements TickerService {
   }
 
   
+  // In tickerService.ts
   async getManagedTickers(): Promise<SearchResult[]> {
     try {
-        const response = await fetch(`${this.API_BASE}/tickers`);
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
+      console.log('Calling getManagedTickers API...'); // Debug log
+      const response = await fetch(`${this.API_BASE}/tickers`);
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('API error:', response.status, errorText); // Debug log
+        throw new Error(`HTTP error! status: ${response.status}, details: ${errorText}`);
+      }
 
-        const data = await response.json();
-        const tickers = data.tickers || [];
-        
-        // Map the tickers directly since they already contain the details
-        const results = tickers.map(ticker => ({
-            symbol: ticker.symbol,
-            name: ticker.name || ticker.symbol,
-            sector: ticker.sector || '',
-            industry: ticker.industry || '',
-            names: ticker.names || {}
-        }));
+      const data = await response.json();
+      console.log('API response:', data); // Debug log
+      
+      const tickers = data.tickers || [];
+      const results = tickers.map(ticker => ({
+        symbol: ticker.symbol,
+        name: ticker.name || ticker.symbol,
+        sector: ticker.sector || '',
+        industry: ticker.industry || '',
+        names: ticker.names || {}
+      }));
 
-        return results;
+      console.log('Processed results:', results); // Debug log
+      return results;
     } catch (error) {
-        console.warn('Failed to fetch managed tickers:', error);
-        return [];
+      console.error('Failed to fetch managed tickers:', error); // More detailed error logging
+      throw error; // Rethrow to handle in component
     }
-}
+  }
+
   async addTicker(symbol: string): Promise<boolean> {
     try {
       const response = await fetch(`${this.API_BASE}/tickers`, {

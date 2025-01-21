@@ -27,9 +27,11 @@ interface DeleteConfirmation {
   sector?: string;
 }
 
+
+
 const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) => {
   const [managedTickers, setManagedTickers] = useState<Stock[]>([]);
-  const [marketData, setMarketData] = useState<Record<string, { price: number; priceChange: number; volume: number }>>({});
+  const [marketData] = useState<Record<string, { price: number; priceChange: number; volume: number }>>({});
   const [searchQuery, setSearchQuery] = useState('');
   const [debouncedQuery] = useState('');
   const [searchResults, setSearchResults] = useState<Stock[]>([]);
@@ -38,10 +40,19 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
   const [confirmTicker, setConfirmTicker] = useState<Stock | null>(null);
   const [deleteConfirm, setDeleteConfirm] = useState<DeleteConfirmation | null>(null);
 
+    // At the top of the component, add:
+  useEffect(() => {
+    loadManagedTickers();
+  }, []); // This was missing from your component
+
   const loadManagedTickers = async () => {
     try {
+      console.log('Starting to load managed tickers...'); // Debug log
+      
       // Load market data for prices
       const data = await marketDataService.fetchMarketData();
+      console.log('Fetched market data:', data); // Debug log
+      
       const marketDataMap = data.reduce((acc, stock) => {
         acc[stock.symbol] = {
           price: stock.price,
@@ -50,26 +61,30 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
         };
         return acc;
       }, {} as Record<string, { price: number; priceChange: number; volume: number }>);
-      setMarketData(marketDataMap);
-  
-      // Load full ticker list with details and ensure all required properties have values
+      
+      // Load full ticker list with details
+      console.log('Fetching managed tickers...'); // Debug log
       const tickers = await tickerService.getManagedTickers();
-      setManagedTickers(tickers.map(ticker => ({
+      console.log('Received tickers:', tickers); // Debug log
+      
+      const mappedTickers = tickers.map(ticker => ({
         ...ticker,
         price: marketDataMap[ticker.symbol]?.price || 0,
         priceChange: marketDataMap[ticker.symbol]?.priceChange || 0,
         volume: marketDataMap[ticker.symbol]?.volume || 0,
-        marketCap: ticker.marketCap || 0,  // Ensure marketCap has a default value
+        marketCap: ticker.marketCap || 0,
         symbol: ticker.symbol,
         name: ticker.name,
-        sector: ticker.sector || '',       // Optional property
-        industry: ticker.industry || ''    // Optional property
-      })));
+        sector: ticker.sector || '',
+        industry: ticker.industry || ''
+      }));
+      console.log('Mapped tickers:', mappedTickers); // Debug log
       
+      setManagedTickers(mappedTickers);
       setError(null);
     } catch (err) {
+      console.error('Load error details:', err); // More detailed error logging
       setError('Failed to load market data');
-      console.error('Load error:', err);
     }
   };
 
