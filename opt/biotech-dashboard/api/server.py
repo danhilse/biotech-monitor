@@ -39,12 +39,21 @@ POLYGON_KEY = os.getenv('POLYGON_API_KEY')
 app = FastAPI()
 
 # In server.py, update the CORS middleware configuration
+origins = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000"
+]
+
+# Add your production domain when ready
+if os.getenv('ENV') == 'production':
+    origins.append("https://biotech-monitor.vercel.app")  # Replace with your actual domain
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],  # Add both localhost variations
+    allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],  # Allow all methods
-    allow_headers=["*"],  # Allow all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Initialize manager once
