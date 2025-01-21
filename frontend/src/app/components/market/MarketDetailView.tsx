@@ -12,11 +12,11 @@ import { formatNumber, formatDate } from './utils';
 import { VolumeChart } from './VolumeChart';
 
 interface Props {
-  stock: Stock | null;
-  
+  stock: Stock;
+  onClose: () => void;
 }
 
-export const MarketDetailView = ({ stock }: Props) => {
+export const MarketDetailView: React.FC<Props> = ({ stock }) => {
   if (!stock) return null;
 
   const volumeChange = stock.volumeMetrics?.volumeChange ?? 0;

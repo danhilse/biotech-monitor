@@ -22,6 +22,14 @@ interface RefreshStatus {
   error: string | null;
 }
 
+// Add this type near the top with your other interfaces
+// interface StockData {
+//   symbol?: string;
+//   sector?: string;
+//   industry?: string;
+//   openPrice?: number;
+//   [key: string]: string | number | undefined; // specify possible value types
+// }
 
 const MarketDashboard = () => {
   const [marketData, setMarketData] = useState<Stock[]>([]);
@@ -67,19 +75,7 @@ const MarketDashboard = () => {
     );
   }
 
-  const handleStockSelect = (stockData: any) => {
-    if (!stockData) {
-      setSelectedStock(null);
-      return;
-    }
-    
-    const stock: Stock = {
-      ...stockData,
-      symbol: stockData.symbol || '',
-      sector: stockData.sector || '',
-      industry: stockData.industry || '',
-      openPrice: stockData.openPrice || 0,
-    };
+  const handleStockSelect = (stock: Stock | null) => {
     setSelectedStock(stock);
   };
 
