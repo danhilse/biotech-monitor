@@ -1,14 +1,14 @@
 "use client";
-// MarketDashboard.tsx
+
 import { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { AlertCircle, RefreshCw, Circle } from 'lucide-react';
-import { Tabs, TabsContent } from '@/components/ui/tabs';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { MarketScatterPlot } from './MarketScatterPlot/MarketScatterPlot';
 import { Stock, FilterType } from './types';
 import { MarketDetailView } from './MarketDetailView';
-// import { useHistoricalData } from '@/lib/hooks/useHistoricalData';
+import TickerManagement from './TickerManagement/TickerManagement';
 import { marketDataService } from '@/lib/services/marketDataService';
 
 const MarketDashboard = () => {
@@ -17,13 +17,8 @@ const MarketDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [activeFilter] = useState<FilterType>(null);
-  const [activeView, setActiveView] = useState('scatter');
+  const [activeTab, setActiveTab] = useState('market');
   
-  // const { 
-  //   loading: historicalLoading, 
-  //   error: historicalError 
-  // } = useHistoricalData();
-
   const fetchData = async () => {
     setLoading(true);
     setError(null);
@@ -31,7 +26,7 @@ const MarketDashboard = () => {
       const data = await marketDataService.fetchMarketData();
       setMarketData(data);
     } catch (err) {
-      setError('Failed to load market data' + err);
+      setError('Failed to load market data: ' + String(err));
     } finally {
       setLoading(false);
     }
@@ -39,13 +34,13 @@ const MarketDashboard = () => {
 
   useEffect(() => {
     fetchData();
-    const interval = setInterval(fetchData, 5 * 60 * 1000);
+    const interval = setInterval(fetchData, 5 * 60 * 1000); // Refresh every 5 minutes
     return () => clearInterval(interval);
   }, []);
 
   const lastUpdated = marketDataService.getLastUpdated();
 
-  if ((loading && marketData.length === 0)) {
+  if (loading && marketData.length === 0) {
     return (
       <div className="w-full h-96 flex items-center justify-center bg-gray-50 rounded-lg">
         <div className="text-center">
@@ -56,11 +51,29 @@ const MarketDashboard = () => {
     );
   }
 
-  const showError = error;
+  const handleStockSelect = (stockData: any) => {
+    if (!stockData) {
+      setSelectedStock(null);
+      return;
+    }
+    
+    const stock: Stock = {
+      ...stockData,
+      symbol: stockData.symbol || '',
+      sector: stockData.sector || '',
+      industry: stockData.industry || '',
+      openPrice: stockData.openPrice || 0,
+    };
+    setSelectedStock(stock);
+  };
+
+  const handleRefresh = async () => {
+    await fetchData();
+  };
 
   return (
     <div className="w-full space-y-6 p-6 bg-gray-50 min-h-screen">
-      <Tabs value={activeView} onValueChange={setActiveView}>
+      <Tabs value={activeTab} onValueChange={setActiveTab}>
         <div className="flex justify-between items-center bg-white p-4 rounded-lg shadow-sm">
           <div className="flex items-center gap-8">
             <div>
@@ -71,10 +84,14 @@ const MarketDashboard = () => {
                 Tracking {marketData.length} stocks in real-time
               </p>
             </div>
-            {/* <TabsList>
-              <TabsTrigger value="scatter">Scatter Plot</TabsTrigger>
-              <TabsTrigger value="timeseries">Time Series</TabsTrigger>
-            </TabsList> */}
+            <TabsList className="bg-gray-100">
+              <TabsTrigger value="market" className="data-[state=active]:bg-white">
+                Market View
+              </TabsTrigger>
+              <TabsTrigger value="tickers" className="data-[state=active]:bg-white">
+                Manage Tickers
+              </TabsTrigger>
+            </TabsList>
           </div>
           <div className="flex items-center gap-4">
             <div className="text-sm text-gray-500 flex items-center">
@@ -82,63 +99,49 @@ const MarketDashboard = () => {
               {lastUpdated && `Last updated: ${lastUpdated.toLocaleTimeString()}`}
             </div>
             <button 
-              onClick={fetchData}
+              onClick={handleRefresh}
               className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+              aria-label="Refresh data"
             >
               <RefreshCw className="w-5 h-5 text-blue-500" />
             </button>
           </div>
         </div>
 
-        {showError && (
+        {error && (
           <Alert variant="destructive" className="animate-slide-in-top">
             <AlertCircle className="h-4 w-4" />
-            <AlertDescription>{showError}</AlertDescription>
+            <AlertDescription>{error}</AlertDescription>
           </Alert>
         )}
 
-        <TabsContent value="scatter">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
-            <Card className="bg-white shadow-sm col-span-1 lg:col-span-4">
+        <TabsContent value="market" className="mt-6">
+          <div className="grid grid-cols-1 gap-6">
+            <Card className="bg-white shadow-sm">
               <CardContent className="pt-6">
                 <MarketScatterPlot 
                   data={marketData}
                   activeFilter={activeFilter}
-                  onStockSelect={(stockData) => {
-                    if (!stockData) {
-                      setSelectedStock(null);
-                      return;
-                    }
-                    const stock: Stock = {
-                      ...stockData,
-                      symbol: stockData.symbol || '',
-                      sector: '',
-                      industry: '',
-                      openPrice: 0,
-                    };
-                    setSelectedStock(stock);
-                  }}
+                  onStockSelect={handleStockSelect}
                 />
               </CardContent>
             </Card>
-            {/* <MarketFilters 
-              data={marketData}
-              activeFilter={activeFilter}
-              onFilterChange={setActiveFilter}
-            /> */}
+
+            {selectedStock && (
+              <MarketDetailView 
+                stock={selectedStock}
+                onClose={() => setSelectedStock(null)}
+              />
+            )}
           </div>
         </TabsContent>
-        
-        {/* <TabsContent value="timeseries">
-          <Card className="w-full bg-white shadow-sm">
-            <CardContent className="pt-6">
 
-            </CardContent>
-          </Card>
-        </TabsContent> */}
+        <TabsContent value="tickers" className="mt-6">
+          <TickerManagement 
+            onTickersUpdate={fetchData}
+          />
+        </TabsContent>
       </Tabs>
-
-      {selectedStock && activeView === 'scatter' && <MarketDetailView stock={selectedStock} />}
     </div>
   );
 };

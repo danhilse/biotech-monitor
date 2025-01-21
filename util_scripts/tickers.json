@@ -1,0 +1,981 @@
+{
+  "tickers": [
+    "APPL",
+    "AUPH",
+    "AXSM",
+    "BCRX",
+    "MSFT"
+  ],
+  "ticker_details": {
+    "MSFT": {
+      "name": "Microsoft Corp",
+      "sector": "Technology",
+      "industry": "Software - Infrastructure",
+      "names": {
+        "polygon": "Microsoft Corp",
+        "yfinance": "Microsoft Corporation",
+        "short": "Microsoft Corporation"
+      }
+    },
+    "VERA": {
+      "name": "Vera Therapeutics, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Vera Therapeutics, Inc. Class A Common Stock",
+        "yfinance": "Vera Therapeutics, Inc.",
+        "short": "Vera Therapeutics, Inc."
+      }
+    },
+    "ANIX": {
+      "name": "Anixa Biosciences, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Anixa Biosciences, Inc.",
+        "yfinance": "Anixa Biosciences, Inc.",
+        "short": "Anixa Biosciences, Inc."
+      }
+    },
+    "INMB": {
+      "name": "INmune Bio, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "INmune Bio Inc. Common stock",
+        "yfinance": "INmune Bio, Inc.",
+        "short": "INmune Bio Inc."
+      }
+    },
+    "GUTS": {
+      "name": "Fractyl Health, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Fractyl Health, Inc. Common Stock",
+        "yfinance": "Fractyl Health, Inc.",
+        "short": "Fractyl Health, Inc."
+      }
+    },
+    "MIRA": {
+      "name": "MIRA Pharmaceuticals, Inc.",
+      "sector": "Healthcare",
+      "industry": "Drug Manufacturers - General",
+      "names": {
+        "polygon": "MIRA Pharmaceuticals, Inc. Common Stock",
+        "yfinance": "MIRA Pharmaceuticals, Inc.",
+        "short": "MIRA Pharmaceuticals, Inc."
+      }
+    },
+    "EYPT": {
+      "name": "EyePoint Pharmaceuticals, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "EyePoint Pharmaceuticals, Inc. Common Stock",
+        "yfinance": "EyePoint Pharmaceuticals, Inc.",
+        "short": "EyePoint Pharmaceuticals, Inc."
+      }
+    },
+    "GNPX": {
+      "name": "Genprex, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Genprex, Inc. Common Stock",
+        "yfinance": "Genprex, Inc.",
+        "short": "Genprex, Inc."
+      }
+    },
+    "GLUE": {
+      "name": "Monte Rosa Therapeutics, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Monte Rosa Therapeutics, Inc. Common Stock",
+        "yfinance": "Monte Rosa Therapeutics, Inc.",
+        "short": "Monte Rosa Therapeutics, Inc."
+      }
+    },
+    "TGTX": {
+      "name": "TG Therapeutics, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "TG Therapeutics, Inc.",
+        "yfinance": "TG Therapeutics, Inc.",
+        "short": "TG Therapeutics, Inc."
+      }
+    },
+    "AUPH": {
+      "name": "Aurinia Pharmaceuticals Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Aurinia Pharmaceuticals Inc",
+        "yfinance": "Aurinia Pharmaceuticals Inc.",
+        "short": "Aurinia Pharmaceuticals Inc"
+      }
+    },
+    "ITCI": {
+      "name": "Intra-Cellular Therapies, Inc.",
+      "sector": "Healthcare",
+      "industry": "Drug Manufacturers - Specialty & Generic",
+      "names": {
+        "polygon": "Intra-Cellular Therapies Inc.",
+        "yfinance": "Intra-Cellular Therapies, Inc.",
+        "short": "Intra-Cellular Therapies Inc."
+      }
+    },
+    "CLOV": {
+      "name": "Clover Health Investments, Corp.",
+      "sector": "Healthcare",
+      "industry": "Healthcare Plans",
+      "names": {
+        "polygon": "Clover Health Investments, Corp",
+        "yfinance": "Clover Health Investments, Corp.",
+        "short": "Clover Health Investments, Corp"
+      }
+    },
+    "IPHA": {
+      "name": "Innate Pharma S.A.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Innate Pharma S.A. ADS",
+        "yfinance": "Innate Pharma S.A.",
+        "short": "Innate Pharma S.A."
+      }
+    },
+    "MDWD": {
+      "name": "MediWound Ltd.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "MediWound Ltd.",
+        "yfinance": "MediWound Ltd.",
+        "short": "MediWound Ltd."
+      }
+    },
+    "ZYME": {
+      "name": "Zymeworks Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Zymeworks Inc.",
+        "yfinance": "Zymeworks Inc.",
+        "short": "Zymeworks Inc."
+      }
+    },
+    "ASMB": {
+      "name": "Assembly Biosciences, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Assembly Biosciences, Inc",
+        "yfinance": "Assembly Biosciences, Inc.",
+        "short": "Assembly Biosciences, Inc."
+      }
+    },
+    "JAZZ": {
+      "name": "Jazz Pharmaceuticals plc",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Jazz Pharmaceuticals, Inc.",
+        "yfinance": "Jazz Pharmaceuticals plc",
+        "short": "Jazz Pharmaceuticals plc"
+      }
+    },
+    "PRTA": {
+      "name": "Prothena Corporation plc",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Prothena Corporation plc Ordinary Shares",
+        "yfinance": "Prothena Corporation plc",
+        "short": "Prothena Corporation plc"
+      }
+    },
+    "TMDX": {
+      "name": "TransMedics Group, Inc.",
+      "sector": "Healthcare",
+      "industry": "Medical Devices",
+      "names": {
+        "polygon": "TransMedics Group, Inc. Common Stock",
+        "yfinance": "TransMedics Group, Inc.",
+        "short": "TransMedics Group, Inc."
+      }
+    },
+    "GILD": {
+      "name": "Gilead Sciences, Inc.",
+      "sector": "Healthcare",
+      "industry": "Drug Manufacturers - General",
+      "names": {
+        "polygon": "Gilead Sciences Inc",
+        "yfinance": "Gilead Sciences, Inc.",
+        "short": "Gilead Sciences, Inc."
+      }
+    },
+    "NTNX": {
+      "name": "Nutanix, Inc.",
+      "sector": "Technology",
+      "industry": "Software - Infrastructure",
+      "names": {
+        "polygon": "Nutanix, Inc. Class A Common Stock",
+        "yfinance": "Nutanix, Inc.",
+        "short": "Nutanix, Inc."
+      }
+    },
+    "INAB": {
+      "name": "IN8bio, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "IN8bio, Inc. Common Stock",
+        "yfinance": "IN8bio, Inc.",
+        "short": "IN8bio, Inc."
+      }
+    },
+    "MNPR": {
+      "name": "Monopar Therapeutics Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Monopar Therapeutics Inc. Common Stock",
+        "yfinance": "Monopar Therapeutics Inc.",
+        "short": "Monopar Therapeutics Inc."
+      }
+    },
+    "APVO": {
+      "name": "Aptevo Therapeutics Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Aptevo Therapeutics Inc",
+        "yfinance": "Aptevo Therapeutics Inc.",
+        "short": "Aptevo Therapeutics Inc."
+      }
+    },
+    "HRMY": {
+      "name": "Harmony Biosciences Holdings, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Harmony Biosciences Holdings, Inc. Common Stock",
+        "yfinance": "Harmony Biosciences Holdings, Inc.",
+        "short": "Harmony Biosciences Holdings, I"
+      }
+    },
+    "BHC": {
+      "name": "Bausch Health Companies Inc.",
+      "sector": "Healthcare",
+      "industry": "Drug Manufacturers - Specialty & Generic",
+      "names": {
+        "polygon": "Bausch\u00a0Health\u00a0Companies\u00a0Inc.",
+        "yfinance": "Bausch Health Companies Inc.",
+        "short": "Bausch Health Companies Inc."
+      }
+    },
+    "BCRX": {
+      "name": "BioCryst Pharmaceuticals, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "BioCryst Pharmaceuticals Inc",
+        "yfinance": "BioCryst Pharmaceuticals, Inc.",
+        "short": "BioCryst Pharmaceuticals, Inc."
+      }
+    },
+    "GRTX": {
+      "name": "Galera Therapeutics, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "GALERA THERAPEUTICS INC",
+        "yfinance": "Galera Therapeutics, Inc.",
+        "short": "Galera Therapeutics, Inc."
+      }
+    },
+    "AXSM": {
+      "name": "Axsome Therapeutics, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Axsome Therapeutics, Inc",
+        "yfinance": "Axsome Therapeutics, Inc.",
+        "short": "Axsome Therapeutics, Inc."
+      }
+    },
+    "SMMT": {
+      "name": "Summit Therapeutics Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Summit Therapeutics Inc. Common Stock",
+        "yfinance": "Summit Therapeutics Inc.",
+        "short": "Summit Therapeutics Inc."
+      }
+    },
+    "SAGE": {
+      "name": "Sage Therapeutics, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Sage Therapeutics, Inc",
+        "yfinance": "Sage Therapeutics, Inc.",
+        "short": "Sage Therapeutics, Inc."
+      }
+    },
+    "MYNZ": {
+      "name": "Mainz Biomed N.V.",
+      "sector": "Healthcare",
+      "industry": "Diagnostics & Research",
+      "names": {
+        "polygon": "Mainz Biomed N.V. Ordinary Shares",
+        "yfinance": "Mainz Biomed N.V.",
+        "short": "Mainz Biomed N.V."
+      }
+    },
+    "GMAB": {
+      "name": "Genmab A/S",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Genmab A/S ADS",
+        "yfinance": "Genmab A/S",
+        "short": "Genmab A/S"
+      }
+    },
+    "NEO": {
+      "name": "NeoGenomics, Inc.",
+      "sector": "Healthcare",
+      "industry": "Diagnostics & Research",
+      "names": {
+        "polygon": "NeoGenomics, Inc.",
+        "yfinance": "NeoGenomics, Inc.",
+        "short": "NeoGenomics, Inc."
+      }
+    },
+    "ARCT": {
+      "name": "Arcturus Therapeutics Holdings Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Arcturus Therapeutics Holdings Inc. Common Stock",
+        "yfinance": "Arcturus Therapeutics Holdings Inc.",
+        "short": "Arcturus Therapeutics Holdings "
+      }
+    },
+    "TEVA": {
+      "name": "Teva Pharmaceutical Industries Limited",
+      "sector": "Healthcare",
+      "industry": "Drug Manufacturers - Specialty & Generic",
+      "names": {
+        "polygon": "Teva Pharmaceutical Industries Limited American Depositary Shares",
+        "yfinance": "Teva Pharmaceutical Industries Limited",
+        "short": "Teva Pharmaceutical Industries "
+      }
+    },
+    "VMD": {
+      "name": "Viemed Healthcare, Inc.",
+      "sector": "Healthcare",
+      "industry": "Medical Devices",
+      "names": {
+        "polygon": "Viemed Healthcare, Inc. Common Shares",
+        "yfinance": "Viemed Healthcare, Inc.",
+        "short": "Viemed Healthcare, Inc."
+      }
+    },
+    "VERU": {
+      "name": "Veru Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Veru Inc.",
+        "yfinance": "Veru Inc.",
+        "short": "Veru Inc."
+      }
+    },
+    "VRCA": {
+      "name": "Verrica Pharmaceuticals Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Verrica Pharmaceuticals Inc. Common Stock",
+        "yfinance": "Verrica Pharmaceuticals Inc.",
+        "short": "Verrica Pharmaceuticals Inc."
+      }
+    },
+    "SIGA": {
+      "name": "SIGA Technologies, Inc.",
+      "sector": "Healthcare",
+      "industry": "Drug Manufacturers - Specialty & Generic",
+      "names": {
+        "polygon": "SIGA Technologies Inc.",
+        "yfinance": "SIGA Technologies, Inc.",
+        "short": "SIGA Technologies Inc."
+      }
+    },
+    "INMD": {
+      "name": "InMode Ltd.",
+      "sector": "Healthcare",
+      "industry": "Medical Devices",
+      "names": {
+        "polygon": "InMode Ltd. Ordinary Shares",
+        "yfinance": "InMode Ltd.",
+        "short": "InMode Ltd."
+      }
+    },
+    "EXEL": {
+      "name": "Exelixis, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Exelixis Inc",
+        "yfinance": "Exelixis, Inc.",
+        "short": "Exelixis, Inc."
+      }
+    },
+    "CPRX": {
+      "name": "Catalyst Pharmaceuticals, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Catalyst Pharmaceutical  Inc.",
+        "yfinance": "Catalyst Pharmaceuticals, Inc.",
+        "short": "Catalyst Pharmaceuticals, Inc."
+      }
+    },
+    "HALO": {
+      "name": "Halozyme Therapeutics, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Halozyme Therapeutics, Inc.",
+        "yfinance": "Halozyme Therapeutics, Inc.",
+        "short": "Halozyme Therapeutics, Inc."
+      }
+    },
+    "NVOS": {
+      "name": "Novo Integrated Sciences, Inc.",
+      "sector": "Healthcare",
+      "industry": "Medical Care Facilities",
+      "names": {
+        "polygon": "NOVO INTEGRATED SCIENCES",
+        "yfinance": "Novo Integrated Sciences, Inc.",
+        "short": "Novo Integrated Sciences, Inc."
+      }
+    },
+    "ATAI": {
+      "name": "Atai Life Sciences N.V.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "ATAI Life Sciences N.V. Common Shares",
+        "yfinance": "Atai Life Sciences N.V.",
+        "short": "ATAI Life Sciences N.V."
+      }
+    },
+    "BNGO": {
+      "name": "Bionano Genomics, Inc.",
+      "sector": "Healthcare",
+      "industry": "Medical Instruments & Supplies",
+      "names": {
+        "polygon": "Bionano Genomics, Inc. Common Stock",
+        "yfinance": "Bionano Genomics, Inc.",
+        "short": "Bionano Genomics, Inc."
+      }
+    },
+    "ENOV": {
+      "name": "Enovis Corporation",
+      "sector": "Industrials",
+      "industry": "Specialty Industrial Machinery",
+      "names": {
+        "polygon": "Enovis Corporation",
+        "yfinance": "Enovis Corporation",
+        "short": "Enovis Corporation"
+      }
+    },
+    "BIIB": {
+      "name": "Biogen Inc.",
+      "sector": "Healthcare",
+      "industry": "Drug Manufacturers - General",
+      "names": {
+        "polygon": "Biogen Inc. Common Stock",
+        "yfinance": "Biogen Inc.",
+        "short": "Biogen Inc."
+      }
+    },
+    "MIST": {
+      "name": "Milestone Pharmaceuticals Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Milestone Pharmaceuticals Inc. Common Shares",
+        "yfinance": "Milestone Pharmaceuticals Inc.",
+        "short": "Milestone Pharmaceuticals Inc."
+      }
+    },
+    "ARDX": {
+      "name": "Ardelyx, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Ardelyx, Inc.",
+        "yfinance": "Ardelyx, Inc.",
+        "short": "Ardelyx, Inc."
+      }
+    },
+    "CVM": {
+      "name": "CEL-SCI Corporation",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Cel-Sci Corporation",
+        "yfinance": "CEL-SCI Corporation",
+        "short": "Cel-Sci Corporation"
+      }
+    },
+    "ACLS": {
+      "name": "Axcelis Technologies, Inc.",
+      "sector": "Technology",
+      "industry": "Semiconductor Equipment & Materials",
+      "names": {
+        "polygon": "Axcelis Technologies Inc",
+        "yfinance": "Axcelis Technologies, Inc.",
+        "short": "Axcelis Technologies, Inc."
+      }
+    },
+    "IDYA": {
+      "name": "IDEAYA Biosciences, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "IDEAYA Biosciences, Inc. Common Stock",
+        "yfinance": "IDEAYA Biosciences, Inc.",
+        "short": "IDEAYA Biosciences, Inc."
+      }
+    },
+    "RYTM": {
+      "name": "Rhythm Pharmaceuticals, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Rhythm Pharmaceuticals, Inc. Common Stock",
+        "yfinance": "Rhythm Pharmaceuticals, Inc.",
+        "short": "Rhythm Pharmaceuticals, Inc."
+      }
+    },
+    "TWST": {
+      "name": "Twist Bioscience Corporation",
+      "sector": "Healthcare",
+      "industry": "Diagnostics & Research",
+      "names": {
+        "polygon": "Twist Bioscience Corporation Common Stock",
+        "yfinance": "Twist Bioscience Corporation",
+        "short": "Twist Bioscience Corporation"
+      }
+    },
+    "STEM": {
+      "name": "Stem, Inc.",
+      "sector": "Utilities",
+      "industry": "Utilities - Renewable",
+      "names": {
+        "polygon": "Stem, Inc.",
+        "yfinance": "Stem, Inc.",
+        "short": "Stem, Inc."
+      }
+    },
+    "GERN": {
+      "name": "Geron Corporation",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Geron Corp",
+        "yfinance": "Geron Corporation",
+        "short": "Geron Corporation"
+      }
+    },
+    "VIR": {
+      "name": "Vir Biotechnology, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Vir Biotechnology, Inc. Common Stock",
+        "yfinance": "Vir Biotechnology, Inc.",
+        "short": "Vir Biotechnology, Inc."
+      }
+    },
+    "ALKS": {
+      "name": "Alkermes plc",
+      "sector": "Healthcare",
+      "industry": "Drug Manufacturers - Specialty & Generic",
+      "names": {
+        "polygon": "Alkermes Inc. plc",
+        "yfinance": "Alkermes plc",
+        "short": "Alkermes plc"
+      }
+    },
+    "AMPH": {
+      "name": "Amphastar Pharmaceuticals, Inc.",
+      "sector": "Healthcare",
+      "industry": "Drug Manufacturers - Specialty & Generic",
+      "names": {
+        "polygon": "Amphastar Pharmaceuticals, Inc.",
+        "yfinance": "Amphastar Pharmaceuticals, Inc.",
+        "short": "Amphastar Pharmaceuticals, Inc."
+      }
+    },
+    "SVRA": {
+      "name": "Savara Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Savara Inc.",
+        "yfinance": "Savara Inc.",
+        "short": "Savara, Inc."
+      }
+    },
+    "GH": {
+      "name": "Guardant Health, Inc.",
+      "sector": "Healthcare",
+      "industry": "Diagnostics & Research",
+      "names": {
+        "polygon": "Guardant Health, Inc. Common Stock",
+        "yfinance": "Guardant Health, Inc.",
+        "short": "Guardant Health, Inc."
+      }
+    },
+    "NTLA": {
+      "name": "Intellia Therapeutics, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Intellia Therapeutics, Inc",
+        "yfinance": "Intellia Therapeutics, Inc.",
+        "short": "Intellia Therapeutics, Inc."
+      }
+    },
+    "SRPT": {
+      "name": "Sarepta Therapeutics, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Sarepta Therapeutics,, Inc. Common Stock",
+        "yfinance": "Sarepta Therapeutics, Inc.",
+        "short": "Sarepta Therapeutics, Inc."
+      }
+    },
+    "RARE": {
+      "name": "Ultragenyx Pharmaceutical Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Ultragenyx Pharmaceutical Inc.",
+        "yfinance": "Ultragenyx Pharmaceutical Inc.",
+        "short": "Ultragenyx Pharmaceutical Inc."
+      }
+    },
+    "TRVI": {
+      "name": "Trevi Therapeutics, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Trevi Therapeutics, Inc. Common Stock",
+        "yfinance": "Trevi Therapeutics, Inc.",
+        "short": "Trevi Therapeutics, Inc."
+      }
+    },
+    "PGEN": {
+      "name": "Precigen, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Precigen, Inc. Common Stock",
+        "yfinance": "Precigen, Inc.",
+        "short": "Precigen, Inc."
+      }
+    },
+    "EVH": {
+      "name": "Evolent Health, Inc.",
+      "sector": "Healthcare",
+      "industry": "Health Information Services",
+      "names": {
+        "polygon": "Evolent Health, Inc Class A Common Stock",
+        "yfinance": "Evolent Health, Inc.",
+        "short": "Evolent Health, Inc"
+      }
+    },
+    "ARQT": {
+      "name": "Arcutis Biotherapeutics, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Arcutis Biotherapeutics, Inc. Common Stock",
+        "yfinance": "Arcutis Biotherapeutics, Inc.",
+        "short": "Arcutis Biotherapeutics, Inc."
+      }
+    },
+    "QNRX": {
+      "name": "Quoin Pharmaceuticals, Ltd.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Quoin Pharmaceuticals, Ltd. American Depositary Shares",
+        "yfinance": "Quoin Pharmaceuticals, Ltd.",
+        "short": "Quoin Pharmaceuticals, Ltd."
+      }
+    },
+    "SYRS": {
+      "name": "Syros Pharmaceuticals, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Syros Pharmaceuticals, Inc. Common Stock",
+        "yfinance": "Syros Pharmaceuticals, Inc.",
+        "short": "Syros Pharmaceuticals, Inc."
+      }
+    },
+    "MNKD": {
+      "name": "MannKind Corporation",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Mannkind Corporation",
+        "yfinance": "MannKind Corporation",
+        "short": "MannKind Corporation"
+      }
+    },
+    "XERS": {
+      "name": "Xeris Biopharma Holdings, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Xeris Biopharma Holdings, Inc. Common Stock",
+        "yfinance": "Xeris Biopharma Holdings, Inc.",
+        "short": "Xeris Biopharma Holdings, Inc."
+      }
+    },
+    "SNDX": {
+      "name": "Syndax Pharmaceuticals, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Syndax Pharmaceuticals, Inc.",
+        "yfinance": "Syndax Pharmaceuticals, Inc.",
+        "short": "Syndax Pharmaceuticals, Inc."
+      }
+    },
+    "PLRX": {
+      "name": "Pliant Therapeutics, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Pliant Therapeutics, Inc. Common Stock",
+        "yfinance": "Pliant Therapeutics, Inc.",
+        "short": "Pliant Therapeutics, Inc."
+      }
+    },
+    "MREO": {
+      "name": "Mereo BioPharma Group plc",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Mereo BioPharma Group plc American Depositary Shares",
+        "yfinance": "Mereo BioPharma Group plc",
+        "short": "Mereo BioPharma Group plc"
+      }
+    },
+    "MDGL": {
+      "name": "Madrigal Pharmaceuticals, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Madrigal Pharmaceuticals, Inc. Common Stock",
+        "yfinance": "Madrigal Pharmaceuticals, Inc.",
+        "short": "Madrigal Pharmaceuticals, Inc."
+      }
+    },
+    "KZR": {
+      "name": "Kezar Life Sciences, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Kezar Life Sciences, Inc. Common Stock",
+        "yfinance": "Kezar Life Sciences, Inc.",
+        "short": "Kezar Life Sciences, Inc."
+      }
+    },
+    "GALT": {
+      "name": "Galectin Therapeutics Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Galectin Therapeutics Inc.",
+        "yfinance": "Galectin Therapeutics Inc.",
+        "short": "Galectin Therapeutics Inc."
+      }
+    },
+    "ETNB": {
+      "name": "89bio, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "89bio, Inc. Common Stock",
+        "yfinance": "89bio, Inc.",
+        "short": "89bio, Inc."
+      }
+    },
+    "CMRX": {
+      "name": "Chimerix, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Chimerix, Inc.",
+        "yfinance": "Chimerix, Inc.",
+        "short": "Chimerix, Inc."
+      }
+    },
+    "CDTX": {
+      "name": "Cidara Therapeutics, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Cidara Therapeutics, Inc.",
+        "yfinance": "Cidara Therapeutics, Inc.",
+        "short": "Cidara Therapeutics, Inc."
+      }
+    },
+    "GYRE": {
+      "name": "Gyre Therapeutics, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Gyre Therapeutics, Inc. Common Stock",
+        "yfinance": "Gyre Therapeutics, Inc.",
+        "short": "Gyre Therapeutics, Inc."
+      }
+    },
+    "AGEN": {
+      "name": "Agenus Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Agenus Inc.",
+        "yfinance": "Agenus Inc.",
+        "short": "Agenus Inc."
+      }
+    },
+    "ABUS": {
+      "name": "Arbutus Biopharma Corporation",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Arbutus Biopharma Corporation Common Stock",
+        "yfinance": "Arbutus Biopharma Corporation",
+        "short": "Arbutus Biopharma Corporation"
+      }
+    },
+    "ABCL": {
+      "name": "AbCellera Biologics Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "AbCellera Biologics Inc. Common Shares",
+        "yfinance": "AbCellera Biologics Inc.",
+        "short": "AbCellera Biologics Inc."
+      }
+    },
+    "LOGC": {
+      "name": "ContextLogic Inc.",
+      "sector": "Consumer Cyclical",
+      "industry": "Internet Retail",
+      "names": {
+        "polygon": "ContextLogic Inc. Class A Common Stock",
+        "yfinance": "ContextLogic Inc.",
+        "short": "ContextLogic Inc."
+      }
+    },
+    "ADVM": {
+      "name": "Adverum Biotechnologies, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Adverum Biotechnologies, Inc. Common Stock",
+        "yfinance": "Adverum Biotechnologies, Inc.",
+        "short": "Adverum Biotechnologies, Inc."
+      }
+    },
+    "SNY": {
+      "name": "Sanofi",
+      "sector": "Healthcare",
+      "industry": "Drug Manufacturers - General",
+      "names": {
+        "polygon": "Sanofi American Depositary Shares (Each representing one-half of one ordinary share)",
+        "yfinance": "Sanofi",
+        "short": "Sanofi"
+      }
+    },
+    "MRSN": {
+      "name": "Mersana Therapeutics, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Mersana Therapeutics, Inc. Common Stock",
+        "yfinance": "Mersana Therapeutics, Inc.",
+        "short": "Mersana Therapeutics, Inc."
+      }
+    },
+    "TCRT": {
+      "name": "Alaunos Therapeutics, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "Alaunos Therapeutics, Inc. Common Stock",
+        "yfinance": "Alaunos Therapeutics, Inc.",
+        "short": "Alaunos Therapeutics, Inc."
+      }
+    },
+    "ASRT": {
+      "name": "Assertio Holdings, Inc.",
+      "sector": "Healthcare",
+      "industry": "Drug Manufacturers - Specialty & Generic",
+      "names": {
+        "polygon": "Assertio Holdings, Inc. Common Stock",
+        "yfinance": "Assertio Holdings, Inc.",
+        "short": "Assertio Holdings, Inc."
+      }
+    },
+    "ABBV": {
+      "name": "AbbVie Inc.",
+      "sector": "Healthcare",
+      "industry": "Drug Manufacturers - General",
+      "names": {
+        "polygon": "ABBVIE INC.",
+        "yfinance": "AbbVie Inc.",
+        "short": "AbbVie Inc."
+      }
+    },
+    "ADMA": {
+      "name": "ADMA Biologics, Inc.",
+      "sector": "Healthcare",
+      "industry": "Biotechnology",
+      "names": {
+        "polygon": "ADMA Biologics, Inc.",
+        "yfinance": "ADMA Biologics, Inc.",
+        "short": "ADMA Biologics Inc"
+      }
+    },
+    "RKLB": {
+      "name": "Rocket Lab USA, Inc.",
+      "sector": "Industrials",
+      "industry": "Aerospace & Defense",
+      "names": {
+        "polygon": "Rocket Lab USA, Inc. Common Stock",
+        "yfinance": "Rocket Lab USA, Inc.",
+        "short": "Rocket Lab USA, Inc."
+      }
+    }
+  }
+}

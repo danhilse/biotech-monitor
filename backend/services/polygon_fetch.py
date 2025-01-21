@@ -542,7 +542,7 @@ class HybridDataFetcher:
                 endpoint = f"/v3/reference/tickers/{symbol}"
                 polygon_data = self._make_request(endpoint)
                 
-                if polygon_data and 'results' in polygon_data:
+                if (polygon_data and 'results' in polygon_data):
                     results = polygon_data['results']
                     branding = results.get('branding', {})
                     
@@ -1020,6 +1020,12 @@ class HybridDataFetcher:
                     "symbol": symbol,
                     "timestamp": datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
                     # Enhanced company info
+                        # Company names
+                    "names": {
+                        "long": company_details['names'].get('yfinance'),
+                        "short": company_details['names'].get('short'),
+                        "polygon": company_details['names'].get('polygon')
+                    },
                     "sector": company_details['sector'],
                     "industry": company_details['industry'],
                     "description": company_details['description'],
@@ -1120,51 +1126,30 @@ class HybridDataFetcher:
         
         return market_data
 
+from data.ticker_manager import TickerManager
+
 def main():
-    POLYGON_KEY = "WL7rkKMQGlEpcRy_GogYH6hyclU8sOnq"
+    POLYGON_KEY = os.getenv('POLYGON_API_KEY')
     
-    # Test with a smaller list first
-    # tickers = ["VERA", "ANIX", "INMB", "GUTS"]  # Add your full list here    
-    
-    # tickers = ["VERA", "MIRA"]  # Add your full list here    
-    tickers = ["VERA", "ANIX", "INMB", "GUTS", "MIRA", "EYPT", "GNPX", "GLUE", "TGTX", "AUPH", 
-               "ITCI", "CLOV", "CERE", "IPHA", "MDWD", "ZYME", "ASMB", "JAZZ", "PRTA", "TMDX",
-               "GILD", "NTNX", "INAB", "MNPR", "APVO", "HRMY", "BHC", "BCRX", "GRTX", "AXSM",
-               "SMMT", "SAGE", "MYNZ", "GMAB", "LUMO", "NEO", "ARCT", "TEVA", "VMD", "VERU",
-               "VRCA", "SIGA", "INMD", "EXEL", "CPRX", "HALO", "NVOS", "ATAI", "BNGO", "ENOV",
-               "BIIB", "MIST", "ARDX", "CVM", "ACLS", "IDYA", "RYTM", "TWST", "STEM", "GERN",
-               "VIR", "ALKS", "AMPH", "SVRA", "EVLO", "GH", "NTLA", "MRTX", "SRPT", "RARE",
-               "TRVI", "PGEN", "EVH", "ARQT", "QNRX", "SYRS", "GTHX", "MNKD", "XERS", "SNDX",
-               "PRTK", "PLRX", "MREO", "MDGL", "KZR", "GALT", "ETNB", "EPZM", "CMRX", "CDTX",
-    
-               "GYRE", "CBAY", "AGEN", "ABUS", "ABCL", "LOGC", "BLCM", "ADVM", "SNY", "MRSN",
-               "TCRT", "ASRT", "ABBV", "ADMA", "RKLB"]  # Add your full list here
+    # Use TickerManager to get tickers
+    ticker_manager = TickerManager()
+    tickers = ticker_manager.get_tickers()
     
     fetcher = HybridDataFetcher(POLYGON_KEY)
     market_data = fetcher.fetch_market_data(tickers)
     
-    print("\nStocks with alerts:")
-    alerts = [stock for stock in market_data if stock['alerts'] > 0]
-    alerts.sort(key=lambda x: x['alerts'], reverse=True)
-    
-    for stock in alerts:
-        print(f"\n{stock['symbol']} ({stock['sector']}): {stock['alerts']} alerts")
-        print(f"  Price: ${stock['price']:.2f} ({stock['priceChange']:.2f}%)")
-        if stock['technicals']['rsi']:
-            print(f"  RSI: {stock['technicals']['rsi']:.2f}")
+    # Save market data to a separate JSON file
+    try:
+        cleaned_data, nan_fields = fetcher.validate_numeric_fields(market_data)
+        output_dir = os.path.join(os.path.dirname(__file__), '../../frontend/public/data')
+        os.makedirs(output_dir, exist_ok=True)
         
-        if stock['alertDetails']['priceAlert']:
-            print("  - Major price movement")
-        if stock['alertDetails']['volumeSpike20']:
-            print("  - Major volume spike")
-        if stock['alertDetails']['insiderAlert']:
-            print(f"  - Recent insider activity: {len(stock['insiderActivity']['notable_trades'])} notable trades")
-        if stock['alertDetails']['newsAlert']:
-            print("  - Recent news:")
-            for article in stock['recentNews'][:2]:
-                print(f"    * {article['title']}")
-        if stock['alertDetails']['technicalAlert']:
-            print(f"  - Technical alert (RSI: {stock['technicals']['rsi']:.2f})")
+        with open(os.path.join(output_dir, 'market_data.json'), 'w') as f:
+            json.dump(cleaned_data, f, indent=2)
+        print(f"Saved data for {len(market_data)} stocks")
+        
+    except Exception as e:
+        print(f"Error saving market data: {str(e)}")
 
 if __name__ == "__main__":
     main()
