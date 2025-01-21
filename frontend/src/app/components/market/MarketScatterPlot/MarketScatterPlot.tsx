@@ -57,7 +57,7 @@ const calculateStandardDeviation = (values: number[]): number => {
   return Math.sqrt(variance);
 };
 
-const filterOutliers = (data: Stock[], mode: OutlierMode, stdDevMultiplier = 2.8): Stock[] => {
+const filterOutliers = (data: Stock[], mode: OutlierMode, stdDevMultiplier = 4): Stock[] => {
   if (mode === 'all') return data;
 
   const priceChanges = data.map(d => d.priceChange);

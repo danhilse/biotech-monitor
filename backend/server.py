@@ -10,8 +10,13 @@ import json
 from pathlib import Path
 from dotenv import load_dotenv
 import asyncio
-from services.progress_tracker import ProgressTracker as progress_tracker
+from services.progress_tracker import get_progress_tracker
 from services.polygon_fetch import main as fetch_data
+from fastapi.responses import JSONResponse
+
+progress_tracker = get_progress_tracker()
+
+
 
 # Load environment variables
 load_dotenv()
@@ -20,13 +25,14 @@ POLYGON_KEY = os.getenv('POLYGON_API_KEY')
 # Initialize FastAPI app once
 app = FastAPI()
 
-# Add CORS middleware
+# In server.py, update the CORS middleware configuration
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000"],
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allow_headers=["Content-Type", "Accept", "Authorization"],
+    expose_headers=["*"],
 )
 
 # Initialize manager once
@@ -157,23 +163,68 @@ async def get_refresh_status():
 @app.post("/api/market-data/refresh")
 async def refresh_market_data():
     """Trigger a refresh of market data"""
-    if progress_tracker.is_running:
-        return {"status": "error", "message": "Data collection already in progress"}
-    
     try:
+        if progress_tracker.is_running:
+            return JSONResponse(
+                content={
+                    "status": "error",
+                    "message": "Data collection already in progress"
+                },
+                status_code=409
+            )
+        
+        # Reset the tracker before starting new collection
+        progress_tracker.reset()
+        
+        # Create task
         asyncio.create_task(run_data_collection())
-        return {"status": "started", "message": "Market data refresh started"}
+        
+        return JSONResponse(
+            content={
+                "status": "started",
+                "message": "Market data refresh started"
+            },
+            status_code=200
+        )
+            
     except Exception as e:
-        progress_tracker.set_error(str(e))
-        raise HTTPException(status_code=500, detail=f"Failed to start market data refresh: {str(e)}")
+        error_msg = str(e)
+        progress_tracker.set_error(error_msg)
+        return JSONResponse(
+            content={
+                "status": "error",
+                "message": error_msg
+            },
+            status_code=500
+        )
+
+@app.get("/api/market-data/refresh/status")
+async def get_refresh_status():
+    """Get the current status of market data refresh"""
+    return progress_tracker.get_status()
 
 async def run_data_collection():
     """Run the data collection process"""
-    success = await asyncio.to_thread(fetch_data)
-    if success:
-        # Trigger any necessary cleanup or notifications
-        pass
-    return success
+    try:
+        # Get list of tickers to process
+        tickers = manager.get_tickers()
+        total_tickers = len(tickers)
+        
+        # Start collection with total tickers count
+        progress_tracker.start_collection(total_tickers)
+        
+        success = await asyncio.to_thread(fetch_data)
+        
+        if success:
+            progress_tracker.complete()
+        else:
+            progress_tracker.set_error("Data collection failed")
+            
+        return success
+    except Exception as e:
+        error_msg = f"Error in data collection: {str(e)}"
+        progress_tracker.set_error(error_msg)
+        return False
 
 def search_polygon(query: str) -> List[Dict[str, Any]]:
     """Search for tickers using Polygon.io API"""
@@ -198,3 +249,15 @@ def search_polygon(query: str) -> List[Dict[str, Any]]:
         return []
     
     return []
+
+@app.exception_handler(Exception)
+async def generic_exception_handler(request, exc):
+    print(f"Unhandled exception: {str(exc)}")  # Debug log
+    return JSONResponse(
+        status_code=500,
+        content={"status": "error", "message": str(exc)},
+        headers={
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+            "Access-Control-Allow-Credentials": "true",
+        }
+    )

@@ -84,43 +84,77 @@ const MarketDashboard = () => {
   };
 
   // Add this function to check refresh status
-  const checkRefreshStatus = async () => {
+  const handleRefresh = async () => {
+    setRefreshing(true);
+    setError(null);
+    
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/market-data/refresh/status`);
-      if (!response.ok) throw new Error('Failed to get refresh status');
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/market-data/refresh`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+      });
       
-      const status: RefreshStatus = await response.json();
-      setRefreshStatus(status);
+      const data = await response.json().catch(() => ({
+        status: 'error',
+        message: 'Failed to parse server response'
+      }));
       
-      if (status.status === 'running') {
-        // Continue polling
-        setTimeout(checkRefreshStatus, 1000);
-      } else if (status.status === 'complete') {
-        // Refresh the market data
-        await fetchData();
-        setRefreshing(false);
+      if (!response.ok || data?.status === 'error') {
+        throw new Error(data?.message || `Server error: ${response.status}`);
+      }
+      
+      // Start polling for status only if the refresh was started successfully
+      if (data?.status === 'started') {
+        checkRefreshStatus();
       }
     } catch (error) {
-      console.error('Error checking refresh status:', error);
+      console.error('Error triggering refresh:', error);
+      setError(`Failed to refresh data: ${error instanceof Error ? error.message : String(error)}`);
       setRefreshing(false);
     }
   };
-
-  // Update the handleRefresh function
-  const handleRefresh = async () => {
-    setRefreshing(true);
+  
+  const checkRefreshStatus = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/market-data/refresh`, {
-        method: 'POST'
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/market-data/refresh/status`,
+        {
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+  
+      // Try to parse the response as JSON even if it's an error
+      const data = await response.json().catch(() => null);
       
-      if (!response.ok) throw new Error('Failed to trigger refresh');
+      if (!response.ok) {
+        throw new Error(
+          data?.message || 
+          `Failed to get refresh status: ${response.status} ${response.statusText}`
+        );
+      }
       
-      // Start polling for status
-      checkRefreshStatus();
+      setRefreshStatus(data);
+      
+      if (data.status === 'running') {
+        // Continue polling
+        setTimeout(checkRefreshStatus, 1000);
+      } else if (data.status === 'complete') {
+        // Refresh the market data
+        await fetchData();
+        setRefreshing(false);
+        setRefreshStatus(null); // Clear the status
+      }
     } catch (error) {
-      console.error('Error triggering refresh:', error);
+      console.error('Error checking refresh status:', error);
+      setError(`Failed to check refresh status: ${error instanceof Error ? error.message : String(error)}`);
       setRefreshing(false);
+      setRefreshStatus(null); // Clear the status on error
     }
   };
 

@@ -14,7 +14,9 @@ import math
 from dotenv import load_dotenv
 import os
 
-from .progress_tracker import progress_tracker
+from .progress_tracker import get_progress_tracker
+
+progress_tracker = get_progress_tracker()
 
 
 load_dotenv()
@@ -1157,36 +1159,41 @@ def main():
         progress_tracker.set_error(error_msg)
         return False
     
-    # Initialize progress tracking with total number of tickers
-    progress_tracker.start_collection(len(tickers))
-    
     try:
         fetcher = HybridDataFetcher(POLYGON_KEY)
         
-        # Update progress as we fetch each ticker
-        for i, ticker in enumerate(tickers, 1):
+        # Initialize progress tracking with total number of tickers
+        progress_tracker.start_collection(len(tickers))
+        all_market_data = []
+        
+        # Process each ticker individually
+        for ticker in tickers:
             try:
-                # Update progress before processing each ticker
+                # Update progress for current ticker
                 progress_tracker.update_progress(ticker)
+                logger.info(f"Processing {ticker}")
                 
-                logger.info(f"Processing {ticker} ({i}/{len(tickers)})")
+                # Fetch data for this individual ticker
+                ticker_data = fetcher.fetch_market_data([ticker])
+                if ticker_data:
+                    all_market_data.extend(ticker_data)
+                
+                # Add a small delay to prevent rate limiting
+                time.sleep(0.2)
                 
             except Exception as e:
                 logger.error(f"Error processing {ticker}: {str(e)}")
                 # Continue with next ticker rather than failing entirely
                 continue
         
-        # Fetch all market data
-        market_data = fetcher.fetch_market_data(tickers)
-        
-        if not market_data:
-            error_msg = "No market data returned from fetch_market_data"
+        if not all_market_data:
+            error_msg = "No market data collected"
             logger.error(error_msg)
             progress_tracker.set_error(error_msg)
             return False
-            
-        # Process and save the collected data
-        cleaned_data, nan_fields = fetcher.validate_numeric_fields(market_data)
+        
+        # Clean and save the collected data
+        cleaned_data, nan_fields = fetcher.validate_numeric_fields(all_market_data)
         
         # Save to data directory in project root
         data_dir = get_project_root() / 'data'
@@ -1206,6 +1213,6 @@ def main():
         logger.error(error_msg)
         progress_tracker.set_error(error_msg)
         return False
-
+    
 if __name__ == "__main__":
     main()
