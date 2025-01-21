@@ -32,10 +32,10 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
   const [marketData, setMarketData] = useState<Record<string, { price: number; priceChange: number }>>({});
   const [searchQuery, setSearchQuery] = useState('');
   const [debouncedQuery, setDebouncedQuery] = useState('');
-  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [searchResults, setSearchResults] = useState<Stock[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [confirmTicker, setConfirmTicker] = useState<any | null>(null);
+  const [confirmTicker, setConfirmTicker] = useState<Stock | null>(null);
   const [deleteConfirm, setDeleteConfirm] = useState<DeleteConfirmation | null>(null);
 
 
@@ -108,7 +108,7 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
     }
   };
 
-  const handleAddTicker = (ticker: any) => {
+  const handleAddTicker = (ticker: Stock) => {
     setConfirmTicker(ticker);
   };
 
@@ -193,7 +193,7 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
             )}
 
             {!loading && searchResults.length > 0 && (
-              <div className="space-y-2">
+              <div className="space-y-2 grid grid-cols-3 gap-4">
                 {searchResults.map((result) => (
                   <div 
                     key={result.symbol} 

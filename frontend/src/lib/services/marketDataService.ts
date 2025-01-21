@@ -13,12 +13,14 @@ class StaticMarketDataService implements MarketDataService {
   private readonly CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
   private isFetching: boolean = false;
 
-  private validateStockData(data: any[]): boolean {
+  private validateStockData(data: unknown[]): boolean {
     return Array.isArray(data) && data.every(item => 
       item && 
       typeof item === 'object' &&
-      typeof item.symbol === 'string' &&
-      !isNaN(Number(item.price))
+      'symbol' in item &&
+      typeof (item as { symbol: string }).symbol === 'string' &&
+      'price' in item &&
+      !isNaN(Number((item as { price: number }).price))
     );
   }
 
@@ -53,7 +55,10 @@ class StaticMarketDataService implements MarketDataService {
     this.isFetching = true;
 
     try {
-      // Update the URL to include the backend server address
+      if (!this.API_URL) {
+        throw new Error('API URL is not configured. Please check your environment variables.');
+      }
+
       const response = await fetch(`${this.API_URL}/api/market-data`, {
         headers: {
           'Cache-Control': 'no-cache',
@@ -62,13 +67,14 @@ class StaticMarketDataService implements MarketDataService {
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const errorText = await response.text().catch(() => 'Unknown error');
+        throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
       }
 
       const data = await response.json();
 
       if (!this.validateStockData(data)) {
-        throw new Error('Invalid market data format');
+        throw new Error('Invalid market data format received from server');
       }
 
       this.cache = data;
@@ -78,11 +84,12 @@ class StaticMarketDataService implements MarketDataService {
 
     } catch (error) {
       console.error('Market data fetch error:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
       if (this.cache.length > 0) {
-        console.warn('Returning cached data due to fetch error');
+        console.warn('Returning cached data due to fetch error:', errorMessage);
         return this.cache;
       }
-      throw error;
+      throw new Error(`Failed to fetch market data: ${errorMessage}`);
     } finally {
       this.isFetching = false;
     }

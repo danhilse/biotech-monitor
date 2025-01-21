@@ -171,6 +171,11 @@ export interface AlertDetails {
 export interface Stock {
   symbol: string;
   timestamp: string;
+  names: {
+    long: string,
+    short: string,
+    polygon: string
+  },
   sector: string;
   industry: string;
   description: string;
