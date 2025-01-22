@@ -206,7 +206,7 @@ const MarketDashboard = () => {
 
 
   return (
-    <div className="w-full space-y-6 p-6 bg-gray-50 min-h-screen">
+    <div className="w-full space-y-6 p-6 bg-gray-50 min-h-screen" key={key}>
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <div className="space-y-4">
           <div className="flex justify-between items-center bg-white p-4 rounded-lg shadow-sm">
@@ -274,7 +274,7 @@ const MarketDashboard = () => {
           )}
         </div>
 
-        <TabsContent value="market" className="mt-6" key={key}>
+        <TabsContent value="market" className="mt-6" >
           <div 
             className="grid grid-cols-1 gap-6" 
             onClick={handleOutsideClick}
