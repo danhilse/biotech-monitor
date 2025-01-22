@@ -43,16 +43,6 @@ const MarketDashboard = () => {
   const [refreshing, setRefreshing] = useState(false);
   const [key, setKey] = useState(0);
 
-
-  const handleOutsideClick = (event: React.MouseEvent) => {
-    // Only reset if clicking directly on the container (not its children)
-    if (event.target === event.currentTarget) {
-      setSelectedStock(null);
-    }
-  };
- 
-  
-  
   const fetchData = async () => {
     setLoading(true);
     setError(null);
@@ -66,11 +56,59 @@ const MarketDashboard = () => {
     }
   };
 
+  // Function to adjust and format the timestamp
+  const formatLastUpdated = (date: Date | null) => {
+    if (!date) return null;
+    
+    // Subtract 6 hours
+    const adjustedDate = new Date(date.getTime() - (6 * 60 * 60 * 1000));
+    
+    return adjustedDate.toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true
+    });
+  };
+
   useEffect(() => {
+    fetchData();
+    const interval = setInterval(fetchData, 5 * 60 * 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Get and format the last updated time
+  const formattedLastUpdated = formatLastUpdated(marketDataService.getLastUpdated());
+
+
+  useEffect(() => {
+    // Immediately invoke fetchData
     fetchData();
     const interval = setInterval(fetchData, 5 * 60 * 1000); // Refresh every 5 minutes
     return () => clearInterval(interval);
-  }, []);
+  }, []); // Empty dependency array since fetchData doesn't depend on any props or state
+
+  if (loading && marketData.length === 0) {
+    return (
+      <div className="w-full h-96 flex items-center justify-center bg-gray-50 rounded-lg">
+        <div className="text-center">
+          <RefreshCw className="w-8 h-8 animate-spin mx-auto mb-4 text-blue-500" />
+          <p className="text-gray-600 font-medium">Loading market data...</p>
+        </div>
+      </div>
+    );
+  }
+
+
+
+
+  const handleOutsideClick = (event: React.MouseEvent) => {
+    // Only reset if clicking directly on the container (not its children)
+    if (event.target === event.currentTarget) {
+      setSelectedStock(null);
+    }
+  };
+ 
+  
 
 
   if (loading && marketData.length === 0) {
@@ -177,21 +215,6 @@ const MarketDashboard = () => {
   
 
 
-  // Function to adjust and format the timestamp
-  const formatLastUpdated = (date: Date | null) => {
-    if (!date) return null;
-    
-    // Subtract 6 hours
-    const adjustedDate = new Date(date.getTime() - (6 * 60 * 60 * 1000));
-    
-    return adjustedDate.toLocaleTimeString('en-US', {
-      hour: 'numeric',
-      minute: '2-digit',
-      hour12: true
-    });
-  };
-
-  const lastUpdated = formatLastUpdated(marketDataService.getLastUpdated());
 
 
   return (
@@ -220,7 +243,7 @@ const MarketDashboard = () => {
             <div className="flex items-center gap-4">
               <div className="text-sm text-gray-500 flex items-center">
                 <Circle className="w-2 h-2 text-green-500 mr-2 animate-pulse" />
-                {lastUpdated && `Last updated: ${lastUpdated}`}
+                {formattedLastUpdated && `Last updated: ${formattedLastUpdated}`}
                 </div>
               <button 
                 onClick={handleRefresh}
