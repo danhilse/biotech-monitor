@@ -42,6 +42,8 @@ const MarketDashboard = () => {
   const [refreshStatus, setRefreshStatus] = useState<RefreshStatus | null>(null);
   const [refreshing, setRefreshing] = useState(false);
   const [key, setKey] = useState(0);
+  const [lastUpdated, setLastUpdated] = useState<Date | null>(marketDataService.getLastUpdated());
+
 
   // Function to adjust and format the timestamp
   const formatLastUpdated = (date: Date | null) => {
@@ -65,6 +67,8 @@ const MarketDashboard = () => {
       const data = await marketDataService.fetchMarketData();
       console.log('Received market data:', data); // Add debug log
       setMarketData(data);
+      setLastUpdated(marketDataService.getLastUpdated());
+
     } catch (err) {
       console.error('Error fetching market data:', err); // Add debug log
       setError('Failed to load market data: ' + String(err));
@@ -93,7 +97,7 @@ const MarketDashboard = () => {
     );
   }
 
-  const formattedLastUpdated = formatLastUpdated(marketDataService.getLastUpdated());
+  const formattedLastUpdated = formatLastUpdated(lastUpdated);
 
 
 
