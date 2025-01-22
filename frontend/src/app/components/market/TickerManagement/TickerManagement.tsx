@@ -31,14 +31,23 @@ interface DeleteConfirmation {
 
 const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) => {
   const [managedTickers, setManagedTickers] = useState<Stock[]>([]);
-  const [marketData] = useState<Record<string, { price: number; priceChange: number; volume: number }>>({});
-  const [searchQuery, setSearchQuery] = useState('');
-  const [debouncedQuery] = useState('');
+  const [marketData, setMarketData] = useState<Record<string, { price: number; priceChange: number; volume: number }>>({});
   const [searchResults, setSearchResults] = useState<Stock[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [confirmTicker, setConfirmTicker] = useState<Stock | null>(null);
   const [deleteConfirm, setDeleteConfirm] = useState<DeleteConfirmation | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [debouncedQuery, setDebouncedQuery] = useState('');
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedQuery(searchQuery);
+    }, 300);  // 300ms delay
+    
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
+  
 
     // At the top of the component, add:
   useEffect(() => {
@@ -47,11 +56,11 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
 
   const loadManagedTickers = async () => {
     try {
-      console.log('Starting to load managed tickers...'); // Debug log
+      console.log('Starting to load managed tickers...');
       
       // Load market data for prices
       const data = await marketDataService.fetchMarketData();
-      console.log('Fetched market data:', data); // Debug log
+      console.log('Fetched market data:', data);
       
       const marketDataMap = data.reduce((acc, stock) => {
         acc[stock.symbol] = {
@@ -61,6 +70,9 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
         };
         return acc;
       }, {} as Record<string, { price: number; priceChange: number; volume: number }>);
+      
+      // Set the market data state
+      setMarketData(marketDataMap);  // Add this line
       
       // Load full ticker list with details
       console.log('Fetching managed tickers...'); // Debug log
@@ -263,7 +275,7 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
           <CardTitle>Managed Tickers</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="space-y-2">
+          <div className="space-y-2 grid grid-cols-3 gap-4">  {/* Changed from just space-y-2 */}
             {managedTickers.map((stock) => (
               <div 
                 key={stock.symbol} 
