@@ -6,4 +6,6 @@ Description=Biotech Data Collection Service
 Type=oneshot
 User=biotech
 WorkingDirectory=/opt/biotech-dashboard/scripts
-ExecStart=/usr/bin/python3 polygon_fetch.py
+Environment="PATH=/opt/biotech-dashboard/venv/bin"
+EnvironmentFile=/opt/biotech-dashboard/.env
+ExecStart=/opt/biotech-dashboard/venv/bin/python polygon_fetch.py

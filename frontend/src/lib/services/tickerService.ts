@@ -9,7 +9,7 @@ interface TickerService {
 }
 
 class StaticTickerService implements TickerService {
-  private readonly API_BASE = 'http://localhost:8000/api';
+  private readonly API_BASE = `${process.env.NEXT_PUBLIC_API_URL}/api`;
 
   async searchTickers(query: string): Promise<SearchResult[]> {
     try {

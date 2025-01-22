@@ -24,9 +24,6 @@ from scripts.polygon_fetch import main as fetch_data
 progress_tracker = get_progress_tracker()
 
 
-
-
-
 # Load environment variables from known production path
 env_path = Path("/opt/biotech-dashboard/.env")
 load_dotenv(env_path)
@@ -41,12 +38,16 @@ app = FastAPI()
 # In server.py, update the CORS middleware configuration
 origins = [
     "http://localhost:3000",
-    "http://127.0.0.1:3000"
+    "http://127.0.0.1:3000",
+    "https://biotech-monitor.vercel.app"
 ]
 
-# Add your production domain when ready
 if os.getenv('ENV') == 'production':
-    origins.append("https://biotech-monitor.vercel.app")  # Replace with your actual domain
+    # Add the nip.io domain
+    origins.extend([
+        "https://143-198-239-53.nip.io",
+        "https://biotech-monitor.vercel.app"
+    ])
 
 app.add_middleware(
     CORSMiddleware,
