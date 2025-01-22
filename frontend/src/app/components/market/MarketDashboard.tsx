@@ -72,7 +72,6 @@ const MarketDashboard = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const lastUpdated = marketDataService.getLastUpdated();
 
   if (loading && marketData.length === 0) {
     return (
@@ -89,7 +88,60 @@ const MarketDashboard = () => {
     setSelectedStock(stock);
   };
 
-  // Add this function to check refresh status
+  const POLLING_INTERVAL = 5000; // Check every 5 seconds
+  const REQUEST_TIMEOUT = 20000; // 20 second timeout for each request
+  
+  const checkRefreshStatus = async () => {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT);
+  
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/market-data/refresh/status`,
+        {
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          signal: controller.signal
+        }
+      );
+  
+      clearTimeout(timeoutId);
+      
+      const data = await response.json().catch(() => null);
+      
+      if (!response.ok) {
+        throw new Error(
+          data?.message || 
+          `Failed to get refresh status: ${response.status} ${response.statusText}`
+        );
+      }
+      
+      setRefreshStatus(data);
+      
+      if (data.status === 'running') {
+        setTimeout(checkRefreshStatus, POLLING_INTERVAL);
+      } else if (data.status === 'complete') {
+        await fetchData();
+        setRefreshing(false);
+        setRefreshStatus(null);
+        setKey(prev => prev + 1);
+      }
+    } catch (error) {
+      console.error('Error checking refresh status:', error);
+      
+      if (error instanceof Error && error.name === 'AbortError') {
+        setTimeout(checkRefreshStatus, POLLING_INTERVAL * 2);
+      } else {
+        setError(`Failed to check refresh status: ${error instanceof Error ? error.message : String(error)}`);
+        setRefreshing(false);
+        setRefreshStatus(null);
+      }
+    }
+  };
+  
+  // Remove the refresh timeout useEffect entirely and just handle starting the polling in handleRefresh
   const handleRefresh = async () => {
     setRefreshing(true);
     setError(null);
@@ -123,48 +175,23 @@ const MarketDashboard = () => {
     }
   };
   
-  const checkRefreshStatus = async () => {
-    try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/market-data/refresh/status`,
-        {
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-  
-      const data = await response.json().catch(() => null);
-      
-      if (!response.ok) {
-        throw new Error(
-          data?.message || 
-          `Failed to get refresh status: ${response.status} ${response.statusText}`
-        );
-      }
-      
-      setRefreshStatus(data);
-      
-      if (data.status === 'running') {
-        // Continue polling
-        setTimeout(checkRefreshStatus, 1000);
-      } else if (data.status === 'complete') {
-        // Refresh the market data and update components
-        await fetchData();
-        setRefreshing(false);
-        setRefreshStatus(null);
-        
-        // Force re-render of child components by updating a key
-        setKey(prev => prev + 1); // Add this state variable
-      }
-    } catch (error) {
-      console.error('Error checking refresh status:', error);
-      setError(`Failed to check refresh status: ${error instanceof Error ? error.message : String(error)}`);
-      setRefreshing(false);
-      setRefreshStatus(null);
-    }
+
+
+  // Function to adjust and format the timestamp
+  const formatLastUpdated = (date: Date | null) => {
+    if (!date) return null;
+    
+    // Subtract 6 hours
+    const adjustedDate = new Date(date.getTime() - (6 * 60 * 60 * 1000));
+    
+    return adjustedDate.toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true
+    });
   };
+
+  const lastUpdated = formatLastUpdated(marketDataService.getLastUpdated());
 
 
   return (
@@ -193,8 +220,8 @@ const MarketDashboard = () => {
             <div className="flex items-center gap-4">
               <div className="text-sm text-gray-500 flex items-center">
                 <Circle className="w-2 h-2 text-green-500 mr-2 animate-pulse" />
-                {lastUpdated && `Last updated: ${lastUpdated.toLocaleTimeString()}`}
-              </div>
+                {lastUpdated && `Last updated: ${lastUpdated}`}
+                </div>
               <button 
                 onClick={handleRefresh}
                 disabled={refreshing}

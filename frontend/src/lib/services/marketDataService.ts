@@ -21,7 +21,7 @@ class StaticMarketDataService implements MarketDataService {
   private readonly API_URL = process.env.NEXT_PUBLIC_API_URL;
   private lastUpdated: Date | null = null;
   private cache: Stock[] = [];
-  private readonly CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+  private readonly CACHE_DURATION = 10 * 60 * 1000; // 5 minutes
   private isFetching: boolean = false;
 
   private validateStockData(data: unknown[]): data is Stock[] {
@@ -38,11 +38,12 @@ class StaticMarketDataService implements MarketDataService {
   }
 
   private isDataValid(): boolean {
-    return (
-      this.cache.length > 0 &&
-      this.lastUpdated !== null &&
-      Date.now() - this.lastUpdated.getTime() < this.CACHE_DURATION
-    );
+    return true;
+    // return (
+    //   this.cache.length > 0 &&
+    //   this.lastUpdated !== null &&
+    //   Date.now() - this.lastUpdated.getTime() < this.CACHE_DURATION
+    // );
   }
 
   private waitForCache(): Promise<Stock[]> {
