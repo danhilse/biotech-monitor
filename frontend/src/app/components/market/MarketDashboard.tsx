@@ -43,19 +43,6 @@ const MarketDashboard = () => {
   const [refreshing, setRefreshing] = useState(false);
   const [key, setKey] = useState(0);
 
-  const fetchData = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const data = await marketDataService.fetchMarketData();
-      setMarketData(data);
-    } catch (err) {
-      setError('Failed to load market data: ' + String(err));
-    } finally {
-      setLoading(false);
-    }
-  };
-
   // Function to adjust and format the timestamp
   const formatLastUpdated = (date: Date | null) => {
     if (!date) return null;
@@ -70,22 +57,30 @@ const MarketDashboard = () => {
     });
   };
 
+  const fetchData = async () => {
+    console.log('Fetching market data...'); // Add debug log
+    setLoading(true);
+    setError(null);
+    try {
+      const data = await marketDataService.fetchMarketData();
+      console.log('Received market data:', data); // Add debug log
+      setMarketData(data);
+    } catch (err) {
+      console.error('Error fetching market data:', err); // Add debug log
+      setError('Failed to load market data: ' + String(err));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Keep only one useEffect for data fetching
   useEffect(() => {
+    console.log('Initial useEffect running'); // Add debug log
     fetchData();
     const interval = setInterval(fetchData, 5 * 60 * 1000);
     return () => clearInterval(interval);
   }, []);
 
-  // Get and format the last updated time
-  const formattedLastUpdated = formatLastUpdated(marketDataService.getLastUpdated());
-
-
-  useEffect(() => {
-    // Immediately invoke fetchData
-    fetchData();
-    const interval = setInterval(fetchData, 5 * 60 * 1000); // Refresh every 5 minutes
-    return () => clearInterval(interval);
-  }, []); // Empty dependency array since fetchData doesn't depend on any props or state
 
   if (loading && marketData.length === 0) {
     return (
@@ -98,6 +93,7 @@ const MarketDashboard = () => {
     );
   }
 
+  const formattedLastUpdated = formatLastUpdated(marketDataService.getLastUpdated());
 
 
 
@@ -107,20 +103,7 @@ const MarketDashboard = () => {
       setSelectedStock(null);
     }
   };
- 
-  
 
-
-  if (loading && marketData.length === 0) {
-    return (
-      <div className="w-full h-96 flex items-center justify-center bg-gray-50 rounded-lg">
-        <div className="text-center">
-          <RefreshCw className="w-8 h-8 animate-spin mx-auto mb-4 text-blue-500" />
-          <p className="text-gray-600 font-medium">Loading market data...</p>
-        </div>
-      </div>
-    );
-  }
 
   const handleStockSelect = (stock: Stock | null) => {
     setSelectedStock(stock);

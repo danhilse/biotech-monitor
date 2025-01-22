@@ -38,12 +38,7 @@ class StaticMarketDataService implements MarketDataService {
   }
 
   private isDataValid(): boolean {
-    return true;
-    // return (
-    //   this.cache.length > 0 &&
-    //   this.lastUpdated !== null &&
-    //   Date.now() - this.lastUpdated.getTime() < this.CACHE_DURATION
-    // );
+    return this.cache.length > 0;
   }
 
   private waitForCache(): Promise<Stock[]> {
@@ -58,7 +53,14 @@ class StaticMarketDataService implements MarketDataService {
   }
 
   async fetchMarketData(): Promise<Stock[]> {
+    console.log('Fetching market data, cache status:', {
+      cacheLength: this.cache.length,
+      lastUpdated: this.lastUpdated,
+      isValid: this.isDataValid()
+    });
+  
     if (this.isDataValid()) {
+      console.log('Returning cached data');
       return this.cache;
     }
 
