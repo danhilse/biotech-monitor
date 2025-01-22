@@ -33,6 +33,9 @@ interface RefreshStatus {
 
 
 const MarketDashboard = () => {
+  // Function to adjust and format the timestamp
+
+  
   const [marketData, setMarketData] = useState<Stock[]>([]);
   const [selectedStock, setSelectedStock] = useState<Stock | null>(null);
   const [loading, setLoading] = useState(true);
@@ -45,19 +48,7 @@ const MarketDashboard = () => {
   const [lastUpdated, setLastUpdated] = useState<Date | null>(marketDataService.getLastUpdated());
 
 
-  // Function to adjust and format the timestamp
-  const formatLastUpdated = (date: Date | null) => {
-    if (!date) return null;
-    
-    // Subtract 6 hours
-    const adjustedDate = new Date(date.getTime() - (6 * 60 * 60 * 1000));
-    
-    return adjustedDate.toLocaleTimeString('en-US', {
-      hour: 'numeric',
-      minute: '2-digit',
-      hour12: true
-    });
-  };
+
 
   const fetchData = async () => {
     console.log('Fetching market data...'); // Add debug log
