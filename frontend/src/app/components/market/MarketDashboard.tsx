@@ -48,7 +48,7 @@ const MarketDashboard = () => {
       setSelectedStock(null);
     }
   };
-
+ 
   
   
   const fetchData = async () => {
