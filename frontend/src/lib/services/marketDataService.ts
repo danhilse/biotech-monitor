@@ -4,6 +4,17 @@ import { Stock } from '../../app/components/market/types';
 interface MarketDataService {
   fetchMarketData(): Promise<Stock[]>;
   getLastUpdated(): Date | null;
+  refreshData(): Promise<void>;
+  checkRefreshStatus(): Promise<RefreshStatus>;
+}
+
+interface RefreshStatus {
+  status: 'idle' | 'running' | 'complete';
+  progress: number;
+  current_ticker: string;
+  total_tickers: number;
+  processed_tickers: number;
+  error: string | null;
 }
 
 class StaticMarketDataService implements MarketDataService {
@@ -13,14 +24,16 @@ class StaticMarketDataService implements MarketDataService {
   private readonly CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
   private isFetching: boolean = false;
 
-  private validateStockData(data: unknown[]): boolean {
+  private validateStockData(data: unknown[]): data is Stock[] {
     return Array.isArray(data) && data.every(item => 
       item && 
       typeof item === 'object' &&
       'symbol' in item &&
-      typeof (item as { symbol: string }).symbol === 'string' &&
+      typeof item.symbol === 'string' &&
       'price' in item &&
-      !isNaN(Number((item as { price: number }).price))
+      !isNaN(Number(item.price)) &&
+      'timestamp' in item &&
+      typeof item.timestamp === 'string'
     );
   }
 
@@ -77,14 +90,18 @@ class StaticMarketDataService implements MarketDataService {
         throw new Error('Invalid market data format received from server');
       }
 
+      // Update lastUpdated using the timestamp from the last item in the data array
+      if (data.length > 0) {
+        const lastItem = data[data.length - 1];
+        this.lastUpdated = new Date(lastItem.timestamp);
+      }
+      
       this.cache = data;
-      this.lastUpdated = new Date();
-
       return this.cache;
 
     } catch (error) {
       console.error('Market data fetch error:', error);
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
       if (this.cache.length > 0) {
         console.warn('Returning cached data due to fetch error:', errorMessage);
         return this.cache;
@@ -95,8 +112,65 @@ class StaticMarketDataService implements MarketDataService {
     }
   }
 
+  async refreshData(): Promise<void> {
+    if (!this.API_URL) {
+      throw new Error('API URL is not configured');
+    }
+
+    const response = await fetch(`${this.API_URL}/api/market-data/refresh`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      const data = await response.json().catch(() => null);
+      throw new Error(
+        data?.message || 
+        `Failed to refresh data: ${response.status} ${response.statusText}`
+      );
+    }
+
+    // Clear the cache to force a fresh fetch on next request
+    this.cache = [];
+    this.lastUpdated = null;
+  }
+
+  async checkRefreshStatus(): Promise<RefreshStatus> {
+    if (!this.API_URL) {
+      throw new Error('API URL is not configured');
+    }
+
+    const response = await fetch(
+      `${this.API_URL}/api/market-data/refresh/status`,
+      {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+
+    if (!response.ok) {
+      const data = await response.json().catch(() => null);
+      throw new Error(
+        data?.message || 
+        `Failed to get refresh status: ${response.status} ${response.statusText}`
+      );
+    }
+
+    return await response.json();
+  }
+
   getLastUpdated(): Date | null {
     return this.lastUpdated;
+  }
+
+  clearCache(): void {
+    this.cache = [];
+    this.lastUpdated = null;
   }
 }
 

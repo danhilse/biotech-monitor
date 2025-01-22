@@ -41,6 +41,8 @@ const MarketDashboard = () => {
   const [activeTab, setActiveTab] = useState('market');
   const [refreshStatus, setRefreshStatus] = useState<RefreshStatus | null>(null);
   const [refreshing, setRefreshing] = useState(false);
+  const [key, setKey] = useState(0);
+
 
   const handleOutsideClick = (event: React.MouseEvent) => {
     // Only reset if clicking directly on the container (not its children)
@@ -133,7 +135,6 @@ const MarketDashboard = () => {
         }
       );
   
-      // Try to parse the response as JSON even if it's an error
       const data = await response.json().catch(() => null);
       
       if (!response.ok) {
@@ -149,16 +150,19 @@ const MarketDashboard = () => {
         // Continue polling
         setTimeout(checkRefreshStatus, 1000);
       } else if (data.status === 'complete') {
-        // Refresh the market data
+        // Refresh the market data and update components
         await fetchData();
         setRefreshing(false);
-        setRefreshStatus(null); // Clear the status
+        setRefreshStatus(null);
+        
+        // Force re-render of child components by updating a key
+        setKey(prev => prev + 1); // Add this state variable
       }
     } catch (error) {
       console.error('Error checking refresh status:', error);
       setError(`Failed to check refresh status: ${error instanceof Error ? error.message : String(error)}`);
       setRefreshing(false);
-      setRefreshStatus(null); // Clear the status on error
+      setRefreshStatus(null);
     }
   };
 
@@ -230,7 +234,7 @@ const MarketDashboard = () => {
           )}
         </div>
 
-        <TabsContent value="market" className="mt-6">
+        <TabsContent value="market" className="mt-6" key={key}>
           <div 
             className="grid grid-cols-1 gap-6" 
             onClick={handleOutsideClick}
