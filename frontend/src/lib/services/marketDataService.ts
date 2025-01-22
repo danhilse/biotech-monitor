@@ -168,19 +168,19 @@ class StaticMarketDataService implements MarketDataService {
   }
 
   getLastUpdated(): Date | null {
-
     const this_date = this.lastUpdated;
     if (!this_date) return null;
     const adjustedDate = new Date(this_date.getTime() - (6 * 60 * 60 * 1000));
 
-    adjustedDate.toLocaleTimeString('en-US', {
-      hour: 'numeric',
+    adjustedDate.toLocaleString('en-US', {
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
       minute: '2-digit',
-      hour12: true
+      hour12: false
     });
 
     return adjustedDate;
-
   }
   // const formatLastUpdated = (date: Date | null) => {
   //   if (!date) return null;
