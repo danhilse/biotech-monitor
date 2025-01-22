@@ -65,7 +65,6 @@ const MarketDashboard = () => {
     setError(null);
     try {
       const data = await marketDataService.fetchMarketData();
-      console.log('Received market data:', data); // Add debug log
       setMarketData(data);
       setLastUpdated(marketDataService.getLastUpdated());
 
@@ -97,7 +96,7 @@ const MarketDashboard = () => {
     );
   }
 
-  const formattedLastUpdated = formatLastUpdated(lastUpdated);
+  // const formattedLastUpdated = formatLastUpdated(lastUpdated);
 
 
 
@@ -230,7 +229,8 @@ const MarketDashboard = () => {
             <div className="flex items-center gap-4">
               <div className="text-sm text-gray-500 flex items-center">
                 <Circle className="w-2 h-2 text-green-500 mr-2 animate-pulse" />
-                {formattedLastUpdated && `Last updated: ${formattedLastUpdated}`}
+                {/* {formattedLastUpdated && `Last updated: ${formattedLastUpdated}`} */}
+                {lastUpdated && `Last updated: ${lastUpdated}`}
                 </div>
               <button 
                 onClick={handleRefresh}
