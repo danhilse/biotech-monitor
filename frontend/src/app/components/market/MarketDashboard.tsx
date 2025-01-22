@@ -47,6 +47,17 @@ const MarketDashboard = () => {
   const [key, setKey] = useState(0);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(marketDataService.getLastUpdated());
 
+  const formatDate = (date: Date | null) => {
+    if (!date) return null;
+    return date.toLocaleString('en-US', {
+      month: 'short',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true
+    });
+  };
+
 
 
 
@@ -221,7 +232,8 @@ const MarketDashboard = () => {
               <div className="text-sm text-gray-500 flex items-center">
                 <Circle className="w-2 h-2 text-green-500 mr-2 animate-pulse" />
                 {/* {formattedLastUpdated && `Last updated: ${formattedLastUpdated}`} */}
-                {lastUpdated && `Last updated: ${lastUpdated}`}
+                {lastUpdated && `Last updated: ${formatDate(lastUpdated)}`}
+
                 </div>
               <button 
                 onClick={handleRefresh}
