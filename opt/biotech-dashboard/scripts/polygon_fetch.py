@@ -45,7 +45,14 @@ except ImportError:
 progress_tracker = get_progress_tracker()
 
 # Set up logging
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    # handlers=[
+    #     logging.FileHandler('/opt/biotech-dashboard/logs/data_collection.log'),
+    #     logging.StreamHandler()
+    # ]
+)
 logger = logging.getLogger(__name__)
 
 class HybridDataFetcher:
@@ -894,6 +901,7 @@ class HybridDataFetcher:
                 try:
                     ticker = yf.Ticker(symbol)
                     info = ticker.info
+                    
                     fifty_two_week_high = info.get('fiftyTwoWeekHigh')
                     fifty_two_week_low = info.get('fiftyTwoWeekLow')
                     
@@ -904,6 +912,9 @@ class HybridDataFetcher:
                         high_proximity_pct = ((fifty_two_week_high - current_price) / fifty_two_week_high) * 100
                     
                     near_high_alert = high_proximity_pct is not None and high_proximity_pct <= 5
+                    
+                    if fifty_two_week_high is None or fifty_two_week_low is None:
+                        logger.warning(f"{symbol}: Missing 52-week data. Raw info keys: {info.keys()}")
                     
                 except Exception as e:
                     logger.error(f"Error fetching yfinance data for {symbol}: {str(e)}")
