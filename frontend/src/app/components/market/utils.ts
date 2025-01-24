@@ -42,7 +42,11 @@ export const getVolumeChangeClass = (volumeChange: number): string => {
   return 'text-gray-500';
 };
 
-export const formatPercentage = (value: number): string => {
+// export const formatPercentage = (value: number): string => {
+//   return `${value >= 0 ? '+' : ''}${value.toFixed(2)}%`;
+// };
+export const formatPercentage = (value: number | null | undefined): string => {
+  if (value === null || value === undefined) return '0.00%';
   return `${value >= 0 ? '+' : ''}${value.toFixed(2)}%`;
 };
 

@@ -161,7 +161,7 @@ export const StockTooltip = ({ stock, top, left }: StockTooltipProps) => {
           <div>
             <span className="font-bold text-lg">{stock.symbol}</span>
             <span className={`ml-2 text-sm px-2 py-0.5 rounded ${
-              stock.priceChange > 0 ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+              (stock.priceChange ?? 0) > 0 ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
             }`}>
               {formatPercentage(stock.priceChange)}
             </span>
@@ -171,12 +171,12 @@ export const StockTooltip = ({ stock, top, left }: StockTooltipProps) => {
         <div className="space-y-1 text-sm">
           <div className="flex justify-between">
             <span className="text-gray-500">Price:</span>
-            <span className="font-medium">${stock.price.toFixed(2)}</span>
+            <span className="font-medium">${(stock.price ?? 0).toFixed(2)}</span>
           </div>
           <div className="flex justify-between">
             <span className="text-gray-500">52W Range:</span>
             <span className="font-medium">
-              ${stock.fiftyTwoWeekLow.toFixed(2)} - ${stock.fiftyTwoWeekHigh.toFixed(2)}
+              ${(stock.fiftyTwoWeekLow ?? 0).toFixed(2)} - ${(stock.fiftyTwoWeekHigh ?? 0).toFixed(2)}
             </span>
           </div>
           <div className="flex justify-between">
@@ -186,10 +186,10 @@ export const StockTooltip = ({ stock, top, left }: StockTooltipProps) => {
           <div className="flex justify-between">
             <span className="text-gray-500">Volume vs Avg:</span>
             <span className={`font-medium ${
-              stock.volumeMetrics.volumeVsAvg > 0 ? 'text-green-600' : 
-              stock.volumeMetrics.volumeVsAvg < 0 ? 'text-red-600' : 'text-gray-600'
+              (stock.volumeMetrics?.volumeVsAvg ?? 0) > 0 ? 'text-green-600' : 
+              (stock.volumeMetrics?.volumeVsAvg ?? 0) < 0 ? 'text-red-600' : 'text-gray-600'
             }`}>
-              {formatPercentage(stock.volumeMetrics.volumeVsAvg)}
+              {formatPercentage(stock.volumeMetrics?.volumeVsAvg ?? 0)}
             </span>
           </div>
           <div className="flex justify-between">
