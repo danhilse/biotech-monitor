@@ -322,15 +322,15 @@ const CompanyInsights = ({ stock }: { stock: Stock }) => {
                   <div className="flex justify-between">
                     <span className="text-sm text-muted-foreground">Forward P/E</span>
                     <span className="text-sm font-medium">
-                      {Math.abs(stock.fundamentals.peRatios.forwardPE).toFixed(2)}
-                      {stock.fundamentals.peRatios.forwardPE < 0 ? ' (negative earnings)' : ''}
+                      {Math.abs(stock.fundamentals?.peRatios?.forwardPE ?? 0).toFixed(2)}
+                      {(stock.fundamentals?.peRatios?.forwardPE ?? 0) < 0 ? ' (negative earnings)' : ''}
                     </span>
                   </div>
-                  {stock.fundamentals.peRatios.trailingPE !== null && (
+                  {stock.fundamentals?.peRatios?.trailingPE !== null && (
                     <div className="flex justify-between">
                       <span className="text-sm text-muted-foreground">Trailing P/E</span>
                       <span className="text-sm font-medium">
-                        {Math.abs(stock.fundamentals.peRatios.trailingPE).toFixed(2)}
+                        {Math.abs(stock.fundamentals?.peRatios?.trailingPE ?? 0).toFixed(2)}
                       </span>
                     </div>
                   )}
@@ -384,7 +384,7 @@ const AlertsList = ({ stock }: { stock: Stock }) => {
         <Alert variant="destructive">
           <AlertTriangle className="w-4 h-4" />
           <AlertDescription>
-            Major Price Movement: {priceChange.toFixed(1)}% change from previous close
+            Major Price Movement: {(priceChange ?? 0).toFixed(1)}% change from previous close
           </AlertDescription>
         </Alert>
       )}
@@ -392,20 +392,21 @@ const AlertsList = ({ stock }: { stock: Stock }) => {
         <Alert>
           <AlertTriangle className="w-4 h-4" />
           <AlertDescription>
-            Significant Volume Spike: {volumeChange.toFixed(1)}% increase in trading volume
+            Significant Volume Spike: {(volumeChange ?? 0).toFixed(1)}% increase in trading volume
           </AlertDescription>
         </Alert>
       )}
-      {volumeVsAvg > 50 && (
+      {(volumeVsAvg ?? 0) > 50 && (
         <Alert variant="default">
           <AlertTriangle className="w-4 h-4" />
           <AlertDescription>
-            Above Average Volume: {volumeVsAvg.toFixed(1)}% above 90-day average
+            Above Average Volume: {(volumeVsAvg ?? 0).toFixed(1)}% above 90-day average
           </AlertDescription>
         </Alert>
       )}
     </div>
   );
 };
+
 
 export default MarketDetailView;
