@@ -129,7 +129,7 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
 
   const confirmAdd = async () => {
     if (!confirmTicker) return;
-    if (addPwd !== process.env.NEXT_PUBLIC_CONFIRM_PASSWORD) {
+    if (addPwd !== process.env.CONFIRM_PASSWORD) {
       setPwdError('Invalid password');
       return;
     }
@@ -164,7 +164,7 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
 
   const confirmDelete = async () => {
     if (!deleteConfirm) return;
-    if (deletePwd !== process.env.NEXT_PUBLIC_CONFIRM_PASSWORD) {
+    if (deletePwd !== process.env.CONFIRM_PASSWORD) {
       setPwdError('Invalid password');
       return;
     }

@@ -145,7 +145,7 @@ const MarketDashboard = () => {
 
   // NEW: Confirm refresh with password
   const confirmRefresh = async () => {
-    if (refreshPwd !== process.env.NEXT_PUBLIC_CONFIRM_PASSWORD) {
+    if (refreshPwd !== process.env.CONFIRM_PASSWORD) {
       setRefreshPwdError('Invalid password');
       return;
     }
