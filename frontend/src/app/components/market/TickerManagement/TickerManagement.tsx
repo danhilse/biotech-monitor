@@ -1,4 +1,3 @@
-// src/app/components/market/TickerManagement/TickerManagement.tsx
 import React, { useState, useEffect, useCallback } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -11,7 +10,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog';
 import { Search, AlertCircle, Plus, Trash2 } from 'lucide-react';
 import { Stock } from './types';
 import { marketDataService } from '@/lib/services/marketDataService';
@@ -27,8 +26,6 @@ interface DeleteConfirmation {
   sector?: string;
 }
 
-
-
 const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) => {
   const [managedTickers, setManagedTickers] = useState<Stock[]>([]);
   const [marketData, setMarketData] = useState<Record<string, { price: number; priceChange: number; volume: number }>>({});
@@ -39,46 +36,35 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
   const [deleteConfirm, setDeleteConfirm] = useState<DeleteConfirmation | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [debouncedQuery, setDebouncedQuery] = useState('');
+  const [addPwd, setAddPwd] = useState('');
+  const [deletePwd, setDeletePwd] = useState('');
+  const [pwdError, setPwdError] = useState<string | null>(null);
 
+  // Debounce search query
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setDebouncedQuery(searchQuery);
-    }, 300);  // 300ms delay
-    
+    const timer = setTimeout(() => setDebouncedQuery(searchQuery), 300);
     return () => clearTimeout(timer);
   }, [searchQuery]);
-  
 
-    // At the top of the component, add:
+  // Load tickers on mount
   useEffect(() => {
     loadManagedTickers();
-  }, []); // This was missing from your component
+  }, []);
 
   const loadManagedTickers = async () => {
     try {
-      console.log('Starting to load managed tickers...');
-      
-      // Load market data for prices
       const data = await marketDataService.fetchMarketData();
-      console.log('Fetched market data:', data);
-      
       const marketDataMap = data.reduce((acc, stock) => {
         acc[stock.symbol] = {
           price: stock.price,
           priceChange: stock.priceChange,
-          volume: stock.volume || 0
+          volume: stock.volume || 0,
         };
         return acc;
       }, {} as Record<string, { price: number; priceChange: number; volume: number }>);
-      
-      // Set the market data state
-      setMarketData(marketDataMap);  // Add this line
-      
-      // Load full ticker list with details
-      console.log('Fetching managed tickers...'); // Debug log
+      setMarketData(marketDataMap);
+
       const tickers = await tickerService.getManagedTickers();
-      console.log('Received tickers:', tickers); // Debug log
-      
       const mappedTickers = tickers.map(ticker => ({
         ...ticker,
         price: marketDataMap[ticker.symbol]?.price || 0,
@@ -88,14 +74,12 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
         symbol: ticker.symbol,
         name: ticker.name,
         sector: ticker.sector || '',
-        industry: ticker.industry || ''
+        industry: ticker.industry || '',
       }));
-      console.log('Mapped tickers:', mappedTickers); // Debug log
-      
       setManagedTickers(mappedTickers);
       setError(null);
     } catch (err) {
-      console.error('Load error details:', err); // More detailed error logging
+      console.error('Load error details:', err);
       setError('Failed to load market data');
     }
   };
@@ -105,22 +89,19 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
       setSearchResults([]);
       return;
     }
-  
     setLoading(true);
     setError(null);
-  
     try {
       const results = await tickerService.searchTickers(debouncedQuery);
-      // Convert SearchResult to Stock with default values for missing properties
       const completeResults: Stock[] = results.map(result => ({
         symbol: result.symbol,
         name: result.name,
         price: result.price || 0,
-        priceChange: 0,        // Default value since not in SearchResult
-        volume: 0,             // Default value since not in SearchResult
-        marketCap: 0,          // Default value since not in SearchResult
+        priceChange: 0,
+        volume: 0,
+        marketCap: 0,
         sector: result.sector || '',
-        industry: result.industry || ''
+        industry: result.industry || '',
       }));
       setSearchResults(completeResults);
     } catch (err) {
@@ -142,27 +123,32 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
 
   const handleAddTicker = (ticker: Stock) => {
     setConfirmTicker(ticker);
+    setAddPwd('');
+    setPwdError(null);
   };
 
   const confirmAdd = async () => {
     if (!confirmTicker) return;
-    
+    if (addPwd !== process.env.NEXT_PUBLIC_CONFIRM_PASSWORD) {
+      setPwdError('Invalid password');
+      return;
+    }
     try {
       const success = await tickerService.addTicker(confirmTicker.symbol);
       if (success) {
         await loadManagedTickers();
-        if (onTickersUpdate) {
-          await onTickersUpdate();
-        }
+        if (onTickersUpdate) await onTickersUpdate();
         setSearchQuery('');
         setSearchResults([]);
         setError(null);
       }
     } catch (err) {
-      setError('Failed to add ticker');
       console.error('Add error:', err);
+      setError('Failed to add ticker');
     } finally {
       setConfirmTicker(null);
+      setAddPwd('');
+      setPwdError(null);
     }
   };
 
@@ -170,32 +156,38 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
     setDeleteConfirm({
       symbol: stock.symbol,
       name: stock.name,
-      sector: stock.sector
+      sector: stock.sector,
     });
+    setDeletePwd('');
+    setPwdError(null);
   };
 
   const confirmDelete = async () => {
     if (!deleteConfirm) return;
-    
+    if (deletePwd !== process.env.NEXT_PUBLIC_CONFIRM_PASSWORD) {
+      setPwdError('Invalid password');
+      return;
+    }
     try {
       const success = await tickerService.removeTicker(deleteConfirm.symbol);
       if (success) {
         await loadManagedTickers();
-        if (onTickersUpdate) {
-          await onTickersUpdate();
-        }
+        if (onTickersUpdate) await onTickersUpdate();
         setError(null);
       }
     } catch (err) {
-      setError('Failed to remove ticker');
       console.error('Remove error:', err);
+      setError('Failed to remove ticker');
     } finally {
       setDeleteConfirm(null);
+      setDeletePwd('');
+      setPwdError(null);
     }
   };
 
   return (
     <div className="space-y-6">
+      {/* Search & Add Section */}
       <Card className="bg-white">
         <CardHeader>
           <CardTitle>Search and Add Tickers</CardTitle>
@@ -211,45 +203,34 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
               disabled={loading}
             />
           </div>
-          
           <div className="mt-4">
             {loading && (
               <div className="text-center py-4">
                 <p className="text-sm text-gray-500">Searching...</p>
               </div>
             )}
-
             {!loading && searchQuery.length >= 2 && searchResults.length === 0 && (
               <div className="text-center py-4">
                 <p className="text-sm text-gray-500">No results found</p>
               </div>
             )}
-
             {!loading && searchResults.length > 0 && (
               <div className="space-y-2 grid grid-cols-3 gap-4">
                 {searchResults.map((result) => (
-                  <div 
-                    key={result.symbol} 
+                  <div
+                    key={result.symbol}
                     className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
                   >
                     <div>
                       <p className="font-medium">{result.symbol}</p>
                       <p className="text-sm text-gray-600">{result.name}</p>
-                      {result.sector && (
-                        <p className="text-xs text-gray-500">{result.sector}</p>
-                      )}
+                      {result.sector && <p className="text-xs text-gray-500">{result.sector}</p>}
                     </div>
                     <div className="flex items-center gap-2">
                       {result.isTracked ? (
-                        <span className="text-xs text-green-600 bg-green-50 px-2 py-1 rounded">
-                          Already Added
-                        </span>
+                        <span className="text-xs text-green-600 bg-green-50 px-2 py-1 rounded">Already Added</span>
                       ) : (
-                        <Button
-                          size="sm"
-                          onClick={() => handleAddTicker(result)}
-                          className="ml-4"
-                        >
+                        <Button size="sm" onClick={() => handleAddTicker(result)} className="ml-4">
                           <Plus className="h-4 w-4 mr-1" />
                           Add
                         </Button>
@@ -259,7 +240,6 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
                 ))}
               </div>
             )}
-
             {error && (
               <Alert variant="destructive" className="mt-4">
                 <AlertCircle className="h-4 w-4" />
@@ -270,49 +250,39 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
         </CardContent>
       </Card>
 
+      {/* Managed Tickers Section */}
       <Card className="bg-white">
         <CardHeader>
           <CardTitle>Managed Tickers</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="space-y-2 grid grid-cols-3 gap-4">  {/* Changed from just space-y-2 */}
+          <div className="space-y-2 grid grid-cols-3 gap-4">
             {managedTickers.map((stock) => (
-              <div 
-                key={stock.symbol} 
+              <div
+                key={stock.symbol}
                 className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
               >
                 <div>
                   <p className="font-medium">{stock.symbol}</p>
                   <p className="text-sm text-gray-600">{stock.name}</p>
-                  {stock.sector && (
-                    <p className="text-xs text-gray-500">{stock.sector}</p>
-                  )}
+                  {stock.sector && <p className="text-xs text-gray-500">{stock.sector}</p>}
                 </div>
                 <div className="flex items-center gap-4">
                   {marketData[stock.symbol] && (
                     <div className="text-right">
-                      <p className="text-sm font-medium">
-                        ${marketData[stock.symbol].price.toFixed(2)}
-                      </p>
-                      <p className={`text-xs ${
-                        marketData[stock.symbol].priceChange >= 0 ? 'text-green-600' : 'text-red-600'
-                      }`}>
+                      <p className="text-sm font-medium">${marketData[stock.symbol].price.toFixed(2)}</p>
+                      <p className={`text-xs ${marketData[stock.symbol].priceChange >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                         {marketData[stock.symbol].priceChange >= 0 ? '+' : ''}
                         {marketData[stock.symbol].priceChange.toFixed(2)}%
                       </p>
                     </div>
                   )}
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => handleDeleteTicker(stock)}
-                  >
+                  <Button variant="ghost" size="sm" onClick={() => handleDeleteTicker(stock)}>
                     <Trash2 className="h-4 w-4 text-red-500" />
                   </Button>
                 </div>
               </div>
             ))}
-            
             {managedTickers.length === 0 && (
               <p className="text-sm text-gray-500 text-center py-4">
                 No tickers added yet. Search and add tickers above.
@@ -322,7 +292,17 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
         </CardContent>
       </Card>
 
-      <Dialog open={confirmTicker !== null} onOpenChange={(open) => !open && setConfirmTicker(null)}>
+      {/* Add Confirmation Modal */}
+      <Dialog
+        open={confirmTicker !== null}
+        onOpenChange={(open) => {
+          if (!open) {
+            setConfirmTicker(null);
+            setAddPwd('');
+            setPwdError(null);
+          }
+        }}
+      >
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Add Stock to Dashboard</DialogTitle>
@@ -330,7 +310,6 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
               Are you sure you want to add {confirmTicker?.symbol} ({confirmTicker?.name}) to your dashboard?
             </DialogDescription>
           </DialogHeader>
-          
           {confirmTicker && (
             <div className="py-4">
               <div className="space-y-2">
@@ -357,19 +336,42 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
               </div>
             </div>
           )}
-
+          <div className="py-4">
+            <Input
+              type="password"
+              placeholder="Enter password"
+              value={addPwd}
+              onChange={(e) => setAddPwd(e.target.value)}
+            />
+            {pwdError && <p className="text-red-500 text-xs mt-1">{pwdError}</p>}
+          </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setConfirmTicker(null)}>
+            <Button
+              variant="outline"
+              onClick={() => {
+                setConfirmTicker(null);
+                setAddPwd('');
+                setPwdError(null);
+              }}
+            >
               Cancel
             </Button>
-            <Button onClick={confirmAdd}>
-              Add Stock
-            </Button>
+            <Button onClick={confirmAdd}>Add Stock</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
 
-      <Dialog open={deleteConfirm !== null} onOpenChange={(open) => !open && setDeleteConfirm(null)}>
+      {/* Delete Confirmation Modal */}
+      <Dialog
+        open={deleteConfirm !== null}
+        onOpenChange={(open) => {
+          if (!open) {
+            setDeleteConfirm(null);
+            setDeletePwd('');
+            setPwdError(null);
+          }
+        }}
+      >
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Remove Stock from Dashboard</DialogTitle>
@@ -377,7 +379,6 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
               Are you sure you want to remove {deleteConfirm?.symbol} from your dashboard?
             </DialogDescription>
           </DialogHeader>
-          
           {deleteConfirm && (
             <div className="py-4">
               <div className="space-y-2">
@@ -400,9 +401,24 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
               </div>
             </div>
           )}
-
+          <div className="py-4">
+            <Input
+              type="password"
+              placeholder="Enter password"
+              value={deletePwd}
+              onChange={(e) => setDeletePwd(e.target.value)}
+            />
+            {pwdError && <p className="text-red-500 text-xs mt-1">{pwdError}</p>}
+          </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setDeleteConfirm(null)}>
+            <Button
+              variant="outline"
+              onClick={() => {
+                setDeleteConfirm(null);
+                setDeletePwd('');
+                setPwdError(null);
+              }}
+            >
               Cancel
             </Button>
             <Button variant="destructive" onClick={confirmDelete}>
