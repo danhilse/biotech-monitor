@@ -161,14 +161,14 @@ const MarketDashboard = () => {
         <div className="space-y-4">
           <div className="flex justify-between items-center bg-white p-4 rounded-lg shadow-sm">
             <div className="flex items-center gap-8">
-              <div>
+              {/* <div>
                 <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
                   Biotech Market Overview
                 </h2>
                 <p className="text-gray-500 text-sm mt-1">
                   Tracking {marketData.length} stocks in real-time
                 </p>
-              </div>
+              </div> */}
               <TabsList className="bg-gray-100">
                 <TabsTrigger value="market" className="data-[state=active]:bg-white">
                   Market View
