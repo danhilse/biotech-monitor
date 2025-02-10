@@ -4,8 +4,11 @@ import { Stock, FilterType } from '../types';
 import { Chart } from './components/Chart';
 import { FilterGroup } from './components/FilterGroup';
 import TriStateSwitch, { TriStateSwitchValue } from './components/TriStateSwitch';
-import React from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { RefreshCw } from 'lucide-react';
 import { getNodeColor } from './utils/colorUtils';
+
 
 
 const CompactLegend = () => {
@@ -114,6 +117,9 @@ export const MarketScatterPlot = ({ data, onStockSelect }: Props) => {
   const [activeFilter, setActiveFilter] = useState<FilterType | null>(null);
   const [hoveredFilter, setHoveredFilter] = useState<FilterType | null>(null);
   const [outlierMode, setOutlierMode] = useState<OutlierMode>('all');
+  const [manualXDomain, setManualXDomain] = useState<[number, number] | undefined>(undefined);
+  const [minX, setMinX] = useState<string>('');
+  const [maxX, setMaxX] = useState<string>('');
   
   // Calculate ranges from data
   const dataRanges = useMemo(() => {
@@ -138,6 +144,20 @@ export const MarketScatterPlot = ({ data, onStockSelect }: Props) => {
     decliners: Math.min(5, Math.max(1, Math.floor(Math.abs(dataRanges.priceChange.min) / 4))),
     highVolume: Math.min(200, Math.max(1, Math.floor(dataRanges.volume.max / 4)))
   }));
+
+  const handleResetScale = () => {
+    setManualXDomain(undefined);
+    setMinX('');
+    setMaxX('');
+  };
+
+  const handleApplyScale = () => {
+    const min = parseFloat(minX);
+    const max = parseFloat(maxX);
+    if (!isNaN(min) && !isNaN(max) && min < max) {
+      setManualXDomain([min, max]);
+    }
+  };
 
   const displayData = useMemo(() => {
     return filterOutliers(data, outlierMode).map(stock => ({
@@ -243,22 +263,63 @@ export const MarketScatterPlot = ({ data, onStockSelect }: Props) => {
         </div>
       </div>
 
-      <div className="relative h-[60vh] min-h-123">
-        <ParentSize>
-          {({ width, height }) => (
-            <Chart
-              data={displayData}
-              activeFilter={activeFilter}
-              hoveredFilter={hoveredFilter}
-              filterStocksFn={(stock, filter) => filterStocksFn(stock, filter, thresholds)}
-              onStockSelect={onStockSelect}
-              width={width}
-              height={height - 24} // Reduce height to accommodate x-axis label
-              outlierMode={outlierMode}
+      <div className="flex flex-col space-y-2">
+        <div className="relative h-[60vh] min-h-123">
+          <ParentSize>
+            {({ width, height }) => (
+              <Chart
+                data={displayData}
+                activeFilter={activeFilter}
+                hoveredFilter={hoveredFilter}
+                filterStocksFn={(stock, filter) => filterStocksFn(stock, filter, thresholds)}
+                onStockSelect={onStockSelect}
+                width={width}
+                height={height - 24}
+                outlierMode={outlierMode}
+                xDomain={manualXDomain}
+              />
+            )}
+          </ParentSize>
+          <CompactLegend />
+        </div>
+
+        {/* X Scale controls moved below the chart */}
+        <div className="flex justify-center items-center gap-2 pt-2 pb-4">
+          <span className="text-sm text-muted-foreground whitespace-nowrap">X Scale:</span>
+          <div className="flex items-center gap-2">
+            <Input
+              type="number"
+              value={minX}
+              onChange={(e) => setMinX(e.target.value)}
+              className="w-20"
+              placeholder="Min"
             />
-          )}
-        </ParentSize>
-        <CompactLegend />
+            <span>to</span>
+            <Input
+              type="number"
+              value={maxX}
+              onChange={(e) => setMaxX(e.target.value)}
+              className="w-20"
+              placeholder="Max"
+            />
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleApplyScale}
+              disabled={!minX || !maxX}
+            >
+              Apply
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleResetScale}
+              disabled={!manualXDomain}
+            >
+              <RefreshCw className="h-4 w-4" />
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   );

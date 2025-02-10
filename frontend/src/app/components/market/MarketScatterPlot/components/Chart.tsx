@@ -1,4 +1,4 @@
-import { useMemo, useCallback, useRef, useState } from 'react';
+import { useMemo, useCallback, useRef, useState, useEffect } from 'react';
 import { scaleLinear } from '@visx/scale';
 import { Group } from '@visx/group';
 import { AxisLeft, AxisBottom } from '@visx/axis';
@@ -19,19 +19,25 @@ interface ChartProps {
   width: number;
   height: number;
   outlierMode: 'all' | 'remove' | 'only';
+  xDomain?: [number, number]; // Optional manual x-axis domain
 }
 
-export const Chart = ({ 
-  data, 
+export const Chart = ({
+  data,
   activeFilter,
   hoveredFilter,
   filterStocksFn,
   onStockSelect,
   width,
-  height
+  height,
+  xDomain: manualXDomain,
 }: ChartProps) => {
   const [selectedSymbol, setSelectedSymbol] = useState<string | null>(null);
   const [hoveredSymbol, setHoveredSymbol] = useState<string | null>(null);
+  const [isPanning, setIsPanning] = useState(false);
+  const [panStart, setPanStart] = useState<{ x: number; scale: number } | null>(null);
+  const [xOffset, setXOffset] = useState(0);
+  
   const svgRef = useRef<SVGSVGElement>(null);
   const margin = { top: 20, right: 20, bottom: 50, left: 60 };
   const innerWidth = width - margin.left - margin.right;
@@ -49,7 +55,6 @@ export const Chart = ({
     const processedData = data.map(stock => ({
       ...stock,
       volumeVsAvg: stock.volumeMetrics?.volumeVsAvg ?? 0,
-      // Add a stable key for React component identity
       stableKey: `${stock.symbol}-${stock.priceChange}-${stock.volumeMetrics?.volumeVsAvg ?? 0}`
     }));
 
@@ -64,9 +69,20 @@ export const Chart = ({
     const xPadding = (xMax - xMin) * 0.1;
     const yPadding = (yMax - yMin) * 0.1;
 
+    // Use manual domain if provided, otherwise calculate from data
+    const dataDomain = [xMin - xPadding, xMax + xPadding] as [number, number];
+    const effectiveXDomain = manualXDomain || dataDomain;
+
+    // Apply panning offset to the domain
+    const domainWidth = effectiveXDomain[1] - effectiveXDomain[0];
+    const panningDomain = [
+      effectiveXDomain[0] + (xOffset * domainWidth),
+      effectiveXDomain[1] + (xOffset * domainWidth)
+    ];
+
     const xScale = scaleLinear({
       range: [0, innerWidth],
-      domain: [xMin - xPadding, xMax + xPadding],
+      domain: panningDomain,
     });
 
     const yScale = scaleLinear({
@@ -109,8 +125,9 @@ export const Chart = ({
       voronoiLayout,
       filteredData: visibleData,
       neighborMap,
+      dataDomain,
     };
-  }, [data, innerWidth, innerHeight, activeFilter, filterStocksFn]);
+  }, [data, innerWidth, innerHeight, activeFilter, filterStocksFn, manualXDomain, xOffset]);
 
   const handleVoronoiMouseMove = useCallback((event: React.MouseEvent, stock: Stock) => {
     if (!svgRef.current) return;
@@ -142,6 +159,41 @@ export const Chart = ({
     onStockSelect(isCurrentlySelected ? null : stock);
   }, [selectedSymbol, onStockSelect]);
 
+    // Handle mouse events for panning
+    const handleMouseDown = useCallback((event: React.MouseEvent) => {
+      if (event.shiftKey) {
+        setIsPanning(true);
+        setPanStart({ x: event.clientX, scale: xOffset });
+        event.preventDefault();
+      }
+    }, [xOffset]);
+  
+    const handleMouseMove = useCallback((event: React.MouseEvent | MouseEvent) => {
+      if (isPanning && panStart) {
+        const dx = (event.clientX - panStart.x) / innerWidth;
+        setXOffset(panStart.scale - dx);
+        event.preventDefault();
+      }
+    }, [isPanning, panStart, innerWidth]);
+  
+  
+    const handleMouseUp = useCallback(() => {
+      setIsPanning(false);
+      setPanStart(null);
+    }, []);
+  
+    // Add and remove global mouse event listeners
+    useEffect(() => {
+      if (isPanning) {
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseup', handleMouseUp);
+        return () => {
+          document.removeEventListener('mousemove', handleMouseMove);
+          document.removeEventListener('mouseup', handleMouseUp);
+        };
+      }
+    }, [isPanning, handleMouseMove, handleMouseUp]);
+
   const getNodeOpacity = useCallback((stock: Stock) => {
     if (activeFilter) {
       return filterStocksFn(stock, activeFilter) ? 0.8 : 0;
@@ -160,11 +212,12 @@ export const Chart = ({
   return (
     <div className="relative">
       <svg 
-  ref={svgRef} 
-  width={width} 
-  height={height}
-  onClick={(e) => e.stopPropagation()}
->
+        ref={svgRef} 
+        width={width} 
+        height={height}
+        onMouseDown={handleMouseDown}
+        style={{ cursor: isPanning ? 'grabbing' : 'default' }}
+      >
         <defs>
           {filteredData.map((stock) => {
             const nodeColor = getNodeColor(stock.price, stock.fiftyTwoWeekLow, stock.fiftyTwoWeekHigh);
