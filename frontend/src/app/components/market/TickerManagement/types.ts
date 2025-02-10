@@ -6,18 +6,7 @@ export interface SearchResult {
   price?: number;
   sector?: string;
   industry?: string;
-}
-
-export interface Stock {
-  symbol: string;
-  name: string;
-  price: number;
-  priceChange: number;
-  volume: number;
-  marketCap: number;
-  sector?: string;
-  industry?: string;
-  isTracked?: boolean;
+  isTracked?: boolean;  // Add this property
 }
 
 export interface ManagedTicker {

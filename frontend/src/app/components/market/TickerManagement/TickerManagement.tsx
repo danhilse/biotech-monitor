@@ -11,14 +11,12 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { Search, AlertCircle, Plus, Trash2 } from 'lucide-react';
-import { Stock } from './types';
+import { Search, AlertCircle, Plus, Trash2, X } from 'lucide-react';
+import { SearchResult, ManagedTicker } from './types';
+import { Stock as MainStock } from '../types';  // Import the main Stock interface
 import { marketDataService } from '@/lib/services/marketDataService';
 import { tickerService } from '@/lib/services/tickerService';
-
-interface TickerManagementProps {
-  onTickersUpdate?: () => Promise<void>;
-}
+import { MarketDetailView } from '../MarketDetailView';
 
 interface DeleteConfirmation {
   symbol: string;
@@ -26,19 +24,21 @@ interface DeleteConfirmation {
   sector?: string;
 }
 
-const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) => {
-  const [managedTickers, setManagedTickers] = useState<Stock[]>([]);
+const TickerManagement: React.FC<{ onTickersUpdate?: () => Promise<void> }> = ({ onTickersUpdate }) => {
+  const [managedTickers, setManagedTickers] = useState<ManagedTicker[]>([]);
   const [marketData, setMarketData] = useState<Record<string, { price: number; priceChange: number; volume: number }>>({});
-  const [searchResults, setSearchResults] = useState<Stock[]>([]);
+  const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [confirmTicker, setConfirmTicker] = useState<Stock | null>(null);
+  const [confirmTicker, setConfirmTicker] = useState<SearchResult | null>(null);
   const [deleteConfirm, setDeleteConfirm] = useState<DeleteConfirmation | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [debouncedQuery, setDebouncedQuery] = useState('');
   const [addPwd, setAddPwd] = useState('');
   const [deletePwd, setDeletePwd] = useState('');
   const [pwdError, setPwdError] = useState<string | null>(null);
+  const [selectedStock, setSelectedStock] = useState<MainStock | null>(null);
+  const [loadingDetails, setLoadingDetails] = useState(false);
 
   // Debounce search query
   useEffect(() => {
@@ -66,13 +66,12 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
 
       const tickers = await tickerService.getManagedTickers();
       const mappedTickers = tickers.map(ticker => ({
-        ...ticker,
+        symbol: ticker.symbol,
+        name: ticker.name,
         price: marketDataMap[ticker.symbol]?.price || 0,
         priceChange: marketDataMap[ticker.symbol]?.priceChange || 0,
         volume: marketDataMap[ticker.symbol]?.volume || 0,
         marketCap: ticker.marketCap || 0,
-        symbol: ticker.symbol,
-        name: ticker.name,
         sector: ticker.sector || '',
         industry: ticker.industry || '',
       }));
@@ -84,6 +83,27 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
     }
   };
 
+// Update the handleStockSelect function:
+const handleStockSelect = async (stock: ManagedTicker) => {
+  setLoadingDetails(true);
+  setSelectedStock(null); // Reset selected stock while loading
+  try {
+    // Fetch complete stock data from market data service
+    const fullData = await marketDataService.fetchMarketData();
+    const completeStock = fullData.find(s => s.symbol === stock.symbol);
+    if (completeStock) {
+      setSelectedStock(completeStock);
+    } else {
+      setError(`Could not find complete data for ${stock.symbol}`);
+    }
+  } catch (err) {
+    console.error('Error fetching stock details:', err);
+    setError(`Failed to load details for ${stock.symbol}`);
+  } finally {
+    setLoadingDetails(false);
+  }
+};
+
   const searchTickers = useCallback(async () => {
     if (!debouncedQuery.trim()) {
       setSearchResults([]);
@@ -93,17 +113,7 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
     setError(null);
     try {
       const results = await tickerService.searchTickers(debouncedQuery);
-      const completeResults: Stock[] = results.map(result => ({
-        symbol: result.symbol,
-        name: result.name,
-        price: result.price || 0,
-        priceChange: 0,
-        volume: 0,
-        marketCap: 0,
-        sector: result.sector || '',
-        industry: result.industry || '',
-      }));
-      setSearchResults(completeResults);
+      setSearchResults(results);
     } catch (err) {
       console.error('Search error:', err);
       setError('Failed to search tickers');
@@ -121,7 +131,7 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
     }
   }, [debouncedQuery, searchTickers]);
 
-  const handleAddTicker = (ticker: Stock) => {
+  const handleAddTicker = (ticker: SearchResult) => {
     setConfirmTicker(ticker);
     setAddPwd('');
     setPwdError(null);
@@ -152,7 +162,7 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
     }
   };
 
-  const handleDeleteTicker = (stock: Stock) => {
+  const handleDeleteTicker = (stock: ManagedTicker) => {
     setDeleteConfirm({
       symbol: stock.symbol,
       name: stock.name,
@@ -186,7 +196,8 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
   };
 
   return (
-    <div className="space-y-6">
+    <div className={`space-y-6 transition-all duration-300 ${(selectedStock || loadingDetails) ? 'pb-[50vh]' : ''}`}>
+
       {/* Search & Add Section */}
       <Card className="bg-white">
         <CardHeader>
@@ -260,7 +271,8 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
             {managedTickers.map((stock) => (
               <div
                 key={stock.symbol}
-                className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer"
+                onClick={() => handleStockSelect(stock)}
               >
                 <div>
                   <p className="font-medium">{stock.symbol}</p>
@@ -277,7 +289,14 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
                       </p>
                     </div>
                   )}
-                  <Button variant="ghost" size="sm" onClick={() => handleDeleteTicker(stock)}>
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDeleteTicker(stock);
+                    }}
+                  >
                     <Trash2 className="h-4 w-4 text-red-500" />
                   </Button>
                 </div>
@@ -291,6 +310,38 @@ const TickerManagement: React.FC<TickerManagementProps> = ({ onTickersUpdate }) 
           </div>
         </CardContent>
       </Card>
+
+   {/* Animated Detail View Section */}
+   <div 
+      className={`fixed bottom-0 left-0 right-0 h-[50vh] bg-gray-50 border-t border-gray-200 shadow-lg transform transition-transform duration-300 ease-in-out ${
+        selectedStock || loadingDetails ? 'translate-y-0' : 'translate-y-full'
+      }`}
+    >
+      <div className="h-full overflow-auto">
+        <Card className="h-full rounded-none bg-white">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="absolute right-4 top-4 z-10"
+            onClick={() => {
+              setSelectedStock(null);
+              setLoadingDetails(false);
+            }}
+          >
+            <X className="h-4 w-4" />
+          </Button>
+          <CardContent className="pt-6 h-full overflow-auto">
+            {loadingDetails ? (
+              <div className="flex items-center justify-center h-64">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500" />
+              </div>
+            ) : selectedStock ? (
+              <MarketDetailView stock={selectedStock} onClose={() => setSelectedStock(null)} />
+            ) : null}
+          </CardContent>
+        </Card>
+      </div>
+    </div>
 
       {/* Add Confirmation Modal */}
       <Dialog
