@@ -71,18 +71,18 @@ export const Chart = ({
 
     // Use manual domain if provided, otherwise calculate from data
     const dataDomain = [xMin - xPadding, xMax + xPadding] as [number, number];
-    const effectiveXDomain = manualXDomain || dataDomain;
+    // const effectiveXDomain = manualXDomain || dataDomain;
 
-    // Apply panning offset to the domain
-    const domainWidth = effectiveXDomain[1] - effectiveXDomain[0];
-    const panningDomain = [
-      effectiveXDomain[0] + (xOffset * domainWidth),
-      effectiveXDomain[1] + (xOffset * domainWidth)
-    ];
+    // // Apply panning offset to the domain
+    // const domainWidth = effectiveXDomain[1] - effectiveXDomain[0];
+    // const panningDomain = [
+    //   effectiveXDomain[0] + (xOffset * domainWidth),
+    //   effectiveXDomain[1] + (xOffset * domainWidth)
+    // ];
 
     const xScale = scaleLinear({
       range: [0, innerWidth],
-      domain: panningDomain,
+      domain: dataDomain,
     });
 
     const yScale = scaleLinear({
