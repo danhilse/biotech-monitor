@@ -51,6 +51,10 @@ export const Chart = ({
     hideTooltip,
   } = useTooltip<Stock>();
 
+    // Add this at the start of the Chart component
+  console.log('Chart received data:', data.length, 'items');
+  console.log('First few items:', data.slice(0, 3));
+
   const { xScale, yScale, voronoiLayout, filteredData, neighborMap } = useMemo(() => {
     const processedData = data.map(stock => ({
       ...stock,
@@ -71,24 +75,35 @@ export const Chart = ({
 
     // Use manual domain if provided, otherwise calculate from data
     const dataDomain = [xMin - xPadding, xMax + xPadding] as [number, number];
-    // const effectiveXDomain = manualXDomain || dataDomain;
+    const effectiveXDomain = manualXDomain || dataDomain;
 
-    // // Apply panning offset to the domain
-    // const domainWidth = effectiveXDomain[1] - effectiveXDomain[0];
-    // const panningDomain = [
-    //   effectiveXDomain[0] + (xOffset * domainWidth),
-    //   effectiveXDomain[1] + (xOffset * domainWidth)
-    // ];
+    // Apply panning offset to the domain
+    const domainWidth = effectiveXDomain[1] - effectiveXDomain[0];
+    const panningDomain = [
+      effectiveXDomain[0] + (xOffset * domainWidth),
+      effectiveXDomain[1] + (xOffset * domainWidth)
+    ];
 
     const xScale = scaleLinear({
       range: [0, innerWidth],
-      domain: dataDomain,
+      domain: panningDomain,
     });
 
     const yScale = scaleLinear({
       range: [innerHeight, 0],
       domain: [yMin - yPadding, yMax + yPadding],
     });
+
+    // Add these logs in the useMemo where scales are calculated
+    console.log('xValues:', xValues);
+    console.log('Domain calculation:', {
+      xMin,
+      xMax,
+      dataDomain,
+      effectiveXDomain,
+      panningDomain
+    });
+    console.log('Filtered data length:', filteredData.length);
 
     const visibleData = processedData.filter(stock => 
       !activeFilter || filterStocksFn(stock, activeFilter)

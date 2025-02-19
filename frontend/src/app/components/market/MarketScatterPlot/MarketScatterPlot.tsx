@@ -177,6 +177,9 @@ export const MarketScatterPlot = ({ data, onStockSelect }: Props) => {
     }));
   };
 
+  console.log('Display data length:', displayData.length);
+console.log('Active filter:', activeFilter);
+
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-center mb-6">
