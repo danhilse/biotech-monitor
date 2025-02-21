@@ -11,6 +11,9 @@ from pathlib import Path
 from dotenv import load_dotenv
 import asyncio
 from fastapi.responses import JSONResponse
+from fastapi import FastAPI, HTTPException, Request  # Add Request here
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 
 # Add root directory to Python path
 root_dir = Path(__file__).parent.parent
@@ -38,9 +41,12 @@ app = FastAPI()
 # In server.py, update the CORS middleware configuration
 origins = [
     "http://localhost:3000",
+    "http://localhost:3001",  # Add this for your current frontend
     "http://127.0.0.1:3000",
+    "http://127.0.0.1:3001",  # Add this too for consistency
     "https://biotech-monitor.vercel.app"
 ]
+
 
 if os.getenv('ENV') == 'production':
     # Add the nip.io domain
@@ -53,8 +59,9 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allow_headers=["*"],  # This will allow the cache-control and pragma headers
+    max_age=3600  # Cache preflight requests for 1 hour
 )
 
 # Initialize manager once
@@ -224,11 +231,6 @@ async def refresh_market_data():
             status_code=500
         )
 
-@app.get("/api/market-data/refresh/status")
-async def get_refresh_status():
-    """Get the current status of market data refresh"""
-    return progress_tracker.get_status()
-
 async def run_data_collection():
     """Run the data collection process"""
     try:
@@ -278,12 +280,9 @@ def search_polygon(query: str) -> List[Dict[str, Any]]:
 
 @app.exception_handler(Exception)
 async def generic_exception_handler(request, exc):
-    print(f"Unhandled exception: {str(exc)}")  # Debug log
+    print(f"Unhandled exception: {str(exc)}")
     return JSONResponse(
         status_code=500,
-        content={"status": "error", "message": str(exc)},
-        headers={
-            "Access-Control-Allow-Origin": "http://localhost:3000",
-            "Access-Control-Allow-Credentials": "true",
-        }
+        content={"status": "error", "message": str(exc)}
+        # Remove the hardcoded CORS headers - let middleware handle it
     )

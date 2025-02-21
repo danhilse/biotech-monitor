@@ -57,13 +57,21 @@ export const Chart = ({
 
   const { xScale, yScale, voronoiLayout, filteredData, neighborMap } = useMemo(() => {
     const processedData = data.map(stock => ({
-      ...stock,
-      volumeVsAvg: stock.volumeMetrics?.volumeVsAvg ?? 0,
-      stableKey: `${stock.symbol}-${stock.priceChange}-${stock.volumeMetrics?.volumeVsAvg ?? 0}`
+        ...stock,
+        volumeVsAvg: stock.volumeMetrics?.volumeVsAvg ?? 0,
+        stableKey: `${stock.symbol}-${stock.priceChange}-${stock.volumeMetrics?.volumeVsAvg ?? 0}`
     }));
 
-    const xValues = processedData.map(d => d.priceChange);
-    const yValues = processedData.map(d => d.volumeMetrics?.volumeVsAvg ?? 0);
+    // First calculate visibleData (which will become filteredData)
+    const visibleData = processedData.filter(stock => 
+        !activeFilter || filterStocksFn(stock, activeFilter)
+    );
+
+    // Now we can safely log the length
+    console.log('Filtered data length:', visibleData.length);
+
+    const xValues = visibleData.map(d => d.priceChange);
+    const yValues = visibleData.map(d => d.volumeMetrics?.volumeVsAvg ?? 0);
     
     const xMin = Math.min(...xValues);
     const xMax = Math.max(...xValues);
@@ -73,76 +81,58 @@ export const Chart = ({
     const xPadding = (xMax - xMin) * 0.1;
     const yPadding = (yMax - yMin) * 0.1;
 
-    // Use manual domain if provided, otherwise calculate from data
     const dataDomain = [xMin - xPadding, xMax + xPadding] as [number, number];
     const effectiveXDomain = manualXDomain || dataDomain;
 
-    // Apply panning offset to the domain
     const domainWidth = effectiveXDomain[1] - effectiveXDomain[0];
     const panningDomain = [
-      effectiveXDomain[0] + (xOffset * domainWidth),
-      effectiveXDomain[1] + (xOffset * domainWidth)
+        effectiveXDomain[0] + (xOffset * domainWidth),
+        effectiveXDomain[1] + (xOffset * domainWidth)
     ];
 
     const xScale = scaleLinear({
-      range: [0, innerWidth],
-      domain: panningDomain,
+        range: [0, innerWidth],
+        domain: panningDomain,
     });
 
     const yScale = scaleLinear({
-      range: [innerHeight, 0],
-      domain: [yMin - yPadding, yMax + yPadding],
+        range: [innerHeight, 0],
+        domain: [yMin - yPadding, yMax + yPadding],
     });
-
-    // Add these logs in the useMemo where scales are calculated
-    console.log('xValues:', xValues);
-    console.log('Domain calculation:', {
-      xMin,
-      xMax,
-      dataDomain,
-      effectiveXDomain,
-      panningDomain
-    });
-    console.log('Filtered data length:', filteredData.length);
-
-    const visibleData = processedData.filter(stock => 
-      !activeFilter || filterStocksFn(stock, activeFilter)
-    );
 
     const voronoiLayout = voronoi<Stock>({
-      x: (d: Stock) => xScale(d.priceChange),
-      y: (d: Stock) => yScale(d.volumeMetrics?.volumeVsAvg ?? 0),
-      width: innerWidth,
-      height: innerHeight,
+        x: (d: Stock) => xScale(d.priceChange),
+        y: (d: Stock) => yScale(d.volumeMetrics?.volumeVsAvg ?? 0),
+        width: innerWidth,
+        height: innerHeight,
     })(visibleData);
 
     const neighborMap = new Map<string, Set<string>>();
     voronoiLayout.links().forEach(link => {
-      if (!link.source || !link.target) return;
-      
-      const sourceSymbol = (link.source as Stock).symbol;
-      const targetSymbol = (link.target as Stock).symbol;
-      
-      if (!neighborMap.has(sourceSymbol)) {
-        neighborMap.set(sourceSymbol, new Set());
-      }
-      if (!neighborMap.has(targetSymbol)) {
-        neighborMap.set(targetSymbol, new Set());
-      }
-      
-      neighborMap.get(sourceSymbol)?.add(targetSymbol);
-      neighborMap.get(targetSymbol)?.add(sourceSymbol);
+        if (!link.source || !link.target) return;
+        
+        const sourceSymbol = (link.source as Stock).symbol;
+        const targetSymbol = (link.target as Stock).symbol;
+        
+        if (!neighborMap.has(sourceSymbol)) {
+            neighborMap.set(sourceSymbol, new Set());
+        }
+        if (!neighborMap.has(targetSymbol)) {
+            neighborMap.set(targetSymbol, new Set());
+        }
+        
+        neighborMap.get(sourceSymbol)?.add(targetSymbol);
+        neighborMap.get(targetSymbol)?.add(sourceSymbol);
     });
 
     return {
-      xScale,
-      yScale,
-      voronoiLayout,
-      filteredData: visibleData,
-      neighborMap,
-      dataDomain,
+        xScale,
+        yScale,
+        voronoiLayout,
+        filteredData: visibleData,  // Set filteredData to visibleData
+        neighborMap,
     };
-  }, [data, innerWidth, innerHeight, activeFilter, filterStocksFn, manualXDomain, xOffset]);
+}, [data, innerWidth, innerHeight, activeFilter, filterStocksFn, manualXDomain, xOffset]);
 
   const handleVoronoiMouseMove = useCallback((event: React.MouseEvent, stock: Stock) => {
     if (!svgRef.current) return;
